@@ -1,0 +1,21 @@
+<mat-sidenav-container class="container">
+    <mat-sidenav mode="side" class="mat-elevation-z8" opened>
+        <mat-nav-list>
+            <a routerLink="" mat-list-item>
+                <i class="material-icons">home</i>
+                Home
+            </a>
+            <a routerLink="/medicamentos" mat-list-item>
+                <i class="material-icons">book</i>
+                Medicamentos
+            </a>
+            <a routerLink="/exames" mat-list-item>
+                <i class="material-icons">book</i>
+                Exames
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

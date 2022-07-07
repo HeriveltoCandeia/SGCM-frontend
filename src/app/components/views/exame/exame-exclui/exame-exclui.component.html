@@ -1,0 +1,11 @@
+<form>
+    <h1>Excluir Exame?</h1>
+    <mat-form-field class="form">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput [(ngModel)]="exame.descricao" disabled type="text" name="descricao"></textarea>
+    </mat-form-field>
+    <div class="buttons">
+        <button class="mat-elevation-z8"  (click)="voltar()" mat-stroked-button color="warn">Não</button>
+        <button class="mat-elevation-z8" (click)="excluir()" mat-stroked-button color="primary">Sim</button>
+    </div>
+</form>

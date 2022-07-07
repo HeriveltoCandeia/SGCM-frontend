@@ -1,0 +1,24 @@
+img{
+    height:5rem;
+    justify-content: left;
+}
+.header{
+    height: 15%;
+    background-color:rgb(193, 217, 241);
+}
+.imgTit{
+    width: 10%; 
+    justify-content: center;
+}
+.descTit{
+    width: 90%; 
+    justify-content: center; 
+}
+span{
+    display: flex;
+    align-items: center;
+}
+h1{
+    padding-left: 1.2rem;
+    font-size: 1.5rem;
+}
