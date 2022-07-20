@@ -31,6 +31,14 @@ import { ExameListaComponent } from './components/views/exame/exame-lista/exame-
 import { ExameIncluiComponent } from './components/views/exame/exame-inclui/exame-inclui.component';
 import { ExameExcluiComponent } from './components/views/exame/exame-exclui/exame-exclui.component';
 import { ExameEditaComponent } from './components/views/exame/exame-edita/exame-edita.component';
+import { FuncionarioListaComponent } from './components/views/funcionario/funcionario-lista/funcionario-lista.component';
+import { FuncionarioIncluiComponent } from './components/views/funcionario/funcionario-inclui/funcionario-inclui.component';
+import { FuncionarioExcluiComponent } from './components/views/funcionario/funcionario-exclui/funcionario-exclui.component';
+import { FuncionarioEditaComponent } from './components/views/funcionario/funcionario-edita/funcionario-edita.component';
+import { ClienteListaComponent } from './components/views/cliente/cliente-lista/cliente-lista.component';
+import { ClienteIncluiComponent } from './components/views/cliente/cliente-inclui/cliente-inclui.component';
+import { ClienteExcluiComponent } from './components/views/cliente/cliente-exclui/cliente-exclui.component';
+import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/cliente-edita.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +54,15 @@ import { ExameEditaComponent } from './components/views/exame/exame-edita/exame-
     ExameListaComponent,
     ExameIncluiComponent,
     ExameExcluiComponent,
-    ExameEditaComponent
+    ExameEditaComponent,
+    FuncionarioListaComponent,
+    FuncionarioIncluiComponent,
+    FuncionarioExcluiComponent,
+    FuncionarioEditaComponent,
+    ClienteListaComponent,
+    ClienteIncluiComponent,
+    ClienteExcluiComponent,
+    ClienteEditaComponent
   ],
   imports: [
     BrowserModule,

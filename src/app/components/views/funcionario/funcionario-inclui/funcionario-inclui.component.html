@@ -1,0 +1,11 @@
+<form>
+    <h1>Novo Funcionario</h1>
+    <mat-form-field class="form">
+        <mat-label>Nome</mat-label>
+        <textarea matInput [(ngModel)]="funcionario.nome" type="text" name="Nome" placeholder="Ex. Dipirona"></textarea>
+    </mat-form-field>
+    <div class="buttons">
+        <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Cancelar</button>
+        <button class="mat-elevation-z8" (click)="incluir()" mat-stroked-button color="primary">Salvar</button>
+    </div>
+</form>
