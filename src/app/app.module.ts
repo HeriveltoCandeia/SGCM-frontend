@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 
 //Componentes da aplicação
 import { HomeComponent } from './components/views/home/home.component'; 
@@ -79,7 +80,8 @@ import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,20 +7,19 @@
             </a>
             <a routerLink="/medicamentos" mat-list-item>
                 <i class="material-icons">book</i>
-                Medicamentos
+                Agenda
             </a>
-            <a routerLink="/exames" mat-list-item>
-                <i class="material-icons">book</i>
-                Exames
-            </a>
-            <a routerLink="/funcionarios" mat-list-item>
-                <i class="material-icons">book</i>
-                Funcionarios
-            </a>
-            <a routerLink="/clientes" mat-list-item>
-                <i class="material-icons">book</i>
-                Clientes
-            </a>
+            <i style="padding-left: 1.6rem; width: 5%;"class="material-icons">book</i>
+            <button style="font-size: 15px;" mat-button [matMenuTriggerFor]="cadastros">Cadastros</button>
+            <mat-menu #cadastros="matMenu">
+                <button routerLink="/clientes" mat-menu-item>Clientes</button>
+                <button routerLink="/funcionarios" mat-menu-item>Funcionários</button>
+                <button mat-menu-item [matMenuTriggerFor]="procedimentos">Procedimentos</button>
+            </mat-menu>
+            <mat-menu #procedimentos="matMenu">
+                <button routerLink="/exames" mat-menu-item>Exames</button>
+                <button routerLink="/medicamentos" mat-menu-item>Medicamentos</button>
+              </mat-menu>                        
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
