@@ -5,6 +5,6 @@ export interface Cliente{
     sexo: String,
     dataNascimento: String,
     email: String,
-    codigoConvenio?: Number,
+    convenioMedico?: String,
     numeroCarteirinha?: String
 }

@@ -16,7 +16,7 @@ export class ClienteEditaComponent implements OnInit {
     sexo: '',
     dataNascimento: '',
     email: '',
-    codigoConvenio:0,
+    convenioMedico:'',
     numeroCarteirinha: ''
   }
 

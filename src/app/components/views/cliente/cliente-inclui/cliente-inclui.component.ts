@@ -12,11 +12,11 @@ export class ClienteIncluiComponent implements OnInit {
 
   cliente: Cliente = {
     nome:'',
-    cpf: '12345678910',
-    sexo: 'M',
-    dataNascimento: '12.01.1975',
-    email: 'teste@gmail.com',
-    codigoConvenio:0,
+    cpf: '',
+    sexo: '',
+    dataNascimento: '',
+    email: '',
+    convenioMedico:'',
     numeroCarteirinha: ''
   }
 

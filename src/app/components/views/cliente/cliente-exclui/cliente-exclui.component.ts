@@ -16,7 +16,7 @@ export class ClienteExcluiComponent implements OnInit {
     sexo: '',
     dataNascimento: '',
     email: '',
-    codigoConvenio:0,
+    convenioMedico:'',
     numeroCarteirinha: ''
   }
 

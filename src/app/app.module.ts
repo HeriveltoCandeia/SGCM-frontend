@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 //Componentes da aplicação
 import { HomeComponent } from './components/views/home/home.component'; 
@@ -81,7 +82,8 @@ import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/
     MatInputModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
