@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { NgxMaskModule } from 'ngx-mask'
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +25,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 //Componentes da aplicação
 import { HomeComponent } from './components/views/home/home.component'; 
@@ -83,7 +88,13 @@ import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/
     MatFormFieldModule,
     MatSnackBarModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    CommonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,12 +9,12 @@ import { ClienteService } from '../cliente.service';
   styleUrls: ['./cliente-inclui.component.css']
 })
 export class ClienteIncluiComponent implements OnInit {
-
+  dateAtual: Date = new Date();
   cliente: Cliente = {
     nome:'',
     cpf: '',
     sexo: '',
-    dataNascimento: '',
+    dataNascimento: this.dateAtual,
     email: '',
     convenioMedico:'',
     numeroCarteirinha: ''

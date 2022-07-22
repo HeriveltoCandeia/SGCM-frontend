@@ -2,11 +2,11 @@
     <h1>Novo Cliente</h1>
     <mat-form-field class="form">
         <mat-label>Nome</mat-label>
-        <textarea matInput [(ngModel)]="cliente.nome" type="text" name="nome" placeholder="Ex. Fulano de tal"></textarea>
+        <input matInput [(ngModel)]="cliente.nome" type="text" name="nome" placeholder="Ex. Fulano de tal">
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>CPF</mat-label>
-        <textarea matInput [(ngModel)]="cliente.cpf" type="text" name="cpf" placeholder="Ex. 999.999.999-99"></textarea>
+        <input mask="CPF_CNPJ" matInput [(ngModel)]="cliente.cpf" type="text" name="cpf">
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Sexo</mat-label>
@@ -18,7 +18,9 @@
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Data Nascimento</mat-label>
-        <textarea matInput [(ngModel)]="cliente.dataNascimento" type="text" name="dataNascimento" placeholder="Ex. 99/99/9999"></textarea>
+        <input matInput [(ngModel)]="cliente.dataNascimento" [matDatepicker]="picker" name="dataNascimento">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="month" [startAt]="dateAtual"></mat-datepicker>
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>E-mail</mat-label>
@@ -26,11 +28,11 @@
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Convênio Médico</mat-label>
-        <textarea matInput [(ngModel)]="cliente.convenioMedico" type="text" name="convenioMedico" placeholder="Ex. email@email.com"></textarea>
+        <input matInput [(ngModel)]="cliente.convenioMedico" type="text" name="convenioMedico">
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Número Carteirinha</mat-label>
-        <textarea matInput [(ngModel)]="cliente.numeroCarteirinha" type="text" name="numeroCarteirinha" placeholder="Ex. email@email.com"></textarea>
+        <input matInput [(ngModel)]="cliente.numeroCarteirinha" type="text" name="numeroCarteirinha">
     </mat-form-field>
 
     <div class="buttons">
