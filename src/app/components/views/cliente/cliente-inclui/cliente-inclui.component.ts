@@ -14,7 +14,7 @@ export class ClienteIncluiComponent implements OnInit {
     nome:'',
     cpf: '',
     sexo: '',
-    dataNascimento: this.dateAtual,
+    dataNascimento: this.dateAtual.toLocaleDateString(),
     email: '',
     convenioMedico:'',
     numeroCarteirinha: ''

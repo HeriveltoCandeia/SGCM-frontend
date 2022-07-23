@@ -3,7 +3,7 @@ export interface Cliente{
     nome: String,
     cpf: String,
     sexo: String,
-    dataNascimento: Date,
+    dataNascimento: String,
     email: String,
     convenioMedico?: String,
     numeroCarteirinha?: String

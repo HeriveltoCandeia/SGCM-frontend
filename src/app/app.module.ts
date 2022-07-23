@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxMaskModule } from 'ngx-mask'
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -96,7 +95,7 @@ import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/
       dropSpecialCharacters: false
     })
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID,      useValue: 'pt-BR'    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
