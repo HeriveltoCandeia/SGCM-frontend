@@ -10,14 +10,18 @@ import { FuncionarioService } from '../funcionario.service';
 })
 export class FuncionarioIncluiComponent implements OnInit {
 
+  dataAtual: Date = new Date();
+  dataAdmissaoAtual: Date = new Date();
+  codigoCargoSelecionado = "2";
+
   funcionario: Funcionario = {
     nome:'',
-    cpf: '12345678910',
-    sexo: 'M',
-    dataNascimento: '12.01.1975',
-    email: 'teste@gmail.com',
+    cpf: '',
+    sexo: '',
+    dataNascimento:this.dataAtual.toLocaleDateString(),
+    email: '',
     codigoCargo:1,
-    dataAdmissao: '19.07.2022',
+    dataAdmissao: this.dataAdmissaoAtual.toLocaleDateString()
   }
 
   constructor(private router:Router, private service: FuncionarioService) { }
@@ -26,6 +30,8 @@ export class FuncionarioIncluiComponent implements OnInit {
   }
 
   incluir(): void{
+    this.funcionario.codigoCargo = parseInt(this.codigoCargoSelecionado);
+    console.log(this.dataAtual);
     this.service.incluir(this.funcionario).subscribe((resposta) => {
       this.router.navigate(["funcionarios"]);
       this.service.mensagem("Funcionario incluído com sucesso!");

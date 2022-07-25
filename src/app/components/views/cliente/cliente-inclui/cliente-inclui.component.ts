@@ -29,7 +29,11 @@ export class ClienteIncluiComponent implements OnInit {
     this.service.incluir(this.cliente).subscribe((resposta) => {
       this.router.navigate(["clientes"]);
       this.service.mensagem("Cliente incluído com sucesso!");
-    },err =>{   
+    },err =>{
+        console.log('err.error: ');   
+        console.log(err.error);   
+        console.log('err.error.message: ');   
+        console.log(err.error.message);   
         this.service.mensagem(err.error.message);
     })
   }

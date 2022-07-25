@@ -40,10 +40,21 @@ export class FuncionarioService {
   }
 
   mensagem(str: String): void{
-    this._snack.open(`${str}`,'OK',{
-      horizontalPosition: 'end',
-      verticalPosition: 'top',
-      duration:3000
-    })
+    if(str.length>80)
+    {
+      this._snack.open(`${str}`,'OK',{
+        horizontalPosition: 'end',
+        verticalPosition: 'top',
+        duration:10000
+      }) 
+    }
+    else
+    {
+      this._snack.open(`${str}`,'OK',{
+        horizontalPosition: 'end',
+        verticalPosition: 'top',
+        duration:1000
+      })
+    }
   }
 }

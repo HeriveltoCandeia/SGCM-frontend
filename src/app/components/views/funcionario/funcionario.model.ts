@@ -5,7 +5,7 @@ export interface Funcionario{
     sexo: String,
     dataNascimento: String,
     email: String,
-    codigoCargo?: Number,
+    codigoCargo: Number,
     dataAdmissao?: String,
     dataDesligamento?: String
 }
