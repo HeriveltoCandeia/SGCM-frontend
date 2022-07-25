@@ -26,6 +26,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 //Componentes da aplicação
 import { HomeComponent } from './components/views/home/home.component'; 
@@ -93,7 +95,8 @@ import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/
     MatNativeDateModule,
     NgxMaskModule.forRoot({
       dropSpecialCharacters: false
-    })
+    }),
+    MatPaginatorModule
   ],
   providers: [{provide: LOCALE_ID,      useValue: 'pt-BR'    }],
   bootstrap: [AppComponent]
