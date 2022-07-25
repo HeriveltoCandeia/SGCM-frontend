@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SGCM-frontend';
+  abreNavBar = true;
+
+  public reciverFeedBack(retorno: any){
+    this.abreNavBar = retorno;
+  }
 }
