@@ -28,7 +28,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-
 //Componentes da aplicação
 import { HomeComponent } from './components/views/home/home.component'; 
 import { MedicamentoListaComponent } from './components/views/medicamento/medicamento-lista/medicamento-lista.component';
@@ -98,7 +97,7 @@ import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/
     }),
     MatPaginatorModule
   ],
-  providers: [{provide: LOCALE_ID,      useValue: 'pt-BR'    }],
+  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

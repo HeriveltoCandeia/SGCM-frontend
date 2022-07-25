@@ -1,10 +1,10 @@
 export interface Cliente{
-    id?: String,
-    nome: String,
-    cpf: String,
-    sexo: String,
-    dataNascimento: String,
-    email: String,
-    convenioMedico?: String,
-    numeroCarteirinha?: String
+    id?: string,
+    nome: string,
+    cpf: string,
+    sexo: string,
+    dataNascimento: string,
+    email: string,
+    convenioMedico?: string,
+    numeroCarteirinha?: string
 }

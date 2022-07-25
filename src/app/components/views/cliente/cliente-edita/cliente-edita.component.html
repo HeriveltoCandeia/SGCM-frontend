@@ -4,6 +4,37 @@
         <mat-label>Descrição</mat-label>
         <textarea matInput [(ngModel)]="cliente.nome" type="text" name="descricao" placeholder="Ex. Dipirona"></textarea>
     </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>CPF</mat-label>
+        <input mask="CPF_CNPJ" matInput [(ngModel)]="cliente.cpf" type="text" name="cpf">
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Sexo</mat-label>
+        <mat-select [(ngModel)]="cliente.sexo" name="sexo">
+                <mat-option value="" disabled selected>Selecione...</mat-option>
+                <mat-option value="M">Masculino</mat-option>
+                <mat-option value="F">Feminino</mat-option>            
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Data Nascimento</mat-label>
+        <input matInput  [(ngModel)]="dataAtual" [matDatepicker]="picker" name="dataNascimento">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="month" [startAt]="dataAtual"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>E-mail</mat-label>
+        <input matInput [(ngModel)]="cliente.email" type="email" name="email">
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Convênio Médico</mat-label>
+        <input matInput [(ngModel)]="cliente.convenioMedico" type="text" name="convenioMedico">
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Número Carteirinha</mat-label>
+        <input matInput [(ngModel)]="cliente.numeroCarteirinha" type="text" name="numeroCarteirinha">
+    </mat-form-field>
+
     <div class="buttons">
         <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Cancelar</button>
         <button class="mat-elevation-z8" (click)="editar()" mat-stroked-button color="primary">Salvar</button>

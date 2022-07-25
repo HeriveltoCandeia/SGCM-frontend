@@ -9,6 +9,7 @@ import { ClienteService } from '../cliente.service';
   styleUrls: ['./cliente-edita.component.css']
 })
 export class ClienteEditaComponent implements OnInit {
+  dataAtual!: Date ;
 
   cliente: Cliente = {
     nome:'',
@@ -34,10 +35,13 @@ export class ClienteEditaComponent implements OnInit {
   buscarClienteParaAlterar(): void {
     this.service.pesquisarPorId(this.cliente.id!).subscribe((resposta) => {
       this.cliente = resposta;
+      let dataFormat = this.cliente.dataNascimento.substring(3,5) + '/' + this.cliente.dataNascimento.substring(0,2) + '/' + this.cliente.dataNascimento.substring(6,10);
+      this.dataAtual = new Date(dataFormat);
     });
   }
 
   editar(): void{
+    this.cliente.dataNascimento = this.dataAtual.toLocaleDateString();
     this.service.editar(this.cliente.id!, this.cliente).subscribe((resposta) => {
       this.router.navigate(["clientes"]);
       this.service.mensagem("Cliente alterado com sucesso!");
