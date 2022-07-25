@@ -26,3 +26,15 @@
 button{
     margin-bottom: .5rem;
 }
+table {
+    width: 100%;
+  }
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}  
+.filtro {
+    font-size: 14px;
+    width: 82%;
+    margin-left: 1rem;
+}

@@ -14,11 +14,11 @@ export class ClienteListaComponent implements OnInit {
 
   clientes: Cliente[] | undefined;
 
-  displayedColumns: string[] = ['id', 'descricao', 'acoes'];
+  displayedColumns: string[] = ['id', 'nome', 'acoes'];
   dataSource : any;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
-  @ViewChild(MatSort) sort: MatSort | undefined;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
 
   constructor( private service: ClienteService, private router:Router) {
