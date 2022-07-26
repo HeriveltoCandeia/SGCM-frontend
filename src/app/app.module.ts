@@ -46,7 +46,9 @@ import { ClienteListaComponent } from './components/views/cliente/cliente-lista/
 import { ClienteIncluiComponent } from './components/views/cliente/cliente-inclui/cliente-inclui.component';
 import { ClienteExcluiComponent } from './components/views/cliente/cliente-exclui/cliente-exclui.component';
 import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/cliente-edita.component';
-
+import { LoginComponent } from './components/views/login/login.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { LayoutComponent } from './components/views/layout/layout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +71,9 @@ import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/
     ClienteListaComponent,
     ClienteIncluiComponent,
     ClienteExcluiComponent,
-    ClienteEditaComponent
+    ClienteEditaComponent,
+    LoginComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +99,8 @@ import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/
     NgxMaskModule.forRoot({
       dropSpecialCharacters: false
     }),
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatGridListModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]

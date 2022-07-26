@@ -20,75 +20,86 @@ import { ClienteListaComponent } from './components/views/cliente/cliente-lista/
 import { ClienteIncluiComponent } from './components/views/cliente/cliente-inclui/cliente-inclui.component';
 import { ClienteExcluiComponent } from './components/views/cliente/cliente-exclui/cliente-exclui.component';
 import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/cliente-edita.component';
+import { LoginComponent } from './components/views/login/login.component';
+import { LayoutComponent } from './components/views/layout/layout.component';
 
 const routes: Routes = [
   {
     path:'',
-    component: HomeComponent
+    component: LayoutComponent, children: [
+      {
+        path:'',
+        component: HomeComponent
+      },
+      {
+        path:'medicamentos',
+        component: MedicamentoListaComponent
+      },
+      {
+        path:'medicamentos/inclui',
+        component: MedicamentoIncluiComponent
+      },
+      {
+        path:'medicamentos/exclui/:id',
+        component: MedicamentoExcluiComponent
+      },
+      {
+        path:'medicamentos/edita/:id',
+        component: MedicamentoEditaComponent
+      },
+      {
+        path:'exames',
+        component: ExameListaComponent
+      },
+      {
+        path:'exames/inclui',
+        component: ExameIncluiComponent
+      },
+      {
+        path:'exames/exclui/:id',
+        component: ExameExcluiComponent
+      },
+      {
+        path:'exames/edita/:id',
+        component: ExameEditaComponent
+      },
+      {
+        path:'funcionarios',
+        component: FuncionarioListaComponent
+      },
+      {
+        path:'funcionarios/inclui',
+        component: FuncionarioIncluiComponent
+      },
+      {
+        path:'funcionarios/exclui/:id',
+        component: FuncionarioExcluiComponent
+      },
+      {
+        path:'funcionarios/edita/:id',
+        component: FuncionarioEditaComponent
+      },
+      {
+        path:'clientes',
+        component: ClienteListaComponent
+      },
+      {
+        path:'clientes/inclui',
+        component: ClienteIncluiComponent
+      },
+      {
+        path:'clientes/exclui/:id',
+        component: ClienteExcluiComponent
+      },
+      {
+        path:'clientes/edita/:id',
+        component: ClienteEditaComponent
+      }    
+    ]
   },
   {
-    path:'medicamentos',
-    component: MedicamentoListaComponent
-  },
-  {
-    path:'medicamentos/inclui',
-    component: MedicamentoIncluiComponent
-  },
-  {
-    path:'medicamentos/exclui/:id',
-    component: MedicamentoExcluiComponent
-  },
-  {
-    path:'medicamentos/edita/:id',
-    component: MedicamentoEditaComponent
-  },
-  {
-    path:'exames',
-    component: ExameListaComponent
-  },
-  {
-    path:'exames/inclui',
-    component: ExameIncluiComponent
-  },
-  {
-    path:'exames/exclui/:id',
-    component: ExameExcluiComponent
-  },
-  {
-    path:'exames/edita/:id',
-    component: ExameEditaComponent
-  },
-  {
-    path:'funcionarios',
-    component: FuncionarioListaComponent
-  },
-  {
-    path:'funcionarios/inclui',
-    component: FuncionarioIncluiComponent
-  },
-  {
-    path:'funcionarios/exclui/:id',
-    component: FuncionarioExcluiComponent
-  },
-  {
-    path:'funcionarios/edita/:id',
-    component: FuncionarioEditaComponent
-  },
-  {
-    path:'clientes',
-    component: ClienteListaComponent
-  },
-  {
-    path:'clientes/inclui',
-    component: ClienteIncluiComponent
-  },
-  {
-    path:'clientes/exclui/:id',
-    component: ClienteExcluiComponent
-  },
-  {
-    path:'clientes/edita/:id',
-    component: ClienteEditaComponent
+    path:'login',
+    component: LoginComponent
   }
 ];
 
