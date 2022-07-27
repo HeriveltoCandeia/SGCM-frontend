@@ -8,4 +8,6 @@ export interface Funcionario{
     codigoCargo: Number,
     dataAdmissao?: String,
     dataDesligamento?: String
+    usuario: String,
+    senha: String
 }

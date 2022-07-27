@@ -22,7 +22,9 @@ export class FuncionarioEditaComponent implements OnInit {
     email: '',
     codigoCargo:0,
     dataAdmissao: '',
-    dataDesligamento: ''
+    dataDesligamento: '',
+    usuario: '',
+    senha: ''
   }
 
   constructor(

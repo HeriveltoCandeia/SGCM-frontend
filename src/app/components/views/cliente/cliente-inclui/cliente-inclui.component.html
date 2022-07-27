@@ -2,11 +2,11 @@
     <h1>Novo Cliente</h1>
     <mat-form-field class="form">
         <mat-label>Nome</mat-label>
-        <input matInput [(ngModel)]="cliente.nome" type="text" name="nome" placeholder="Ex. Fulano de tal">
+        <input autocomplete="off" matInput [(ngModel)]="cliente.nome" type="text" name="nome">
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>CPF</mat-label>
-        <input mask="CPF_CNPJ" matInput [(ngModel)]="cliente.cpf" type="text" name="cpf">
+        <input autocomplete="off" mask="CPF_CNPJ" matInput [(ngModel)]="cliente.cpf" type="text" name="cpf">
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Sexo</mat-label>
@@ -18,21 +18,21 @@
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Data Nascimento</mat-label>
-        <input matInput  [(ngModel)]="dateAtual" [matDatepicker]="picker" name="dataNascimento">
+        <input matInput  [(ngModel)]="dateAtual" [matDatepicker]="picker" (focus)="picker.open()" name="dataNascimento">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker startView="month" [startAt]="dateAtual"></mat-datepicker>
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>E-mail</mat-label>
-        <input matInput [(ngModel)]="cliente.email" type="email" name="email">
+        <input autocomplete="off" matInput [(ngModel)]="cliente.email" type="email" name="email">
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Convênio Médico</mat-label>
-        <input matInput [(ngModel)]="cliente.convenioMedico" type="text" name="convenioMedico">
+        <input autocomplete="off" matInput [(ngModel)]="cliente.convenioMedico" type="text" name="convenioMedico">
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Número Carteirinha</mat-label>
-        <input matInput [(ngModel)]="cliente.numeroCarteirinha" type="text" name="numeroCarteirinha">
+        <input autocomplete="off" matInput [(ngModel)]="cliente.numeroCarteirinha" type="text" name="numeroCarteirinha">
     </mat-form-field>
 
     <div class="buttons">

@@ -21,7 +21,9 @@ export class FuncionarioIncluiComponent implements OnInit {
     dataNascimento:this.dataAtual.toLocaleDateString(),
     email: '',
     codigoCargo:1,
-    dataAdmissao: this.dataAdmissaoAtual.toLocaleDateString()
+    dataAdmissao: this.dataAdmissaoAtual.toLocaleDateString(),
+    usuario: '',
+    senha: ''
   }
 
   constructor(private router:Router, private service: FuncionarioService) { }
