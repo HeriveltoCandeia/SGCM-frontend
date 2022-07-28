@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NgxMaskModule } from 'ngx-mask'
+import { NgxMaskModule } from 'ngx-mask';
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -100,6 +101,7 @@ import { TokenHttpInterceptor} from './components/interceptor/token-http.interce
     NgxMaskModule.forRoot({
       dropSpecialCharacters: false
     }),
+    ReactiveFormsModule,
     MatPaginatorModule,
     MatGridListModule
   ],

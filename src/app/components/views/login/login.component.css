@@ -1,5 +1,5 @@
 h1{
-    margin-top: 2.5rem;
+    margin-top: 5%;
     text-align: center;
 }
 mat-grid-tile{
@@ -10,8 +10,8 @@ mat-grid-tile{
     width: 100%;
 }  
 button{
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-top: 5%;
+    margin-bottom: 7%;
     width: 100%;
 }
 mat-card{
@@ -24,4 +24,7 @@ mat-card{
 form{
     background-color:rgb(213, 229, 241);
     height: 100%;    
+}
+mat-grid-list{
+    padding-top: 8%;
 }
