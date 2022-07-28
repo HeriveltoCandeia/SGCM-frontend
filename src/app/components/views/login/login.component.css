@@ -21,4 +21,7 @@ mat-card{
     border-style:groove;
     border-color:rgb(213, 229, 241);
 }
-
+form{
+    background-color:rgb(213, 229, 241);
+    height: 100%;    
+}
