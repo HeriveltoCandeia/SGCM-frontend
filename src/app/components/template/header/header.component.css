@@ -11,7 +11,7 @@ img{
     justify-content: center;
 }
 .descTit{
-    width: 90%; 
+    width: 80%; 
     justify-content: center; 
 }
 span{
@@ -21,4 +21,12 @@ span{
 h1{
     padding-left: 1.2rem;
     font-size: 1.5rem;
+}
+.usuarioLogado{
+    font-size: 1.2rem;
+    color:blue;
+}
+.usuarioLogout{
+    width: 10%; 
+    justify-content:right;
 }

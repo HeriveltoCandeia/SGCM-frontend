@@ -14,17 +14,21 @@ export class TokenHttpInterceptor implements HttpInterceptor {
   
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const tokenString = localStorage.getItem('access_token');
-    console.log(request);
-    if (tokenString)
-    {
-      const token = JSON.parse(tokenString);
-      const jwt = token.access_token;
-      request = request.clone({
-        setHeaders : {
-          'Authorization':'Bearer ' + jwt
-        }
-      })
-    }
+    const url = request.url;
+// optei por remover o access_token sempre antes de realizar novo login.    
+//    if(!url.endsWith('/oauth/token'))
+//    {
+      if (tokenString)
+      {
+        const token = JSON.parse(tokenString);
+        const jwt = token.access_token;
+        request = request.clone({
+          setHeaders : {
+            'Authorization':'Bearer ' + jwt
+          }
+        })
+      }
+//    }
     return next.handle(request);
   }
 }
