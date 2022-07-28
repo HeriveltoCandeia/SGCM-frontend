@@ -1,6 +1,6 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxMaskModule } from 'ngx-mask'
@@ -49,6 +49,7 @@ import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/
 import { LoginComponent } from './components/views/login/login.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { LayoutComponent } from './components/views/layout/layout.component';
+import { TokenHttpInterceptor} from './components/interceptor/token-http.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,7 +103,10 @@ import { LayoutComponent } from './components/views/layout/layout.component';
     MatPaginatorModule,
     MatGridListModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'pt-BR'},
+    {provide: HTTP_INTERCEPTORS, useClass: TokenHttpInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

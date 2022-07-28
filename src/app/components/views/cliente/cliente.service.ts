@@ -1,4 +1,3 @@
-import { ListKeyManager } from '@angular/cdk/a11y';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,8 +14,13 @@ export class ClienteService {
   constructor(private http: HttpClient, private _snack: MatSnackBar) { }
 
   pesquisarTodos():Observable<Cliente[]>{
+/*    const tokenString = localStorage.getItem('access_token');
+    const token = JSON.parse(tokenString?tokenString:'');
+    const headers = {
+      'Authorization':'Bearer ' + token.access_token
+    } */
     const url = `${this.baseUrl}/clientesRest`
-    return this.http.get<Cliente[]>(url);
+    return this.http.get<Cliente[]>(url);//,{headers});
   }
 
   pesquisarPorId(id: String): Observable<Cliente>{

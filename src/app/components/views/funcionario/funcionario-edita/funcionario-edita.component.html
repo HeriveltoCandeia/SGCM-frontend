@@ -2,7 +2,7 @@
     <h1>Edita Funcionario</h1>
     <mat-form-field class="form">
         <mat-label>Nome</mat-label>
-        <input autocomplete="off" matInput [(ngModel)]="funcionario.nome" type="text" name="nome" ></input>
+        <input autocomplete="off" matInput [(ngModel)]="funcionario.nome" type="text" name="nome" >
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>CPF</mat-label>
@@ -43,11 +43,11 @@
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Usuário</mat-label>
-        <input autocomplete="off" matInput [(ngModel)]="funcionario.usuario" type="text" name="usuario" ></input>
+        <input autocomplete="off" matInput [(ngModel)]="funcionario.usuario" type="text" name="usuario">
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Senha</mat-label>
-        <input autocomplete="off" matInput [(ngModel)]="funcionario.senha" type="password" name="senha"></input>
+        <input autocomplete="off" matInput [(ngModel)]="funcionario.senha" type="password" name="senha">
     </mat-form-field>
     <mat-form-field class="form" id="desligamento" *ngIf="funcionario.dataDesligamento">
         <mat-label>Data Demissão</mat-label>

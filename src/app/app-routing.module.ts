@@ -22,6 +22,7 @@ import { ClienteExcluiComponent } from './components/views/cliente/cliente-exclu
 import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/cliente-edita.component';
 import { LoginComponent } from './components/views/login/login.component';
 import { LayoutComponent } from './components/views/layout/layout.component';
+import { AuthGuard } from './components/guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -29,71 +30,88 @@ const routes: Routes = [
     component: LayoutComponent, children: [
       {
         path:'',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'medicamentos',
-        component: MedicamentoListaComponent
+        component: MedicamentoListaComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'medicamentos/inclui',
-        component: MedicamentoIncluiComponent
+        component: MedicamentoIncluiComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'medicamentos/exclui/:id',
-        component: MedicamentoExcluiComponent
+        component: MedicamentoExcluiComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'medicamentos/edita/:id',
-        component: MedicamentoEditaComponent
+        component: MedicamentoEditaComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'exames',
-        component: ExameListaComponent
+        component: ExameListaComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'exames/inclui',
-        component: ExameIncluiComponent
+        component: ExameIncluiComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'exames/exclui/:id',
-        component: ExameExcluiComponent
+        component: ExameExcluiComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'exames/edita/:id',
-        component: ExameEditaComponent
+        component: ExameEditaComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'funcionarios',
-        component: FuncionarioListaComponent
+        component: FuncionarioListaComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'funcionarios/inclui',
-        component: FuncionarioIncluiComponent
+        component: FuncionarioIncluiComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'funcionarios/exclui/:id',
-        component: FuncionarioExcluiComponent
+        component: FuncionarioExcluiComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'funcionarios/edita/:id',
-        component: FuncionarioEditaComponent
+        component: FuncionarioEditaComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'clientes',
-        component: ClienteListaComponent
+        component: ClienteListaComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'clientes/inclui',
-        component: ClienteIncluiComponent
+        component: ClienteIncluiComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'clientes/exclui/:id',
-        component: ClienteExcluiComponent
+        component: ClienteExcluiComponent,
+        canActivate: [AuthGuard]
       },
       {
         path:'clientes/edita/:id',
-        component: ClienteEditaComponent
+        component: ClienteEditaComponent,
+        canActivate: [AuthGuard]
       }    
     ]
   },

@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080/'
+  baseUrl: 'http://localhost:8080',
+  clientId: 'SGCM-app',
+  clientSecret: '@H$s#c-SGCM',
+  obterTokenUrl: '/oauth/token'
 };
 
 /*
