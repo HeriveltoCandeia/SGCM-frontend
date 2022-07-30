@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Agenda } from '../agenda.model';
 import { AgendaService } from '../agenda.service';
+import { AgendaLista } from '../agendaLista.model';
+import { ChavePesquisa } from "../chavePesquisa.model";
 
 @Component({
   selector: 'app-agenda-exclui',
@@ -10,15 +12,30 @@ import { AgendaService } from '../agenda.service';
 })
 export class AgendaExcluiComponent implements OnInit {
 
-  agenda: Agenda = {
-    nome:'',
-    cpf: '',
-    sexo: '',
-    dataNascimento: '',
-    email: '',
-    convenioMedico:'',
-    numeroCarteirinha: ''
-  }
+  agenda: AgendaLista =   {   
+    chaveCompostaAgenda: 
+    {
+        codigoMedicoId: '',
+        dataAgenda: new Date()
+    },
+    cliente: 
+    {
+        id: '',
+        nome:''
+    },
+    codigoSituacao: 0,
+    codigoTipo: 0
+  };
+
+  chavePesquisa: ChavePesquisa = {
+    codigoMedicoId: '',
+    anoData: 0,
+    mesData: 0,
+    diaData: 0,
+    horaData: 0,
+    minutoData: 0,
+    segundoData: 0
+  };
 
   constructor(
     private service: AgendaService, 
@@ -27,13 +44,26 @@ export class AgendaExcluiComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-   this.agenda.id = this.route.snapshot.paramMap.get('id')!;
+   this.agenda.id = JSON.parse(this.route.snapshot.paramMap.get('id')!);
+   console.log(this.agenda.chaveCompostaAgenda);
    this.buscarAgendaParaExcluir();
   }
 
   buscarAgendaParaExcluir(): void {
+/*    const d1 = new Date(this.agenda.chaveCompostaAgenda.dataAgenda);
+    this.agenda.chaveCompostaAgenda.dataAgenda=d1;
+    this.chavePesquisa.codigoMedicoId=this.agenda.chaveCompostaAgenda.codigoMedicoId;
+    this.chavePesquisa.anoData=d1.getFullYear();
+    this.chavePesquisa.mesData=d1.getMonth();
+    this.chavePesquisa.diaData=d1.getDate();
+    this.chavePesquisa.horaData=d1.getHours();
+    this.chavePesquisa.minutoData=d1.getMinutes();
+    this.chavePesquisa.segundoData=d1.getSeconds();
+    this.agenda.chaveCompostaAgenda = JSON.parse(this.route.snapshot.paramMap.get('id')!);
+    this.service.pesquisarPorChaveComposta(JSON.stringify(this.chavePesquisa)).subscribe((resposta) => {
+*/
     this.service.pesquisarPorId(this.agenda.id!).subscribe((resposta) => {
-      this.agenda = resposta;
+    this.agenda = resposta;
     });
   }
 

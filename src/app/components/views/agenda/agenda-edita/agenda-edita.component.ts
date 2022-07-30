@@ -4,6 +4,12 @@ import { Agenda } from '../agenda.model';
 import { AgendaService } from '../agenda.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { __values } from 'tslib';
+import { AgendaLista } from '../agendaLista.model';
+import { Funcionario } from '../../funcionario/funcionario.model';
+import { Cliente } from '../../cliente/cliente.model';
+import { ClienteService } from '../../cliente/cliente.service';
+import { FuncionarioService } from '../../funcionario/funcionario.service';
+import { AgendaListaComponent } from '../agenda-lista/agenda-lista.component';
 
 @Component({
   selector: 'app-agenda-edita',
@@ -11,21 +17,33 @@ import { __values } from 'tslib';
   styleUrls: ['./agenda-edita.component.css']
 })
 export class AgendaEditaComponent implements OnInit {
+  clientes: Cliente[] = [];
+  medicos: Funcionario[] = [];
+  codigoTipo='';
+  codigoSituacao='';
+
   dataAtual!: Date ;
   public mask = {
     guide: true,
     showMask : true,
     mask: [/\d/, /\d/, '/', /\d/, /\d/, '/',/\d/, /\d/,/\d/, /\d/]
   };
-    agenda: Agenda = {
-    nome:'',
-    cpf: '',
-    sexo: '',
-    dataNascimento: '',
-    email: '',
-    convenioMedico:'',
-    numeroCarteirinha: ''
-  }
+    agenda: AgendaLista =  {
+      id: '',
+      chaveCompostaAgenda: 
+      {
+          codigoMedicoId: '',
+          dataAgenda: new Date()
+      },
+      cliente: 
+      {
+          id: '',
+          nome:''
+      },
+      codigoSituacao: 0,
+      codigoTipo: 0,
+      dataReg: ''
+    };
 
     formulario!: FormGroup;
 
@@ -33,49 +51,64 @@ export class AgendaEditaComponent implements OnInit {
     private router: Router, 
     private service: AgendaService,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private serviceCli: ClienteService,
+    private serviceFunc: FuncionarioService    
     ) { }
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
-      nome:['', Validators.required],
-      cpf: ['', Validators.required],
-      sexo: ['', Validators.required],
-      dataNascimento: ['', Validators.required],
-      email: ['', [Validators.email, Validators.required]],
-      convenioMedico:[''],
-      numeroCarteirinha: ['']  
+      id:[''],
+      codigoMedicoId:['', Validators.required],
+      dataAgenda: ['', Validators.required],
+      cliente: ['', Validators.required],
+      codigoSituacao: ['', Validators.required],
+      codigoTipo: ['', Validators.required],
+      dataReg:['']
     })
-    this.agenda.id = this.route.snapshot.paramMap.get('id')!;
+    this.agenda.id = JSON.parse(this.route.snapshot.paramMap.get('id')!);
     this.buscarAgendaParaAlterar();
+    this.buscarClientes();
+    this.buscarMedicos();
   }
+
+  buscarClientes(){
+    this.serviceCli.pesquisarTodos().subscribe((resposta) => {
+        this.clientes = resposta;
+    },err =>{   
+        this.service.mensagem(err.error.message);
+    })
+  }
+
+  buscarMedicos(){
+    this.serviceFunc.pesquisarPorCargo("3").subscribe((resposta) => {
+        this.medicos = resposta;
+    },err =>{   
+        this.service.mensagem(err.error.message);
+    })
+  }
+
 
   buscarAgendaParaAlterar(): void {
     this.service.pesquisarPorId(this.agenda.id!).subscribe((resposta) => {
       this.agenda = resposta;
-      let dataFormat = this.agenda.dataNascimento.substring(3,5) + '/' + this.agenda.dataNascimento.substring(0,2) + '/' + this.agenda.dataNascimento.substring(6,10);
-      this.dataAtual = new Date(dataFormat);
-      this.formulario.get("nome")?.setValue(this.agenda.nome);
-      this.formulario.get("cpf")?.setValue(this.agenda.cpf);
-      this.formulario.get("dataNascimento")?.setValue(this.dataAtual);
-      this.formulario.get("sexo")?.setValue(this.agenda.sexo);
-      this.formulario.get("email")?.setValue(this.agenda.email);
-      this.formulario.get("convenioMedico")?.setValue(this.agenda.convenioMedico);
-      this.formulario.get("numeroCarteirinha")?.setValue(this.agenda.numeroCarteirinha);
+      this.formulario.get("codigoMedicoId")?.setValue(this.agenda.chaveCompostaAgenda.codigoMedicoId);
+      this.formulario.get("dataAgenda")?.setValue(this.agenda.chaveCompostaAgenda.dataAgenda);
+      this.formulario.get("cliente")?.setValue(this.agenda.cliente.id);
+      this.formulario.get("codigoSituacao")?.setValue(this.agenda.codigoSituacao.toString());
+      this.formulario.get("codigoTipo")?.setValue(this.agenda.codigoTipo.toString());
 
     });
   }
 
 
   alterarAgendaParaSalvar(): void {
-    this.agenda.nome = this.formulario.get("nome")?.value;
-    this.agenda.cpf = this.formulario.get("cpf")?.value;
-    this.dataAtual = this.formulario.get("dataNascimento")?.value;
-    this.agenda.dataNascimento = this.dataAtual.toLocaleDateString();
-    this.agenda.sexo = this.formulario.get("sexo")?.value;
-    this.agenda.email = this.formulario.get("email")?.value;
-    this.agenda.convenioMedico = this.formulario.get("convenioMedico")?.value;
-    this.agenda.numeroCarteirinha = this.formulario.get("numeroCarteirinha")?.value;
+    this.agenda.chaveCompostaAgenda.codigoMedicoId = this.formulario.get("codigoMedicoId")?.value;
+    this.agenda.chaveCompostaAgenda.dataAgenda = this.formulario.get("dataAgenda")?.value;
+    this.agenda.cliente.id = this.formulario.get("cliente")?.value;
+    this.agenda.codigoSituacao = this.formulario.get("codigoSituacao")?.value;
+    this.agenda.codigoTipo = this.formulario.get("codigoTipo")?.value;
+    console.log(this.agenda);
   }
 
   editar(): void{

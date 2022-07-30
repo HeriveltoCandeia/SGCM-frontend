@@ -1,8 +1,12 @@
 <form>
-    <h1>Excluir Cliente?</h1>
+    <h1>Excluir Agenda?</h1>
     <mat-form-field class="form">
-        <mat-label>Descrição</mat-label>
-        <textarea matInput [(ngModel)]="agenda.nome" disabled type="text" name="descricao"></textarea>
+        <mat-label>Médico</mat-label>
+        <input matInput [(ngModel)]="agenda.chaveCompostaAgenda.codigoMedicoId" disabled type="text" name="medico">
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Data da Agenda</mat-label>
+        <input matInput [(ngModel)]="agenda.chaveCompostaAgenda.dataAgenda" disabled type="text" name="dataAgenda">
     </mat-form-field>
     <div class="buttons">
         <button class="mat-elevation-z8"  (click)="voltar()" mat-stroked-button color="warn">Não</button>

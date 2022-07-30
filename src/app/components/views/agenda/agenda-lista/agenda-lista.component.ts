@@ -79,6 +79,7 @@ export class AgendaListaComponent implements OnInit {
     this.router.navigate(["agendas/inclui"]);
   }
 
-  excluirAgenda(){
-}
+  converteObjetoParaString(objeto: any){
+    return JSON.stringify(objeto);
+  }
 }

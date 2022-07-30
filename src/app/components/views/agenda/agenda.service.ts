@@ -24,9 +24,14 @@ export class AgendaService {
     return this.http.get<AgendaLista[]>(url);//,{headers});
   }
 
-  pesquisarPorId(id: String): Observable<Agenda>{
-    const url = `${this.baseUrl}/agendasRest/${id}`
-    return this.http.get<Agenda>(url);
+  pesquisarPorId(id: String): Observable<AgendaLista>{
+    const url = `${this.baseUrl}/agendasMedicasRest/${id}`
+    return this.http.get<AgendaLista>(url);
+  }
+
+  pesquisarPorChaveComposta(id: string): Observable<AgendaLista>{
+    const url = `${this.baseUrl}/agendasMedicasRest/chaveComposta/${id}`
+    return this.http.get<AgendaLista>(url);
   }
 
   incluir(agenda: AgendaLista):Observable<AgendaLista>{
@@ -34,13 +39,13 @@ export class AgendaService {
     return this.http.post<AgendaLista>(url, agenda);
   }
 
-  editar(id: String, agenda: Agenda):Observable<Agenda>{
-    const url=`${this.baseUrl}/agendasRest/${id}`;
-    return this.http.put<Agenda>(url, agenda);
+  editar(id: String, agenda: AgendaLista):Observable<AgendaLista>{
+    const url=`${this.baseUrl}/agendasMedicasRest/${id}`;
+    return this.http.put<AgendaLista>(url, agenda);
   }
 
   excluir(id: String): Observable<void>{
-    const url=`${this.baseUrl}/agendasRest/${id}`;
+    const url=`${this.baseUrl}/agendasMedicasRest/${id}`;
     return this.http.delete<void>(url);
   }
 

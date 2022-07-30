@@ -1,39 +1,47 @@
 <form [formGroup]="formulario">
     <h1>Edita Agenda</h1>
+
     <mat-form-field class="form">
-        <mat-label>Nome</mat-label>
-        <input autocomplete="off" matInput formControlName="nome" type="text" name="nome">
+        <mat-label>Médico</mat-label>
+        <mat-select formControlName="codigoMedicoId" name="medicoSelecionado">
+                <mat-option value="0" selected>Selecione...</mat-option>
+                <mat-option *ngFor="let medico of medicos" [value]="medico.id">
+                    {{medico.nome}}
+                  </mat-option>        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Cliente</mat-label>
+        <mat-select formControlName="cliente" name="clienteSelecionado">
+                <mat-option value="0" selected>Selecione...</mat-option>
+                <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">
+                    {{cliente.nome}}
+                  </mat-option>        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Data Agenda</mat-label>
+        <input matInput  formControlName="dataAgenda" [ngxMatDatetimePicker]="picker" (focus)="picker.open()" name="dataAgenda">
+        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
     </mat-form-field>
     <mat-form-field class="form">
-        <mat-label>CPF</mat-label>
-        <input autocomplete="off" mask="CPF_CNPJ" matInput formControlName="cpf" type="text" name="cpf">
-    </mat-form-field>
-    <mat-form-field class="form">
-        <mat-label>Sexo</mat-label>
-        <mat-select formControlName="sexo" name="sexo">
-                <mat-option value="" disabled selected>Selecione...</mat-option>
-                <mat-option value="M">Masculino</mat-option>
-                <mat-option value="F">Feminino</mat-option>            
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="codigoTipo" name="codigoTipo">
+                <mat-option value="" selected>Selecione...</mat-option>
+                <mat-option value="1">Agenda</mat-option>
+                <mat-option value="2">Encaixe</mat-option>            
+                <mat-option value="3">Retorno</mat-option>            
         </mat-select>
     </mat-form-field>
     <mat-form-field class="form">
-        <mat-label>Data Nascimento</mat-label>
-        <input matInput formControlName="dataNascimento" [matDatepicker]="picker" (focus)="picker.open()" name="dataNascimento">
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker startView="month" [startAt]="dataAtual"></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field class="form">
-        <mat-label>E-mail</mat-label>
-        <input autocomplete="off" matInput formControlName="email" type="email" name="email">
-    </mat-form-field>
-    <mat-form-field class="form">
-        <mat-label>Convênio Médico</mat-label>
-        <input autocomplete="off" matInput formControlName="convenioMedico" type="text" name="convenioMedico">
-    </mat-form-field>
-    <mat-form-field class="form">
-        <mat-label>Número Carteirinha</mat-label>
-        <input autocomplete="off" matInput formControlName="numeroCarteirinha" type="text" name="numeroCarteirinha">
+        <mat-label>Situação</mat-label>
+        <mat-select formControlName="codigoSituacao" name="codigoSituacao">
+                <mat-option value="" selected>Selecione...</mat-option>
+                <mat-option value="1">Agendado</mat-option>
+                <mat-option value="2">Cancelado</mat-option>            
+                <mat-option value="3">Realizado</mat-option>            
+        </mat-select>
     </mat-form-field>
 
     <div class="buttons">

@@ -1,4 +1,5 @@
 export interface AgendaLista{
+    id?: String,
     chaveCompostaAgenda: 
     {
         codigoMedicoId: string,
@@ -10,5 +11,6 @@ export interface AgendaLista{
         nome:string
     },
     codigoSituacao: Number,
-    codigoTipo: Number
+    codigoTipo: Number,
+    dataReg?: string
 }
