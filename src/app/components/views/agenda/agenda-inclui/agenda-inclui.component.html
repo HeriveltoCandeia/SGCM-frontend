@@ -1,0 +1,50 @@
+<form>
+    <h1>Nova Agenda</h1>
+    <mat-form-field class="form">
+        <mat-label>Médico</mat-label>
+        <mat-select [(ngModel)]="agenda.chaveCompostaAgenda.codigoMedicoId" name="medicoSelecionado">
+                <mat-option value="0" selected>Selecione...</mat-option>
+                <mat-option *ngFor="let medico of medicos" [value]="medico.id">
+                    {{medico.nome}}
+                  </mat-option>        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Cliente</mat-label>
+        <mat-select [(ngModel)]="agenda.cliente" name="clienteSelecionado">
+                <mat-option value="0" selected>Selecione...</mat-option>
+                <mat-option *ngFor="let cliente of clientes" [value]="cliente">
+                    {{cliente.nome}}
+                  </mat-option>        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Data Agenda</mat-label>
+        <input matInput  [(ngModel)]="agenda.chaveCompostaAgenda.dataAgenda" [ngxMatDatetimePicker]="picker" (focus)="picker.open()" name="dataAgenda">
+        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Tipo</mat-label>
+        <mat-select [(ngModel)]="codigoTipo" name="codigoTipo">
+                <mat-option value="" selected>Selecione...</mat-option>
+                <mat-option value="1">Agenda</mat-option>
+                <mat-option value="2">Encaixe</mat-option>            
+                <mat-option value="3">Retorno</mat-option>            
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Tipo</mat-label>
+        <mat-select [(ngModel)]="codigoSituacao" name="codigoSituacao">
+                <mat-option value="" selected>Selecione...</mat-option>
+                <mat-option value="1">Agendado</mat-option>
+                <mat-option value="2">Cancelado</mat-option>            
+                <mat-option value="3">Realizado</mat-option>            
+        </mat-select>
+    </mat-form-field>
+
+    <div class="buttons">
+        <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Cancelar</button>
+        <button class="mat-elevation-z8" (click)="incluir()" mat-stroked-button color="primary">Salvar</button>
+    </div>
+</form>

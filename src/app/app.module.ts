@@ -51,6 +51,12 @@ import { LoginComponent } from './components/views/login/login.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { LayoutComponent } from './components/views/layout/layout.component';
 import { TokenHttpInterceptor} from './components/interceptor/token-http.interceptor';
+import { AgendaListaComponent } from './components/views/agenda/agenda-lista/agenda-lista.component';
+import { AgendaIncluiComponent } from './components/views/agenda/agenda-inclui/agenda-inclui.component';
+import { AgendaExcluiComponent } from './components/views/agenda/agenda-exclui/agenda-exclui.component';
+import { AgendaEditaComponent } from './components/views/agenda/agenda-edita/agenda-edita.component';
+
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +80,10 @@ import { TokenHttpInterceptor} from './components/interceptor/token-http.interce
     ClienteIncluiComponent,
     ClienteExcluiComponent,
     ClienteEditaComponent,
+    AgendaListaComponent,
+    AgendaIncluiComponent,
+    AgendaExcluiComponent,
+    AgendaEditaComponent,
     LoginComponent,
     LayoutComponent
   ],
@@ -103,7 +113,8 @@ import { TokenHttpInterceptor} from './components/interceptor/token-http.interce
     }),
     ReactiveFormsModule,
     MatPaginatorModule,
-    MatGridListModule
+    MatGridListModule,
+    NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt-BR'},

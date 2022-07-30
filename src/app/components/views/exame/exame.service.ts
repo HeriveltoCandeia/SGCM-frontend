@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Exame } from './exame.model' 
+import { TipoExame } from './tipoExame.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,17 @@ export class ExameService {
     const url=`${this.baseUrl}/examesRest/${id}`;
     return this.http.delete<void>(url);
   }
+
+  pesquisarTiposExames():Observable<TipoExame[]>{
+    const url = `${this.baseUrl}/tiposExamesRest`
+    return this.http.get<TipoExame[]>(url);
+  }
+
+  pesquisarTipoExamePorId(id: String): Observable<TipoExame>{
+    const url = `${this.baseUrl}/tiposExamesRest/${id}`
+    return this.http.get<TipoExame>(url);
+  }
+
 
   mensagem(str: String): void{
     this._snack.open(`${str}`,'OK',{

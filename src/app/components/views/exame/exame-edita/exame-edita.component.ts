@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Exame } from '../exame.model';
 import { ExameService } from '../exame.service';
+import { TipoExame } from '../tipoExame.model';
 
 @Component({
   selector: 'app-exame-edita',
@@ -10,8 +11,13 @@ import { ExameService } from '../exame.service';
 })
 export class ExameEditaComponent implements OnInit {
 
+  tipoExame: TipoExame = {
+    id: 0,
+    descricao: ''
+  }
   exame: Exame = {
-    descricao:''
+    descricao:'',
+    tipoExame: this.tipoExame
   }
 
   constructor(

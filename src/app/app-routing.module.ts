@@ -23,6 +23,10 @@ import { ClienteEditaComponent } from './components/views/cliente/cliente-edita/
 import { LoginComponent } from './components/views/login/login.component';
 import { LayoutComponent } from './components/views/layout/layout.component';
 import { AuthGuard } from './components/guard/auth.guard';
+import { AgendaListaComponent } from './components/views/agenda/agenda-lista/agenda-lista.component';
+import { AgendaIncluiComponent } from './components/views/agenda/agenda-inclui/agenda-inclui.component';
+import { AgendaExcluiComponent } from './components/views/agenda/agenda-exclui/agenda-exclui.component';
+import { AgendaEditaComponent } from './components/views/agenda/agenda-edita/agenda-edita.component';
 
 const routes: Routes = [
   {
@@ -111,6 +115,26 @@ const routes: Routes = [
       {
         path:'clientes/edita/:id',
         component: ClienteEditaComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'agendas',
+        component: AgendaListaComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'agendas/inclui',
+        component: AgendaIncluiComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'agendas/exclui/:id',
+        component: AgendaExcluiComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'agendas/edita/:id',
+        component: AgendaEditaComponent,
         canActivate: [AuthGuard]
       }    
     ]

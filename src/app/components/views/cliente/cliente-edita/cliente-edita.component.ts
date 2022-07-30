@@ -17,7 +17,8 @@ export class ClienteEditaComponent implements OnInit {
     showMask : true,
     mask: [/\d/, /\d/, '/', /\d/, /\d/, '/',/\d/, /\d/,/\d/, /\d/]
   };
-    cliente: Cliente = {
+    cliente!: Cliente; 
+/*    = {
     nome:'',
     cpf: '',
     sexo: '',
@@ -25,7 +26,7 @@ export class ClienteEditaComponent implements OnInit {
     email: '',
     convenioMedico:'',
     numeroCarteirinha: ''
-  }
+  }*/
 
     formulario!: FormGroup;
 

@@ -1,0 +1,43 @@
+<form [formGroup]="formulario">
+    <h1>Edita Agenda</h1>
+    <mat-form-field class="form">
+        <mat-label>Nome</mat-label>
+        <input autocomplete="off" matInput formControlName="nome" type="text" name="nome">
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>CPF</mat-label>
+        <input autocomplete="off" mask="CPF_CNPJ" matInput formControlName="cpf" type="text" name="cpf">
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Sexo</mat-label>
+        <mat-select formControlName="sexo" name="sexo">
+                <mat-option value="" disabled selected>Selecione...</mat-option>
+                <mat-option value="M">Masculino</mat-option>
+                <mat-option value="F">Feminino</mat-option>            
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Data Nascimento</mat-label>
+        <input matInput formControlName="dataNascimento" [matDatepicker]="picker" (focus)="picker.open()" name="dataNascimento">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="month" [startAt]="dataAtual"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>E-mail</mat-label>
+        <input autocomplete="off" matInput formControlName="email" type="email" name="email">
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Convênio Médico</mat-label>
+        <input autocomplete="off" matInput formControlName="convenioMedico" type="text" name="convenioMedico">
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Número Carteirinha</mat-label>
+        <input autocomplete="off" matInput formControlName="numeroCarteirinha" type="text" name="numeroCarteirinha">
+    </mat-form-field>
+
+    <div class="buttons">
+        <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Cancelar</button>
+        <button class="mat-elevation-z8" (click)="editar()" mat-stroked-button color="primary">Salvar</button>
+    </div>
+</form>
