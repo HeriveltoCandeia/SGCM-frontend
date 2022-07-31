@@ -29,6 +29,10 @@ import { AgendaExcluiComponent } from './components/views/agenda/agenda-exclui/a
 import { AgendaEditaComponent } from './components/views/agenda/agenda-edita/agenda-edita.component';
 import { ProntuarioListaComponent } from './components/views/prontuario/prontuario-lista/prontuario-lista.component';
 import { ProntuarioExcluiComponent } from './components/views/prontuario/prontuario-exclui/prontuario-exclui.component';
+import { ProntuarioMedicamentoListaComponent } from './components/views/prontuario medicamento/prontuario-medicamento-lista/prontuario-medicamento-lista.component';
+import { ProntuarioMedicamentoExcluiComponent } from './components/views/prontuario medicamento/prontuario-medicamento-exclui/prontuario-medicamento-exclui.component';
+import { ProntuarioExameListaComponent } from './components/views/prontuario exame/prontuario-exame-lista/prontuario-exame-lista.component';
+import { ProntuarioExameExcluiComponent } from './components/views/prontuario exame/prontuario-exame-exclui/prontuario-exame-exclui.component';
 
 const routes: Routes = [
   {
@@ -149,7 +153,26 @@ const routes: Routes = [
         component: ProntuarioExcluiComponent,
         canActivate: [AuthGuard]
       },
-
+      {
+        path:'prontuariosMedicamentos',
+        component: ProntuarioMedicamentoListaComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'prontuariosMedicamentos/exclui/:id',
+        component: ProntuarioMedicamentoExcluiComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'prontuariosExames',
+        component: ProntuarioExameListaComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'prontuariosExames/exclui/:id',
+        component: ProntuarioExameExcluiComponent,
+        canActivate: [AuthGuard]
+      }
     ]
   },
   {

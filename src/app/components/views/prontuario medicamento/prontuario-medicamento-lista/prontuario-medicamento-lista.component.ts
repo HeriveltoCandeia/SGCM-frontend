@@ -1,29 +1,28 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { ProntuarioService } from '../prontuario.service';
+import { ProntuarioMedicamentoService } from '../prontuario-medicamento.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Prontuario } from '../prontuario.model';
+import { ProntuarioMedicamento } from '../prontuario-medicamento.model';
 @Component({
-  selector: 'app-prontuario-lista',
-  templateUrl: './prontuario-lista.component.html',
-  styleUrls: ['./prontuario-lista.component.css']
+  selector: 'app-prontuario-medicamento-lista',
+  templateUrl: './prontuario-medicamento-lista.component.html',
+  styleUrls: ['./prontuario-medicamento-lista.component.css']
 })
-export class ProntuarioListaComponent implements OnInit {
+export class ProntuarioMedicamentoListaComponent implements OnInit {
 
-  prontuarios: Prontuario[] | undefined;
+  prontuariosMedicamentos: ProntuarioMedicamento[] | undefined;
   dataAtu!: Date;
 
-  displayedColumns: string[] = ['dataTimeProntuario', 'medico', 'cliente', 'situacao', 'acoes'];//, 'acoes'];
+  displayedColumns: string[] = ['medicamento', 'orientacoes', 'acoes'];//, 'acoes'];
   dataSource : any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
 
-  constructor( private service: ProntuarioService, private router:Router) {
+  constructor( private service: ProntuarioMedicamentoService, private router:Router) {
   }
 
   ngOnInit(): void {
@@ -37,8 +36,8 @@ export class ProntuarioListaComponent implements OnInit {
   
   findAll(){
     this.service.pesquisarTodos().subscribe(resposta =>{
-      this.prontuarios = resposta;
-      this.dataSource = new MatTableDataSource<Prontuario>(this.prontuarios);
+      this.prontuariosMedicamentos = resposta;
+      this.dataSource = new MatTableDataSource<ProntuarioMedicamento>(this.prontuariosMedicamentos);
       this.dataSource.paginator = this.paginator;
     });
   }
@@ -65,8 +64,8 @@ export class ProntuarioListaComponent implements OnInit {
     }
   }
 
-  incluirProntuario(){
-    this.router.navigate(["prontuarios/inclui"]);
+  incluirProntuarioMedicamento(){
+    this.router.navigate(["prontuariosMedicamentos/inclui"]);
   }
 
   converteObjetoParaString(objeto: any){

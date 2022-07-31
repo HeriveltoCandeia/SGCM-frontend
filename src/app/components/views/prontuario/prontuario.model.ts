@@ -1,10 +1,17 @@
 export interface Prontuario{
-    id?: string,
-    nome: string,
-    cpf: string,
-    sexo: string,
-    dataNascimento: string,
-    email: string,
-    convenioMedico?: string,
-    numeroCarteirinha?: string
+    id?: String,
+    dataTimeProntuario: Date,
+    medico: 
+    {
+        id: string,
+        nome:string
+    },
+    cliente: 
+    {
+        id: string,
+        nome:string
+    },
+    codigoSituacao: Number,
+    dataReg?: string,
+    orientacoes: string
 }

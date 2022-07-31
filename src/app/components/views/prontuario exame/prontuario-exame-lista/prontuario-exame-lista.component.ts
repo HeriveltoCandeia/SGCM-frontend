@@ -1,29 +1,28 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { ProntuarioService } from '../prontuario.service';
+import { ProntuarioExameService } from '../prontuario-exame.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Prontuario } from '../prontuario.model';
+import { ProntuarioExame } from '../prontuario-exame.model';
 @Component({
-  selector: 'app-prontuario-lista',
-  templateUrl: './prontuario-lista.component.html',
-  styleUrls: ['./prontuario-lista.component.css']
+  selector: 'app-prontuario-exame-lista',
+  templateUrl: './prontuario-exame-lista.component.html',
+  styleUrls: ['./prontuario-exame-lista.component.css']
 })
-export class ProntuarioListaComponent implements OnInit {
+export class ProntuarioExameListaComponent implements OnInit {
 
-  prontuarios: Prontuario[] | undefined;
+  prontuariosExames: ProntuarioExame[] | undefined;
   dataAtu!: Date;
 
-  displayedColumns: string[] = ['dataTimeProntuario', 'medico', 'cliente', 'situacao', 'acoes'];//, 'acoes'];
+  displayedColumns: string[] = ['exame', 'orientacoes', 'resultado', 'acoes'];//, 'acoes'];
   dataSource : any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
 
-  constructor( private service: ProntuarioService, private router:Router) {
+  constructor( private service: ProntuarioExameService, private router:Router) {
   }
 
   ngOnInit(): void {
@@ -37,8 +36,8 @@ export class ProntuarioListaComponent implements OnInit {
   
   findAll(){
     this.service.pesquisarTodos().subscribe(resposta =>{
-      this.prontuarios = resposta;
-      this.dataSource = new MatTableDataSource<Prontuario>(this.prontuarios);
+      this.prontuariosExames = resposta;
+      this.dataSource = new MatTableDataSource<ProntuarioExame>(this.prontuariosExames);
       this.dataSource.paginator = this.paginator;
     });
   }
@@ -59,14 +58,14 @@ export class ProntuarioListaComponent implements OnInit {
 
   buscaSituacao(codigo: Number): string{
     switch (codigo){
-      case 1:  return 'Iniciado';
-      case 2:  return 'Finalizado';
+      case 1:  return 'Solicitado';
+      case 2:  return 'Realizado';
       default: return '';
     }
   }
 
-  incluirProntuario(){
-    this.router.navigate(["prontuarios/inclui"]);
+  incluirProntuarioExame(){
+    this.router.navigate(["prontuariosExames/inclui"]);
   }
 
   converteObjetoParaString(objeto: any){

@@ -13,6 +13,14 @@
                 <i class="material-icons">book</i>
                 Prontuario
             </a>
+            <a routerLink="/prontuariosMedicamentos" mat-list-item>
+                <i class="material-icons">book</i>
+                Medicamentos
+            </a>
+            <a routerLink="/prontuariosExames" mat-list-item>
+                <i class="material-icons">book</i>
+                Exames
+            </a>
             <i style="padding-left: 1.6rem; width: 5%;"class="material-icons">book</i>
             <button style="font-size: 15px;" mat-button [matMenuTriggerFor]="cadastros">Cadastros</button>
             <mat-menu #cadastros="matMenu">

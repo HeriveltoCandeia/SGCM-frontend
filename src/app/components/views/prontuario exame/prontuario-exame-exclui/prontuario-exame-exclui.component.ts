@@ -1,31 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
-import { ProntuarioService } from '../prontuario.service';
-import { Prontuario } from '../prontuario.model';
+import { ProntuarioExameService } from '../prontuario-exame.service';
+import { ProntuarioExame } from '../prontuario-exame.model';
 import { ChavePesquisa } from "../chavePesquisa.model";
 
 @Component({
-  selector: 'app-prontuario-exclui',
-  templateUrl: './prontuario-exclui.component.html',
-  styleUrls: ['./prontuario-exclui.component.css']
+  selector: 'app-prontuario-exame-exclui',
+  templateUrl: './prontuario-exame-exclui.component.html',
+  styleUrls: ['./prontuario-exame-exclui.component.css']
 })
-export class ProntuarioExcluiComponent implements OnInit {
+export class ProntuarioExameExcluiComponent implements OnInit {
 
-  prontuario: Prontuario =   {   
-    dataTimeProntuario: new Date(),
-    medico: 
+  prontuarioExame: ProntuarioExame =   {   
+    prontuarioMedico: 
     {
         id: '',
-        nome:''
     },
-    cliente: 
+    exame:
     {
         id: '',
-        nome:''
+        descricao: ''
     },
     codigoSituacao: 0,
-    dataReg: '',
     orientacoes: ''
   };
   dataTimeView!: string;
@@ -40,22 +36,20 @@ export class ProntuarioExcluiComponent implements OnInit {
   };
 
   constructor(
-    private service: ProntuarioService, 
+    private service: ProntuarioExameService, 
     private route: ActivatedRoute,
     private router: Router
     ) { }
 
   ngOnInit(): void {
-   this.prontuario.id = JSON.parse(this.route.snapshot.paramMap.get('id')!);
-
-   this.buscarProntuarioParaExcluir();
+   this.prontuarioExame.id = JSON.parse(this.route.snapshot.paramMap.get('id')!);
+   this.buscarProntuarioExameParaExcluir();
   }
 
-  buscarProntuarioParaExcluir(): void {
-
-    this.service.pesquisarPorId(this.prontuario.id!).subscribe((resposta) => {
-    this.prontuario = resposta;
-    this.dataTimeView = this.formataDataTime(this.prontuario.dataTimeProntuario);
+  buscarProntuarioExameParaExcluir(): void {
+    this.service.pesquisarPorId(this.prontuarioExame.id!).subscribe((resposta) => {
+    this.prontuarioExame = resposta;
+//    this.dataTimeView = this.formataDataTime(this.prontuarioExame.dataTimeProntuario);
     console.log(this.dataTimeView);
     });
   }
@@ -73,9 +67,9 @@ export class ProntuarioExcluiComponent implements OnInit {
   }
 
   excluir(): void{
-    this.service.excluir(this.prontuario.id!).subscribe((resposta) => {
-      this.router.navigate(["prontuarios"]);
-      this.service.mensagem('Prontuario excluído com sucesso.');
+    this.service.excluir(this.prontuarioExame.id!).subscribe((resposta) => {
+      this.router.navigate(["prontuariosExames"]);
+      this.service.mensagem('Medicamento excluído com sucesso.');
     },
     err =>{   
       this.service.mensagem(err.error.message);
@@ -84,6 +78,6 @@ export class ProntuarioExcluiComponent implements OnInit {
   }
 
   voltar(): void{
-    this.router.navigate(["prontuarios"]);
+    this.router.navigate(["prontuariosExames"]);
   }
 }

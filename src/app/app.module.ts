@@ -59,6 +59,10 @@ import { AgendaEditaComponent } from './components/views/agenda/agenda-edita/age
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 import { ProntuarioListaComponent } from './components/views/prontuario/prontuario-lista/prontuario-lista.component';
 import { ProntuarioExcluiComponent } from './components/views/prontuario/prontuario-exclui/prontuario-exclui.component';
+import { ProntuarioMedicamentoListaComponent } from './components/views/prontuario medicamento/prontuario-medicamento-lista/prontuario-medicamento-lista.component';
+import { ProntuarioMedicamentoExcluiComponent } from './components/views/prontuario medicamento/prontuario-medicamento-exclui/prontuario-medicamento-exclui.component';
+import { ProntuarioExameListaComponent } from './components/views/prontuario exame/prontuario-exame-lista/prontuario-exame-lista.component';
+import { ProntuarioExameExcluiComponent } from './components/views/prontuario exame/prontuario-exame-exclui/prontuario-exame-exclui.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,6 +92,10 @@ import { ProntuarioExcluiComponent } from './components/views/prontuario/prontua
     AgendaEditaComponent,
     ProntuarioListaComponent,
     ProntuarioExcluiComponent,
+    ProntuarioMedicamentoListaComponent,
+    ProntuarioMedicamentoExcluiComponent,
+    ProntuarioExameListaComponent,
+    ProntuarioExameExcluiComponent,
     LoginComponent,
     LayoutComponent
   ],

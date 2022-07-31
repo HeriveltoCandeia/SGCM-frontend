@@ -2,11 +2,15 @@
     <h1>Excluir Prontuário?</h1>
     <mat-form-field class="form">
         <mat-label>Médico</mat-label>
-        <input matInput [(ngModel)]="prontuario.chaveCompostaProntuario.codigoMedicoId" disabled type="text" name="medico">
+        <input matInput [(ngModel)]="prontuario.medico.nome" disabled type="text" name="medico">
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Cliente</mat-label>
+        <input matInput [(ngModel)]="prontuario.cliente.nome" disabled type="text" name="medico">
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Data da Prontuário</mat-label>
-        <input matInput [(ngModel)]="prontuario.chaveCompostaProntuario.dataProntuario" disabled type="text" name="dataProntuario">
+        <input matInput [(ngModel)]="dataTimeView" disabled type="text" name="dataProntuario">
     </mat-form-field>
     <div class="buttons">
         <button class="mat-elevation-z8"  (click)="voltar()" mat-stroked-button color="warn">Não</button>

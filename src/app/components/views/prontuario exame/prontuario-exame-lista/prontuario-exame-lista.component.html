@@ -1,8 +1,8 @@
 <div class="content">
     <div class="title">
-        <h1>Prontuario</h1>
+        <h1>Exames do Prontuario</h1>
     </div>
-    <button class="mat-elevation-z8" (click)="incluirProntuario()"mat-stroked-button color="primary">Adicionar Prontuario</button>
+    <button class="mat-elevation-z8" (click)="incluirProntuarioExame()"mat-stroked-button color="primary">Adicionar Exame</button>
     <mat-form-field class="filtro" appearance="standard">
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
@@ -10,26 +10,21 @@
     <div class="mat-elevation-z8 content-table'">
         <table class="tabela" mat-table [dataSource]="dataSource">
      
-            <ng-container matColumnDef="dataTimeProntuario">
-              <th mat-header-cell *matHeaderCellDef> Data Prontuario </th>
-              <td mat-cell *matCellDef="let row"> {{ formataData(row.dataTimeProntuario) }} </td>
+            <ng-container matColumnDef="exame">
+              <th mat-header-cell *matHeaderCellDef> Exame </th>
+              <td mat-cell *matCellDef="let row"> {{ row.exame.descricao }} </td>
             </ng-container>
 
-            <ng-container matColumnDef="medico">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Médico </th>
-              <td mat-cell *matCellDef="let row"> {{ row.medico.nome}} </td>
+            <ng-container matColumnDef="orientacoes">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Orientações </th>
+              <td mat-cell *matCellDef="let row"> {{ row.orientacoes}} </td>
             </ng-container>
             
-            <ng-container matColumnDef="cliente">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Cliente </th>
-              <td mat-cell *matCellDef="let row"> {{ row.cliente.nome}} </td>
+            <ng-container matColumnDef="resultado">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Resultado </th>
+              <td mat-cell *matCellDef="let row"> {{ row.resultado}} </td>
             </ng-container>
-            
-            <ng-container matColumnDef="situacao">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Situacao </th>
-              <td mat-cell *matCellDef="let row"> {{ buscaSituacao(row.codigoSituacao) }} </td>
-            </ng-container>
-            
+          
             <ng-container matColumnDef="acoes">
               <th class="tamanho-7" mat-header-cell *matHeaderCellDef> Ações </th>
               <td mat-cell *matCellDef="let row">
