@@ -27,6 +27,8 @@ import { AgendaListaComponent } from './components/views/agenda/agenda-lista/age
 import { AgendaIncluiComponent } from './components/views/agenda/agenda-inclui/agenda-inclui.component';
 import { AgendaExcluiComponent } from './components/views/agenda/agenda-exclui/agenda-exclui.component';
 import { AgendaEditaComponent } from './components/views/agenda/agenda-edita/agenda-edita.component';
+import { ProntuarioListaComponent } from './components/views/prontuario/prontuario-lista/prontuario-lista.component';
+import { ProntuarioExcluiComponent } from './components/views/prontuario/prontuario-exclui/prontuario-exclui.component';
 
 const routes: Routes = [
   {
@@ -136,7 +138,18 @@ const routes: Routes = [
         path:'agendas/edita/:id',
         component: AgendaEditaComponent,
         canActivate: [AuthGuard]
-      }    
+      },
+      {
+        path:'prontuarios',
+        component: ProntuarioListaComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'prontuarios/exclui/:id',
+        component: ProntuarioExcluiComponent,
+        canActivate: [AuthGuard]
+      },
+
     ]
   },
   {

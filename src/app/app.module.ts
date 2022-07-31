@@ -57,6 +57,8 @@ import { AgendaExcluiComponent } from './components/views/agenda/agenda-exclui/a
 import { AgendaEditaComponent } from './components/views/agenda/agenda-edita/agenda-edita.component';
 
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { ProntuarioListaComponent } from './components/views/prontuario/prontuario-lista/prontuario-lista.component';
+import { ProntuarioExcluiComponent } from './components/views/prontuario/prontuario-exclui/prontuario-exclui.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +86,8 @@ import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerMod
     AgendaIncluiComponent,
     AgendaExcluiComponent,
     AgendaEditaComponent,
+    ProntuarioListaComponent,
+    ProntuarioExcluiComponent,
     LoginComponent,
     LayoutComponent
   ],
