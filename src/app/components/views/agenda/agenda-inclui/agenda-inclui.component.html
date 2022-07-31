@@ -1,8 +1,8 @@
-<form>
+<form [formGroup]="formulario">
     <h1>Nova Agenda</h1>
     <mat-form-field class="form">
         <mat-label>Médico</mat-label>
-        <mat-select [(ngModel)]="agenda.chaveCompostaAgenda.codigoMedicoId" name="medicoSelecionado">
+        <mat-select formControlName="codigoMedicoId" name="medicoSelecionado">
                 <mat-option value="0" selected>Selecione...</mat-option>
                 <mat-option *ngFor="let medico of medicos" [value]="medico.id">
                     {{medico.nome}}
@@ -11,22 +11,22 @@
 
     <mat-form-field class="form">
         <mat-label>Cliente</mat-label>
-        <mat-select [(ngModel)]="agenda.cliente" name="clienteSelecionado">
+        <mat-select formControlName="cliente" name="clienteSelecionado">
                 <mat-option value="0" selected>Selecione...</mat-option>
-                <mat-option *ngFor="let cliente of clientes" [value]="cliente">
+                <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">
                     {{cliente.nome}}
                   </mat-option>        </mat-select>
     </mat-form-field>
 
     <mat-form-field class="form">
         <mat-label>Data Agenda</mat-label>
-        <input matInput  [(ngModel)]="agenda.chaveCompostaAgenda.dataAgenda" [ngxMatDatetimePicker]="picker" (focus)="picker.open()" name="dataAgenda">
+        <input matInput  formControlName="dataAgenda" [ngxMatDatetimePicker]="picker" (focus)="picker.open()" name="dataAgenda">
         <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
         <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Tipo</mat-label>
-        <mat-select [(ngModel)]="codigoTipo" name="codigoTipo">
+        <mat-select formControlName="codigoTipo" name="codigoTipo">
                 <mat-option value="" selected>Selecione...</mat-option>
                 <mat-option value="1">Agenda</mat-option>
                 <mat-option value="2">Encaixe</mat-option>            
@@ -35,7 +35,7 @@
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Situação</mat-label>
-        <mat-select [(ngModel)]="codigoSituacao" name="codigoSituacao">
+        <mat-select formControlName="codigoSituacao" name="codigoSituacao">
                 <mat-option value="" selected>Selecione...</mat-option>
                 <mat-option value="1">Agendado</mat-option>
                 <mat-option value="2">Cancelado</mat-option>            

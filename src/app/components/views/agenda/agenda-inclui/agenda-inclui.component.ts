@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Cliente } from '../../cliente/cliente.model';
 import { ClienteService } from '../../cliente/cliente.service';
@@ -32,14 +33,26 @@ export class AgendaIncluiComponent implements OnInit {
   codigoSituacao='';
   clientes: Cliente[] = [];
   medicos: Funcionario[] = [];
+  formulario!: FormGroup;
 
   constructor(
     private router:Router, 
     private service: AgendaService,
     private serviceCli: ClienteService,
+    private fb: FormBuilder,
     private serviceFunc: FuncionarioService) { }
 
   ngOnInit(): void {
+    this.formulario = this.fb.group({
+      id:[''],
+      codigoMedicoId:['', Validators.required],
+      dataAgenda: ['', Validators.required],
+      cliente: ['', Validators.required],
+      codigoSituacao: ['', Validators.required],
+      codigoTipo: ['', Validators.required],
+      dataReg:['']
+    })
+
     this.buscarClientes();
     this.buscarMedicos();
   }
@@ -61,10 +74,13 @@ export class AgendaIncluiComponent implements OnInit {
   }
 
   incluir(): void{
-    console.log('this.agenda');
+    this.agenda.chaveCompostaAgenda.codigoMedicoId = this.formulario.get("codigoMedicoId")?.value;
+    this.agenda.chaveCompostaAgenda.dataAgenda = this.formulario.get("dataAgenda")?.value;
+    this.agenda.cliente.id = this.formulario.get("cliente")?.value;
+    this.agenda.codigoTipo=parseInt(this.formulario.get("codigoTipo")?.value);
+    this.agenda.codigoSituacao=parseInt(this.formulario.get("codigoSituacao")?.value);
+    this.agenda.dataReg=this.formulario.get("dataAgenda")?.value;
     console.log(this.agenda);
-    this.agenda.codigoTipo=parseInt(this.codigoTipo);
-    this.agenda.codigoSituacao=parseInt(this.codigoSituacao);
     this.service.incluir(this.agenda).subscribe((resposta) => {
       this.router.navigate(["agendas"]);
       this.service.mensagem("Agenda incluído com sucesso!");

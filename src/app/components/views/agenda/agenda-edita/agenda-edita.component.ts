@@ -23,12 +23,8 @@ export class AgendaEditaComponent implements OnInit {
   codigoSituacao='';
 
   dataAtual!: Date ;
-  public mask = {
-    guide: true,
-    showMask : true,
-    mask: [/\d/, /\d/, '/', /\d/, /\d/, '/',/\d/, /\d/,/\d/, /\d/]
-  };
-    agenda: AgendaLista =  {
+
+  agenda: AgendaLista =  {
       id: '',
       chaveCompostaAgenda: 
       {
