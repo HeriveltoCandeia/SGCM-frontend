@@ -25,7 +25,7 @@ export class ProntuarioExcluiComponent implements OnInit {
         nome:''
     },
     codigoSituacao: 0,
-    dataReg: '',
+    dataReg: new Date(),
     orientacoes: ''
   };
   dataTimeView!: string;
@@ -55,6 +55,7 @@ export class ProntuarioExcluiComponent implements OnInit {
 
     this.service.pesquisarPorId(this.prontuario.id!).subscribe((resposta) => {
     this.prontuario = resposta;
+    console.log(resposta);
     this.dataTimeView = this.formataDataTime(this.prontuario.dataTimeProntuario);
     console.log(this.dataTimeView);
     });

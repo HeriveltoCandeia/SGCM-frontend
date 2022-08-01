@@ -34,7 +34,7 @@ export class ProntuarioExameExcluiComponent implements OnInit {
     minutoData: 0,
     segundoData: 0
   };
-
+  prontuarioOrigem = '';
   constructor(
     private service: ProntuarioExameService, 
     private route: ActivatedRoute,
@@ -42,8 +42,9 @@ export class ProntuarioExameExcluiComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-   this.prontuarioExame.id = JSON.parse(this.route.snapshot.paramMap.get('id')!);
-   this.buscarProntuarioExameParaExcluir();
+    this.prontuarioExame.id = JSON.parse(this.route.snapshot.paramMap.get('id2')!);
+    this.prontuarioOrigem = JSON.parse(this.route.snapshot.paramMap.get('id')!);
+    this.buscarProntuarioExameParaExcluir();
   }
 
   buscarProntuarioExameParaExcluir(): void {
@@ -68,7 +69,8 @@ export class ProntuarioExameExcluiComponent implements OnInit {
 
   excluir(): void{
     this.service.excluir(this.prontuarioExame.id!).subscribe((resposta) => {
-      this.router.navigate(["prontuariosExames"]);
+      let irParaEdicao : string = "prontuarios/edita/" + this.prontuarioOrigem;
+      this.router.navigate([irParaEdicao]);
       this.service.mensagem('Medicamento excluído com sucesso.');
     },
     err =>{   
@@ -78,6 +80,7 @@ export class ProntuarioExameExcluiComponent implements OnInit {
   }
 
   voltar(): void{
-    this.router.navigate(["prontuariosExames"]);
+    let irParaEdicao : string = "prontuarios/edita/" + this.prontuarioOrigem;
+    this.router.navigate([irParaEdicao]);
   }
 }

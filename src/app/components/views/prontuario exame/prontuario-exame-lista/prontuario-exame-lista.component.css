@@ -4,17 +4,20 @@
 }
 .title{
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
+    margin-top: rem;
 }
-.title h1{
-    font-size: 1.5rem;
-    font-weight: 500;
+h1{
+    text-align: left;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: bold;
 }
 .tabela{
     width: 100%;
 }
-.tamanho-7{
-    width: 7%;
+.tamanho-10{
+    width: 10%;
 }
 .edit{
     color: rgb(1, 1, 141)

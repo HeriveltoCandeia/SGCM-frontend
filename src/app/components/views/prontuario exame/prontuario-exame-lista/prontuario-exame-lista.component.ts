@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProntuarioExameService } from '../prontuario-exame.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -20,12 +20,14 @@ export class ProntuarioExameListaComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  prontuarioOrigem = '';
 
 
-  constructor( private service: ProntuarioExameService, private router:Router) {
+  constructor( private service: ProntuarioExameService, private router:Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.prontuarioOrigem = JSON.parse(this.route.snapshot.paramMap.get('id')!); 
     this.findAll();
     this.dataAtu  = new Date("2022-07-29 19:20");
   }
@@ -35,7 +37,7 @@ export class ProntuarioExameListaComponent implements OnInit {
   }
   
   findAll(){
-    this.service.pesquisarTodos().subscribe(resposta =>{
+    this.service.pesquisarPorProntuarioExame(this.prontuarioOrigem).subscribe(resposta =>{
       this.prontuariosExames = resposta;
       this.dataSource = new MatTableDataSource<ProntuarioExame>(this.prontuariosExames);
       this.dataSource.paginator = this.paginator;

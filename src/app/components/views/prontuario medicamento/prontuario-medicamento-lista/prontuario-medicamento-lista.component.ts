@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProntuarioMedicamentoService } from '../prontuario-medicamento.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ProntuarioMedicamento } from '../prontuario-medicamento.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ProntuarioMedicamentoExcluiComponent } from '../prontuario-medicamento-exclui/prontuario-medicamento-exclui.component';
 @Component({
   selector: 'app-prontuario-medicamento-lista',
   templateUrl: './prontuario-medicamento-lista.component.html',
@@ -17,15 +19,17 @@ export class ProntuarioMedicamentoListaComponent implements OnInit {
 
   displayedColumns: string[] = ['medicamento', 'orientacoes', 'acoes'];//, 'acoes'];
   dataSource : any;
+  prontuarioOrigem = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
 
-  constructor( private service: ProntuarioMedicamentoService, private router:Router) {
+  constructor( private service: ProntuarioMedicamentoService, private router:Router, private dialog: MatDialog, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.prontuarioOrigem = JSON.parse(this.route.snapshot.paramMap.get('id')!); 
     this.findAll();
     this.dataAtu  = new Date("2022-07-29 19:20");
   }
@@ -35,7 +39,8 @@ export class ProntuarioMedicamentoListaComponent implements OnInit {
   }
   
   findAll(){
-    this.service.pesquisarTodos().subscribe(resposta =>{
+    console.log(this.prontuarioOrigem);
+    this.service.pesquisarPorProntuarioMedico(this.prontuarioOrigem).subscribe(resposta =>{
       this.prontuariosMedicamentos = resposta;
       this.dataSource = new MatTableDataSource<ProntuarioMedicamento>(this.prontuariosMedicamentos);
       this.dataSource.paginator = this.paginator;
@@ -46,7 +51,20 @@ export class ProntuarioMedicamentoListaComponent implements OnInit {
     let dataFormat = dataRecebida.substring(8,10) + '/' + dataRecebida.substring(5,7) + '/' + dataRecebida.substring(0,4) + ' ' + dataRecebida.substring(11,16);
     return dataFormat;    
   }
-
+/*
+  public excluirMedicamento(id: string){
+    console.log(id);
+    
+    const dialogRef = this.dialog.open(ProntuarioMedicamentoExcluiComponent,
+      {data: {id: id},});
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        console.log(result);
+      });
+//    let irParaEdicao : string = "prontuariosMedicamentos/exclui/" + id;
+//    this.router.navigate([irParaEdicao]);
+  }
+*/
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

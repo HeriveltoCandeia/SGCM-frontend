@@ -28,6 +28,11 @@ export class ProntuarioExameService {
     return this.http.get<ProntuarioExame>(url);
   }
 
+  pesquisarPorProntuarioExame(id: string): Observable<ProntuarioExame[]>{
+    const url = `${this.baseUrl}/prontuariosExamesRest/prontuarioExame/${id}`
+    return this.http.get<ProntuarioExame[]>(url);
+  }
+
   pesquisarPorChaveComposta(id: string): Observable<ProntuarioExame>{
     const url = `${this.baseUrl}/prontuariosExamesRest/chaveComposta/${id}`
     return this.http.get<ProntuarioExame>(url);

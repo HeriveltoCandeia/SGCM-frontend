@@ -28,6 +28,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
 
 //Componentes da aplicação
 import { HomeComponent } from './components/views/home/home.component'; 
@@ -63,6 +65,8 @@ import { ProntuarioMedicamentoListaComponent } from './components/views/prontuar
 import { ProntuarioMedicamentoExcluiComponent } from './components/views/prontuario medicamento/prontuario-medicamento-exclui/prontuario-medicamento-exclui.component';
 import { ProntuarioExameListaComponent } from './components/views/prontuario exame/prontuario-exame-lista/prontuario-exame-lista.component';
 import { ProntuarioExameExcluiComponent } from './components/views/prontuario exame/prontuario-exame-exclui/prontuario-exame-exclui.component';
+import { ProntuarioIncluiComponent } from './components/views/prontuario/prontuario-inclui/prontuario-inclui.component';
+import { ProntuarioEditaComponent } from './components/views/prontuario/prontuario-edita/prontuario-edita.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +96,8 @@ import { ProntuarioExameExcluiComponent } from './components/views/prontuario ex
     AgendaEditaComponent,
     ProntuarioListaComponent,
     ProntuarioExcluiComponent,
+    ProntuarioIncluiComponent,
+    ProntuarioEditaComponent,
     ProntuarioMedicamentoListaComponent,
     ProntuarioMedicamentoExcluiComponent,
     ProntuarioExameListaComponent,
@@ -126,7 +132,9 @@ import { ProntuarioExameExcluiComponent } from './components/views/prontuario ex
     ReactiveFormsModule,
     MatPaginatorModule,
     MatGridListModule,
-    NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule
+    NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule,
+    MatTabsModule,
+    MatDialogModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt-BR'},

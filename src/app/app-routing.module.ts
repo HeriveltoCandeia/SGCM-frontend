@@ -33,6 +33,8 @@ import { ProntuarioMedicamentoListaComponent } from './components/views/prontuar
 import { ProntuarioMedicamentoExcluiComponent } from './components/views/prontuario medicamento/prontuario-medicamento-exclui/prontuario-medicamento-exclui.component';
 import { ProntuarioExameListaComponent } from './components/views/prontuario exame/prontuario-exame-lista/prontuario-exame-lista.component';
 import { ProntuarioExameExcluiComponent } from './components/views/prontuario exame/prontuario-exame-exclui/prontuario-exame-exclui.component';
+import { ProntuarioIncluiComponent } from './components/views/prontuario/prontuario-inclui/prontuario-inclui.component';
+import { ProntuarioEditaComponent } from './components/views/prontuario/prontuario-edita/prontuario-edita.component';
 
 const routes: Routes = [
   {
@@ -149,6 +151,16 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
+        path:'prontuarios/inclui',
+        component: ProntuarioIncluiComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'prontuarios/edita/:id',
+        component: ProntuarioEditaComponent,
+        canActivate: [AuthGuard]
+      },
+      {
         path:'prontuarios/exclui/:id',
         component: ProntuarioExcluiComponent,
         canActivate: [AuthGuard]
@@ -159,8 +171,18 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path:'prontuariosMedicamentos/exclui/:id',
+        path:'prontuariosMedicamentos/excluiMedicamentos/:id',
         component: ProntuarioMedicamentoExcluiComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'prontuarios/edita/:id/excluiMedicamentos/:id2',
+        component: ProntuarioMedicamentoExcluiComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'prontuarios/edita/:id/excluiExames/:id2',
+        component: ProntuarioExameExcluiComponent,
         canActivate: [AuthGuard]
       },
       {
@@ -169,7 +191,7 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path:'prontuariosExames/exclui/:id',
+        path:'prontuariosExames/excluiExames/:id',
         component: ProntuarioExameExcluiComponent,
         canActivate: [AuthGuard]
       }

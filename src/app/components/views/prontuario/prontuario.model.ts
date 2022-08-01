@@ -12,6 +12,6 @@ export interface Prontuario{
         nome:string
     },
     codigoSituacao: Number,
-    dataReg?: string,
+    dataReg?: Date,
     orientacoes: string
 }

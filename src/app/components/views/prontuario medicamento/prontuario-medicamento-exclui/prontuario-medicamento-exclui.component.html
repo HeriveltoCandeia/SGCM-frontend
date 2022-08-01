@@ -5,7 +5,9 @@
         <input matInput [(ngModel)]="prontuarioMedicamento.medicamento.descricao" disabled type="text" name="medico">
     </mat-form-field>
     <div class="buttons">
-        <button class="mat-elevation-z8"  (click)="voltar()" mat-stroked-button color="warn">Não</button>
-        <button class="mat-elevation-z8" (click)="excluir()" mat-stroked-button color="primary">Sim</button>
+       <button class="mat-elevation-z8"  (click)="voltar()" mat-stroked-button color="warn">Não</button>
+       <button class="mat-elevation-z8" (click)="excluir()" mat-stroked-button color="primary">Sim</button>
+<!--        <button mat-button [mat-dialog-close]="false">No Thanks</button>
+        <button mat-button (click)="excluir()" [mat-dialog-close]="true">Ok</button> -->
     </div>
 </form>
