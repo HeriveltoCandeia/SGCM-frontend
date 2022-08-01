@@ -1,8 +1,8 @@
 <div class="content">
-    <button class="mat-elevation-z8" (click)="incluirProntuarioMedicamento()"mat-stroked-button color="primary">Adicionar Medicamento</button>
+    <button class="mat-elevation-z8" (click)="incluirProntuarioMedicamento()" mat-icon-button><mat-icon>add</mat-icon></button>
     <mat-form-field class="filtro" appearance="standard">
       <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      <input matInput (keyup)="applyFilter($event)" #input>
     </mat-form-field>
     <div class="mat-elevation-z8 content-table'">
         <table class="tabela" mat-table [dataSource]="dataSource">

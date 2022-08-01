@@ -5,11 +5,10 @@ form {
 }
 h1{
     text-align: left;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-style: italic;
-    font-weight: bold;
+    font-weight: 500;
 }
-
 .form{
     width: 100%;
 }

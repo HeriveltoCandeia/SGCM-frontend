@@ -1,6 +1,6 @@
 .content{
     width: 95%;
-    margin: 1rem auto;
+    margin: 0 auto auto 0;
 }
 .title{
     text-align: center;
@@ -41,4 +41,6 @@ table {
     width: 88%;
     margin-left: 1rem;
 }
-  
+mat-icon{
+    color:green;
+}
