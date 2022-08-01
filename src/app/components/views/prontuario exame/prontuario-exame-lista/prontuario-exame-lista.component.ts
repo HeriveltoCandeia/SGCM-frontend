@@ -67,7 +67,8 @@ export class ProntuarioExameListaComponent implements OnInit {
   }
 
   incluirProntuarioExame(){
-    this.router.navigate(["prontuariosExames/inclui"]);
+    let irParaEdicao : string = "prontuarios/edita/" + this.prontuarioOrigem + "/incluiExames";
+    this.router.navigate([irParaEdicao]);
   }
 
   converteObjetoParaString(objeto: any){
