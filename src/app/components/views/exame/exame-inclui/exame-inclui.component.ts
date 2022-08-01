@@ -33,7 +33,7 @@ export class ExameIncluiComponent implements OnInit {
   }
 
   incluir(): void{
-    this.exame.tipoExame.id= parseInt(this.codigoTipoExameSelecionado);
+    this.exame.tipoExame.id = parseInt(this.codigoTipoExameSelecionado);
     this.service.incluir(this.exame).subscribe((resposta) => {
       this.router.navigate(["exames"]);
       this.service.mensagem("Exame incluído com sucesso!");

@@ -39,6 +39,7 @@ export class ProntuarioMedicamentoService {
   }
 
   incluir(prontuario: ProntuarioMedicamento):Observable<ProntuarioMedicamento>{
+    console.log(prontuario);
     const url=`${this.baseUrl}/prontuariosMedicamentosRest`;
     return this.http.post<ProntuarioMedicamento>(url, prontuario);
   }

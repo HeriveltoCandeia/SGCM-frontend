@@ -83,7 +83,8 @@ export class ProntuarioMedicamentoListaComponent implements OnInit {
   }
 
   incluirProntuarioMedicamento(){
-    this.router.navigate(["prontuariosMedicamentos/inclui"]);
+    let irParaEdicao : string = "prontuarios/edita/" + this.prontuarioOrigem + "/incluiMedicamentos";
+    this.router.navigate([irParaEdicao]);
   }
 
   converteObjetoParaString(objeto: any){

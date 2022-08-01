@@ -63,10 +63,12 @@ import { ProntuarioListaComponent } from './components/views/prontuario/prontuar
 import { ProntuarioExcluiComponent } from './components/views/prontuario/prontuario-exclui/prontuario-exclui.component';
 import { ProntuarioMedicamentoListaComponent } from './components/views/prontuario medicamento/prontuario-medicamento-lista/prontuario-medicamento-lista.component';
 import { ProntuarioMedicamentoExcluiComponent } from './components/views/prontuario medicamento/prontuario-medicamento-exclui/prontuario-medicamento-exclui.component';
+import { ProntuarioMedicamentoIncluiComponent } from './components/views/prontuario medicamento/prontuario-medicamento-inclui/prontuario-medicamento-inclui.component';
 import { ProntuarioExameListaComponent } from './components/views/prontuario exame/prontuario-exame-lista/prontuario-exame-lista.component';
 import { ProntuarioExameExcluiComponent } from './components/views/prontuario exame/prontuario-exame-exclui/prontuario-exame-exclui.component';
 import { ProntuarioIncluiComponent } from './components/views/prontuario/prontuario-inclui/prontuario-inclui.component';
 import { ProntuarioEditaComponent } from './components/views/prontuario/prontuario-edita/prontuario-edita.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,6 +102,7 @@ import { ProntuarioEditaComponent } from './components/views/prontuario/prontuar
     ProntuarioEditaComponent,
     ProntuarioMedicamentoListaComponent,
     ProntuarioMedicamentoExcluiComponent,
+    ProntuarioMedicamentoIncluiComponent,
     ProntuarioExameListaComponent,
     ProntuarioExameExcluiComponent,
     LoginComponent,
@@ -134,7 +137,8 @@ import { ProntuarioEditaComponent } from './components/views/prontuario/prontuar
     MatGridListModule,
     NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt-BR'},

@@ -9,5 +9,5 @@ export interface ProntuarioMedicamento{
         id: string,
         descricao: string
     },
-    orientacoes: string
+    orientacoes?: string
 }
