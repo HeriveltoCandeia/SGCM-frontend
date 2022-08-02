@@ -42,7 +42,7 @@ export class ProntuarioMedicamentoIncluiComponent implements OnInit {
     private route: ActivatedRoute,
     private serviceCli: ClienteService,
     private fb: FormBuilder,
-    private serviceFunc: MedicamentoService) { }
+    private serviceMed: MedicamentoService) { }
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
@@ -56,7 +56,7 @@ export class ProntuarioMedicamentoIncluiComponent implements OnInit {
   }
 
   buscarMedicamentos(){
-    this.serviceFunc.pesquisarTodos().subscribe((resposta) => {
+    this.serviceMed.pesquisarTodos().subscribe((resposta) => {
         this.medicamentos = resposta;
     },err =>{   
         this.service.mensagem(err.error.message);
@@ -67,6 +67,7 @@ export class ProntuarioMedicamentoIncluiComponent implements OnInit {
 //    this.prontuario.prontuarioMedico.id = this.formulario.get("codigoMedicoId")?.value;
     this.prontuario.prontuarioMedico.id = this.prontuarioOrigem;
     this.prontuario.medicamento.id = this.formulario.get("codigoMedicamentoId")?.value;
+    this.prontuario.orientacoes = this.formulario.get("orientacoes")?.value;
     //this.prontuario.orientacoes = this.formulario.get("orientacoes")?.value;
     console.log(this.prontuario);
     this.service.incluir(this.prontuario).subscribe((resposta) => {
@@ -83,7 +84,8 @@ export class ProntuarioMedicamentoIncluiComponent implements OnInit {
   }
 
   cancelar(){
-    this.router.navigate(["prontuarios"]);
+    let irParaEdicao : string = "prontuarios/edita/" + this.prontuarioOrigem;
+    this.router.navigate([irParaEdicao]);
   }
 
 }

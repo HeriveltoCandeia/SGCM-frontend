@@ -37,6 +37,7 @@ import { ProntuarioExameExcluiComponent } from './components/views/prontuario ex
 import { ProntuarioIncluiComponent } from './components/views/prontuario/prontuario-inclui/prontuario-inclui.component';
 import { ProntuarioEditaComponent } from './components/views/prontuario/prontuario-edita/prontuario-edita.component';
 import { ProntuarioExameIncluiComponent } from './components/views/prontuario exame/prontuario-exame-inclui/prontuario-exame-inclui.component';
+import { ProntuarioMedicamentoEditaComponent } from './components/views/prontuario medicamento/prontuario-medicamento-edita/prontuario-medicamento-edita.component';
 
 const routes: Routes = [
   {
@@ -180,6 +181,11 @@ const routes: Routes = [
       {
         path:'prontuarios/edita/:id/excluiMedicamentos/:id2',
         component: ProntuarioMedicamentoExcluiComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'prontuarios/edita/:id/editaMedicamentos/:id2',
+        component: ProntuarioMedicamentoEditaComponent,
         canActivate: [AuthGuard]
       },
       {

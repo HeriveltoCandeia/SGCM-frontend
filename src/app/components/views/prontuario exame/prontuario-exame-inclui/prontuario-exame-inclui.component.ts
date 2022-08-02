@@ -86,7 +86,8 @@ export class ProntuarioExameIncluiComponent implements OnInit {
   }
 
   cancelar(){
-    this.router.navigate(["prontuarios"]);
+    let irParaEdicao : string = "prontuarios/edita/" + this.prontuarioOrigem;
+    this.router.navigate([irParaEdicao]);
   }
 
 }
