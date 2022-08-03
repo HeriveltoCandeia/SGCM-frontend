@@ -1,0 +1,35 @@
+form {
+    text-align:center;
+    width: 95%;
+    margin: 1rem auto 0 auto;
+}
+h1{
+    text-align: left;
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 500;
+}
+.form{
+    width: 100%;
+}
+.buttons{
+    width: 100%;
+    text-align: start;
+    margin-bottom: 1rem;
+}
+button{
+    margin-right: .5rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+mat-tab-group{
+    margin-left: 1rem;
+}
+mat-tab{
+    margin-left: 1rem;
+    width: 70%;
+}
+.content{
+    width: 80%;
+    margin: 1rem auto;
+}
