@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Cliente } from '../cliente/cliente.model';
+import { Funcionario } from '../funcionario/funcionario.model';
 import { Prontuario } from './prontuario.model';
 
 @Injectable({
@@ -31,6 +33,11 @@ export class ProntuarioService {
   pesquisarPorChaveComposta(id: string): Observable<Prontuario>{
     const url = `${this.baseUrl}/prontuariosMedicosRest/chaveComposta/${id}`
     return this.http.get<Prontuario>(url);
+  }
+
+  pesquisarPorFiltros(medico: string, cliente: string, dataReg: string): Observable<Prontuario[]>{
+    const url = `${this.baseUrl}/prontuariosMedicosRest/${medico}/${cliente}/${dataReg}`
+    return this.http.get<Prontuario[]>(url);
   }
 
   incluir(prontuario: Prontuario):Observable<Prontuario>{

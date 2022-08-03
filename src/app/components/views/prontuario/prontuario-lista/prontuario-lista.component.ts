@@ -6,6 +6,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Prontuario } from '../prontuario.model';
+import { Funcionario } from '../../funcionario/funcionario.model';
+import { Cliente } from '../../cliente/cliente.model';
+import { ClienteEditaComponent } from '../../cliente/cliente-edita/cliente-edita.component';
+import { ChavePesquisa } from '../../agenda/chavePesquisa.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ClienteService } from '../../cliente/cliente.service';
+import { FuncionarioService } from '../../funcionario/funcionario.service';
 @Component({
   selector: 'app-prontuario-lista',
   templateUrl: './prontuario-lista.component.html',
@@ -15,6 +22,11 @@ export class ProntuarioListaComponent implements OnInit {
 
   prontuarios: Prontuario[] | undefined;
   dataAtu!: Date;
+  formularioPesquisa!: FormGroup;
+  clientes: Cliente[] = [];
+  medicos: Funcionario[] = [];
+  dataAtual: Date = new Date();
+
 
   displayedColumns: string[] = ['dataTimeProntuario', 'medico', 'cliente', 'situacao', 'acoes'];//, 'acoes'];
   dataSource : any;
@@ -23,25 +35,98 @@ export class ProntuarioListaComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
 
-  constructor( private service: ProntuarioService, private router:Router) {
+  constructor( 
+    private service: ProntuarioService, 
+    private router:Router,
+    private serviceCli: ClienteService,
+    private fb: FormBuilder,
+    private serviceFunc: FuncionarioService) {
   }
 
   ngOnInit(): void {
-    this.findAll();
-    this.dataAtu  = new Date("2022-07-29 19:20");
+    this.dataAtu  = new Date();
+
+    this.formularioPesquisa = this.fb.group({
+      dataPesquisa:[''],
+      codigoMedicoId:[''],
+      codigoClienteId:[''],
+    })
+    this.buscarClientes();    
+    this.buscarMedicos();
+    this.formularioPesquisa.get("dataPesquisa")?.setValue(this.dataAtu);
+    this.pesquisar();
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
   
-  findAll(){
-    this.service.pesquisarTodos().subscribe(resposta =>{
+  pesquisar(){
+
+    if(
+      this.formularioPesquisa.get("codigoMedicoId")?.value === '0' &&
+      this.formularioPesquisa.get("codigoClienteId")?.value === '0' &&
+      this.formularioPesquisa.get("dataPesquisa")?.value === null
+    )
+    {
+      this.service.mensagem("Informe ao menos um filtro");
+    }
+    let func: Funcionario = {nome: '', cpf: '', sexo:'', dataNascimento:'', email:'', codigoCargo: 1, usuario:'', senha:''};
+    func.id = this.formularioPesquisa.get("codigoMedicoId")?.value;
+    let cli: Cliente = {nome: '', cpf: '', sexo:'', dataNascimento:'', email:''};
+    cli.id = this.formularioPesquisa.get("codigoClienteId")?.value;
+    let verificaDataInformada = this.formularioPesquisa.get("dataPesquisa")?.value;
+
+    let dataStr = '';
+
+    if (verificaDataInformada !== null ) {
+
+      let dtR: Date = new Date("12/31/9999");
+      dtR = verificaDataInformada !== null? this.formularioPesquisa.get("dataPesquisa")?.value : dtR;
+      
+      let chavP: ChavePesquisa = {diaData:0,mesData:0,anoData:0,horaData:0,minutoData:0,segundoData:0, codigoMedicoId:''};
+      chavP.diaData = dtR.getDate();
+      chavP.mesData = dtR.getMonth()+1;
+      chavP.anoData = dtR.getFullYear();
+
+      dataStr = '' + (chavP.diaData<=9 ? ('0' + chavP.diaData): chavP.diaData)  + (chavP.mesData<=9?('0' + chavP.mesData) : chavP.mesData) + chavP.anoData;
+    }   
+
+    let cliString = cli.id === '' || cli.id === '0' ? "NO" : JSON.stringify(cli);
+    let medString = func.id === '' || func.id === '0' ? "NO" : JSON.stringify(func);
+    let dataString = dataStr === '' ? "NO" : dataStr;
+
+    //    this.service.pesquisarTodos().subscribe(resposta =>{
+    this.service.pesquisarPorFiltros(medString, cliString, dataString).subscribe(resposta =>{
       this.prontuarios = resposta;
       this.dataSource = new MatTableDataSource<Prontuario>(this.prontuarios);
       this.dataSource.paginator = this.paginator;
     });
   }
+
+  limparFiltros()
+  {
+    this.formularioPesquisa.get("codigoMedicoId")?.setValue('0');
+    this.formularioPesquisa.get("codigoClienteId")?.setValue('0');
+    this.formularioPesquisa.get("dataPesquisa")?.setValue(null);
+  }
+
+  buscarClientes(){
+    this.serviceCli.pesquisarTodos().subscribe((resposta) => {
+        this.clientes = resposta;
+    },err =>{   
+        this.service.mensagem(err.error.message);
+    })
+  }
+
+  buscarMedicos(){
+    this.serviceFunc.pesquisarPorCargo("3").subscribe((resposta) => {
+        this.medicos = resposta;
+    },err =>{   
+        this.service.mensagem(err.error.message);
+    })
+  }
+
 
   public formataData(dataRecebida: String){
     let dataFormat = dataRecebida.substring(8,10) + '/' + dataRecebida.substring(5,7) + '/' + dataRecebida.substring(0,4) + ' ' + dataRecebida.substring(11,16);

@@ -1,12 +1,48 @@
 <div class="content">
     <div class="title">
-        <h1>Prontuario</h1>
+        <h1>Prontuário</h1>
     </div>
-    <button class="mat-elevation-z8" (click)="incluirProntuario()"mat-stroked-button color="primary">Adicionar Prontuario</button>
-    <mat-form-field class="filtro" appearance="standard">
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" #input>
-    </mat-form-field>
+    <mat-accordion>
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+              <mat-panel-title>
+                  <h1 class="tituloAcordion">Filtros para pesquisa</h1>
+              </mat-panel-title>
+          </mat-expansion-panel-header>
+          <form [formGroup]="formularioPesquisa">
+            <mat-form-field class="form">
+                <mat-label>Médico</mat-label>
+                <mat-select formControlName="codigoMedicoId" name="medicoSelecionado">
+                        <mat-option value="0" selected>Selecione...</mat-option>
+                        <mat-option *ngFor="let medico of medicos" [value]="medico.id">
+                            {{medico.nome}}
+                        </mat-option>        
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form">
+              <mat-label>Cliente</mat-label>
+              <mat-select formControlName="codigoClienteId" name="clienteSelecionado">
+                      <mat-option value="0" selected>Selecione...</mat-option>
+                      <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">
+                          {{cliente.nome}}
+                      </mat-option>        
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form">
+              <mat-label>Data Prontuário</mat-label>
+              <input matInput  formControlName="dataPesquisa" [matDatepicker]="picker" (focus)="picker.open()"name="dataPesquisa">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="month" [startAt]="dataAtual"></mat-datepicker>
+            </mat-form-field>
+            <div class="buttons">
+              <button class="mat-elevation-z8" (click)="limparFiltros()" mat-stroked-button color="secondary">Limpar</button>
+              <button class="mat-elevation-z8" (click)="pesquisar()" mat-stroked-button color="primary">Pesquisar</button>
+            </div>
+          </form>      
+      </mat-expansion-panel>
+    </mat-accordion>
+  
+    <button class="mat-elevation-z8 botaoIncluir" (click)="incluirProntuario()" mat-icon-button><mat-icon>add</mat-icon></button>
     <div class="mat-elevation-z8 content-table'">
         <table class="tabela" mat-table [dataSource]="dataSource">
      
