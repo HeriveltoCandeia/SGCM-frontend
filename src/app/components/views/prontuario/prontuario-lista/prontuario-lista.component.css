@@ -49,4 +49,8 @@ mat-icon{
 .botaoIncluir{
     margin-top: 0.5rem;
 }
-  
+mat-expansion-panel{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
