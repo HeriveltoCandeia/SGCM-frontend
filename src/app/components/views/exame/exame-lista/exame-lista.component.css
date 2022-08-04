@@ -26,3 +26,8 @@
 button{
     margin-bottom: .5rem;
 }
+.filtro {
+    font-size: 14px;
+    width: 82%;
+    margin-left: 1rem;
+}

@@ -36,7 +36,7 @@ export class MedicamentoExcluiComponent implements OnInit {
       this.router.navigate(["medicamentos"]);
       this.service.mensagem('Medicamento excluído com sucesso.');
     },
-    err =>{   
+    err =>{
       this.service.mensagem(err.error.message);
     }     
     );
