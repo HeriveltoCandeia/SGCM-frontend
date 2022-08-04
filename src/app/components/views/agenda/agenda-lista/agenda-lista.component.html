@@ -34,6 +34,15 @@
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker startView="month" [startAt]="dataAtual"></mat-datepicker>
             </mat-form-field>
+            <mat-form-field class="form">
+              <mat-label>Situação</mat-label>
+              <mat-select formControlName="codigoSituacao" name="codigoSituacao">
+                      <mat-option value="" selected>Selecione...</mat-option>
+                      <mat-option value="1">Disponível</mat-option>
+                      <mat-option value="2">Agendado</mat-option>            
+                      <mat-option value="3">Horário Cancelado</mat-option>            
+              </mat-select>
+          </mat-form-field>      
             <div class="buttons">
               <button class="mat-elevation-z8" (click)="limparFiltros()" mat-stroked-button color="secondary">Limpar</button>
               <button class="mat-elevation-z8" (click)="pesquisar()" mat-stroked-button color="primary">Pesquisar</button>

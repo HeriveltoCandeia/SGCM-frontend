@@ -75,8 +75,9 @@ export class AgendaListaComponent implements OnInit {
     if(
       this.formularioPesquisa.get("codigoMedicoId")?.value === '0' &&
       this.formularioPesquisa.get("codigoClienteId")?.value === '0' &&
-      this.formularioPesquisa.get("dataPesquisa")?.value === null
-    )
+      this.formularioPesquisa.get("dataPesquisa")?.value === null &&
+      this.formularioPesquisa.get("codigoSituacao")?.value === '0'
+     )
     {
       this.service.mensagem("Informe ao menos um filtro");
     }
@@ -85,7 +86,7 @@ export class AgendaListaComponent implements OnInit {
     let cli: Cliente = {nome: '', cpf: '', sexo:'', dataNascimento:'', email:''};
     cli.id = this.formularioPesquisa.get("codigoClienteId")?.value;
     let verificaDataInformada = this.formularioPesquisa.get("dataPesquisa")?.value;
-
+    let codString = this.formularioPesquisa.get("codigoSituacao")?.value;
     let dataStr = '';
 
     if (verificaDataInformada !== null ) {
@@ -104,8 +105,7 @@ export class AgendaListaComponent implements OnInit {
     let cliString = cli.id === '' || cli.id === '0' ? "NO" : JSON.stringify(cli);
     let medString = func.id === '' || func.id === '0' ? "NO" : JSON.stringify(func);
     let dataString = dataStr === '' ? "NO" : dataStr;
-    let codString = ''
-    let codigoSituacaoString = codString === '' ? "NO" : codString;
+    let codigoSituacaoString = codString === '' || codString === '0' ? "NO" : codString;
 
     //    this.service.pesquisarTodos().subscribe(resposta =>{
     this.service.pesquisarPorFiltros(medString, cliString, dataString, codigoSituacaoString).subscribe(resposta =>{
@@ -121,6 +121,7 @@ export class AgendaListaComponent implements OnInit {
     this.formularioPesquisa.get("codigoMedicoId")?.setValue('0');
     this.formularioPesquisa.get("codigoClienteId")?.setValue('0');
     this.formularioPesquisa.get("dataPesquisa")?.setValue(null);
+    this.formularioPesquisa.get("codigoSituacao")?.setValue('0');
   }
 
   buscarClientes(){
@@ -155,9 +156,9 @@ export class AgendaListaComponent implements OnInit {
 
   buscaSituacao(codigo: Number): string{
     switch (codigo){
-      case 1:  return 'Agendado';
-      case 2:  return 'Cancelado';
-      case 3:  return 'Realizado';
+      case 1:  return 'Disponível';
+      case 2:  return 'Agendados';
+      case 3:  return 'Horário Cancelado';
       default: return '';
     }
   }
