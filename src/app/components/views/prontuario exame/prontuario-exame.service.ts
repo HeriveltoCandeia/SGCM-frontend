@@ -32,12 +32,12 @@ export class ProntuarioExameService {
     const url = `${this.baseUrl}/prontuariosExamesRest/prontuarioExame/${id}`
     return this.http.get<ProntuarioExame[]>(url);
   }
-
+/*
   pesquisarPorChaveComposta(id: string): Observable<ProntuarioExame>{
     const url = `${this.baseUrl}/prontuariosExamesRest/chaveComposta/${id}`
     return this.http.get<ProntuarioExame>(url);
   }
-
+*/
   incluir(prontuarioExame: ProntuarioExame):Observable<ProntuarioExame>{
     const url=`${this.baseUrl}/prontuariosExamesRest`;
     return this.http.post<ProntuarioExame>(url, prontuarioExame);

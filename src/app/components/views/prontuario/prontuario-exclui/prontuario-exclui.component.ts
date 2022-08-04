@@ -30,7 +30,6 @@ export class ProntuarioExcluiComponent implements OnInit {
   };
   dataTimeView!: string;
   chavePesquisa: ChavePesquisa = {
-    codigoMedicoId: '',
     anoData: 0,
     mesData: 0,
     diaData: 0,

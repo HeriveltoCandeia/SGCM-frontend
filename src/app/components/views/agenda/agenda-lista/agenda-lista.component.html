@@ -2,17 +2,53 @@
     <div class="title">
         <h1>Agenda</h1>
     </div>
-    <button class="mat-elevation-z8" (click)="incluirAgenda()"mat-stroked-button color="primary">Adicionar Agenda</button>
-    <mat-form-field class="filtro" appearance="standard">
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-    </mat-form-field>
+    <mat-accordion>
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+              <mat-panel-title>
+                  <h1 class="tituloAcordion">Filtros para pesquisa</h1>
+              </mat-panel-title>
+          </mat-expansion-panel-header>
+          <form [formGroup]="formularioPesquisa">
+            <mat-form-field class="form">
+                <mat-label>Médico</mat-label>
+                <mat-select formControlName="codigoMedicoId" name="medicoSelecionado">
+                        <mat-option value="0" selected>Selecione...</mat-option>
+                        <mat-option *ngFor="let medico of medicos" [value]="medico.id">
+                            {{medico.nome}}
+                        </mat-option>        
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form">
+              <mat-label>Cliente</mat-label>
+              <mat-select formControlName="codigoClienteId" name="clienteSelecionado">
+                      <mat-option value="0" selected>Selecione...</mat-option>
+                      <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">
+                          {{cliente.nome}}
+                      </mat-option>        
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form">
+              <mat-label>Data Agenda</mat-label>
+              <input matInput  formControlName="dataPesquisa" [matDatepicker]="picker" (focus)="picker.open()"name="dataPesquisa">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="month" [startAt]="dataAtual"></mat-datepicker>
+            </mat-form-field>
+            <div class="buttons">
+              <button class="mat-elevation-z8" (click)="limparFiltros()" mat-stroked-button color="secondary">Limpar</button>
+              <button class="mat-elevation-z8" (click)="pesquisar()" mat-stroked-button color="primary">Pesquisar</button>
+            </div>
+          </form>      
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <button class="mat-elevation-z8 botaIncluir" style="margin-top: 0.5rem;" (click)="incluirAgenda()" mat-icon-button><mat-icon>add</mat-icon></button>
     <div class="mat-elevation-z8 content-table'">
         <table class="tabela" mat-table [dataSource]="dataSource">
      
             <ng-container matColumnDef="dataAgenda">
               <th mat-header-cell *matHeaderCellDef> Data Agenda </th>
-              <td mat-cell *matCellDef="let row"> {{ formataData(row.chaveCompostaAgenda.dataAgenda) }} </td>
+              <td mat-cell *matCellDef="let row"> {{ formataData(row.dataAgenda) }} </td>
             </ng-container>
           
             <ng-container matColumnDef="cliente">

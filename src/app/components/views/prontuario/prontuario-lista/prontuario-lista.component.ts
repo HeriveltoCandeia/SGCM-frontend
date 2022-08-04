@@ -84,7 +84,7 @@ export class ProntuarioListaComponent implements OnInit {
       let dtR: Date = new Date("12/31/9999");
       dtR = verificaDataInformada !== null? this.formularioPesquisa.get("dataPesquisa")?.value : dtR;
       
-      let chavP: ChavePesquisa = {diaData:0,mesData:0,anoData:0,horaData:0,minutoData:0,segundoData:0, codigoMedicoId:''};
+      let chavP: ChavePesquisa = {diaData:0,mesData:0,anoData:0,horaData:0,minutoData:0,segundoData:0};
       chavP.diaData = dtR.getDate();
       chavP.mesData = dtR.getMonth()+1;
       chavP.anoData = dtR.getFullYear();

@@ -16,10 +16,12 @@ import { AgendaLista } from '../agendaLista.model';
 })
 export class AgendaIncluiComponent implements OnInit {
   dateAtual: Date = new Date();
-  agenda: AgendaLista =  {   chaveCompostaAgenda: 
+  agenda: AgendaLista =  {
+  dataAgenda: new Date(),
+  medico: 
   {
-      codigoMedicoId: '',
-      dataAgenda: new Date()
+      id: '',
+      nome:''
   },
   cliente: 
   {
@@ -74,8 +76,8 @@ export class AgendaIncluiComponent implements OnInit {
   }
 
   incluir(): void{
-    this.agenda.chaveCompostaAgenda.codigoMedicoId = this.formulario.get("codigoMedicoId")?.value;
-    this.agenda.chaveCompostaAgenda.dataAgenda = this.formulario.get("dataAgenda")?.value;
+    this.agenda.medico.id = this.formulario.get("codigoMedicoId")?.value;
+    this.agenda.dataAgenda = this.formulario.get("dataAgenda")?.value;
     this.agenda.cliente.id = this.formulario.get("cliente")?.value;
     this.agenda.codigoTipo=parseInt(this.formulario.get("codigoTipo")?.value);
     this.agenda.codigoSituacao=parseInt(this.formulario.get("codigoSituacao")?.value);

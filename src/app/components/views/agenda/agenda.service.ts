@@ -24,16 +24,21 @@ export class AgendaService {
     return this.http.get<AgendaLista[]>(url);//,{headers});
   }
 
+  pesquisarPorFiltros(medico: string, cliente: string, dataReg: string, codigoSituacao: string): Observable<AgendaLista[]>{
+    const url = `${this.baseUrl}/agendasMedicasRest/${medico}/${cliente}/${dataReg}/${codigoSituacao}`
+    return this.http.get<AgendaLista[]>(url);
+  }
+
   pesquisarPorId(id: String): Observable<AgendaLista>{
     const url = `${this.baseUrl}/agendasMedicasRest/${id}`
     return this.http.get<AgendaLista>(url);
   }
 
-  pesquisarPorChaveComposta(id: string): Observable<AgendaLista>{
+/*  pesquisarPorChaveComposta(id: string): Observable<AgendaLista>{
     const url = `${this.baseUrl}/agendasMedicasRest/chaveComposta/${id}`
     return this.http.get<AgendaLista>(url);
   }
-
+*/
   incluir(agenda: AgendaLista):Observable<AgendaLista>{
     const url=`${this.baseUrl}/agendasMedicasRest`;
     return this.http.post<AgendaLista>(url, agenda);

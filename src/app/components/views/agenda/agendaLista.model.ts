@@ -1,10 +1,11 @@
 export interface AgendaLista{
     id?: String,
-    chaveCompostaAgenda: 
+    medico: 
     {
-        codigoMedicoId: string,
-        dataAgenda: Date
+        id: string,
+        nome:string
     },
+    dataAgenda: Date,
     cliente: 
     {
         id: string,

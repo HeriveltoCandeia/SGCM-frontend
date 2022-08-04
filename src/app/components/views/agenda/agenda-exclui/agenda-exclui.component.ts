@@ -13,12 +13,13 @@ import { ChavePesquisa } from "../chavePesquisa.model";
 export class AgendaExcluiComponent implements OnInit {
 
   agenda: AgendaLista =   {   
-    chaveCompostaAgenda: 
+    dataAgenda: new Date(),
+    medico: 
     {
-        codigoMedicoId: '',
-        dataAgenda: new Date()
+        id: '',
+        nome:''
     },
-    cliente: 
+      cliente: 
     {
         id: '',
         nome:''
@@ -28,7 +29,6 @@ export class AgendaExcluiComponent implements OnInit {
   };
 
   chavePesquisa: ChavePesquisa = {
-    codigoMedicoId: '',
     anoData: 0,
     mesData: 0,
     diaData: 0,
@@ -45,7 +45,6 @@ export class AgendaExcluiComponent implements OnInit {
 
   ngOnInit(): void {
    this.agenda.id = JSON.parse(this.route.snapshot.paramMap.get('id')!);
-   console.log(this.agenda.chaveCompostaAgenda);
    this.buscarAgendaParaExcluir();
   }
 
