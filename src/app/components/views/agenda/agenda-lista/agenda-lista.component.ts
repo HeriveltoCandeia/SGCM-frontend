@@ -157,7 +157,7 @@ export class AgendaListaComponent implements OnInit {
   buscaSituacao(codigo: Number): string{
     switch (codigo){
       case 1:  return 'Disponível';
-      case 2:  return 'Agendados';
+      case 2:  return 'Agendado';
       case 3:  return 'Horário Cancelado';
       default: return '';
     }
@@ -178,5 +178,13 @@ export class AgendaListaComponent implements OnInit {
 
   converteObjetoParaString(objeto: any){
     return JSON.stringify(objeto);
+  }
+
+  verificaCliente( cli: Cliente){
+    if ( cli === null)
+    {
+      return "";
+    }
+    return cli.nome;
   }
 }

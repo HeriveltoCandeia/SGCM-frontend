@@ -49,7 +49,7 @@ export class AgendaIncluiComponent implements OnInit {
       id:[''],
       codigoMedicoId:['', Validators.required],
       dataAgenda: ['', Validators.required],
-      cliente: ['', Validators.required],
+      cliente: [''],
       codigoSituacao: ['', Validators.required],
       codigoTipo: ['', Validators.required],
       dataReg:['']
@@ -78,9 +78,10 @@ export class AgendaIncluiComponent implements OnInit {
   incluir(): void{
     this.agenda.medico.id = this.formulario.get("codigoMedicoId")?.value;
     this.agenda.dataAgenda = this.formulario.get("dataAgenda")?.value;
-    this.agenda.cliente.id = this.formulario.get("cliente")?.value;
+    this.agenda.cliente.id = '0';
     this.agenda.codigoTipo=parseInt(this.formulario.get("codigoTipo")?.value);
-    this.agenda.codigoSituacao=parseInt(this.formulario.get("codigoSituacao")?.value);
+//    this.agenda.codigoSituacao=parseInt(this.formulario.get("codigoSituacao")?.value);
+    this.agenda.codigoSituacao = 1;
     this.agenda.dataReg=this.formulario.get("dataAgenda")?.value;
     console.log(this.agenda);
     this.service.incluir(this.agenda).subscribe((resposta) => {

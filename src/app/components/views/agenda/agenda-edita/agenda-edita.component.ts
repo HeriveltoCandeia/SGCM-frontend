@@ -89,12 +89,18 @@ export class AgendaEditaComponent implements OnInit {
   buscarAgendaParaAlterar(): void {
     this.service.pesquisarPorId(this.agenda.id!).subscribe((resposta) => {
       this.agenda = resposta;
+      if (resposta.cliente === null)
+      {
+        this.agenda.cliente = {id:'0', nome: ''};
+      }
       this.formulario.get("codigoMedicoId")?.setValue(this.agenda.medico.id);
       this.formulario.get("dataAgenda")?.setValue(this.agenda.dataAgenda);
-      this.formulario.get("cliente")?.setValue(this.agenda.cliente.id);
+      if (this.agenda.cliente)
+      {
+        this.formulario.get("cliente")?.setValue(this.agenda.cliente.id);
+      }
       this.formulario.get("codigoSituacao")?.setValue(this.agenda.codigoSituacao.toString());
       this.formulario.get("codigoTipo")?.setValue(this.agenda.codigoTipo.toString());
-
     });
   }
 
@@ -113,6 +119,26 @@ export class AgendaEditaComponent implements OnInit {
     this.service.editar(this.agenda.id!, this.agenda).subscribe((resposta) => {
       this.router.navigate(["agendas"]);
       this.service.mensagem("Agenda alterado com sucesso!");
+    },err =>{   
+        this.service.mensagem(err.error.message);
+    })
+  }
+
+  alterarAgendaParaCancelarAgendamento(): void {
+    this.agenda.medico.id = this.formulario.get("codigoMedicoId")?.value;
+    this.agenda.dataAgenda = this.formulario.get("dataAgenda")?.value;
+    this.agenda.cliente.id = '0';
+    this.agenda.codigoSituacao = 1;
+    this.agenda.codigoTipo = this.formulario.get("codigoTipo")?.value;
+    console.log(this.agenda);
+  }
+
+  cancelarAgendamento(): void{
+    this.alterarAgendaParaCancelarAgendamento();
+    this.service.editar(this.agenda.id!, this.agenda).subscribe((resposta) => {
+//      this.router.navigate(["agendas"]);
+      this.service.mensagem("Agenda alterado com sucesso!");
+      this.buscarAgendaParaAlterar();
     },err =>{   
         this.service.mensagem(err.error.message);
     })

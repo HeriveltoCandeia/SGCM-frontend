@@ -62,7 +62,7 @@
           
             <ng-container matColumnDef="cliente">
               <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Cliente </th>
-              <td mat-cell *matCellDef="let row"> {{ row.cliente.nome}} </td>
+              <td mat-cell *matCellDef="let row"> {{ verificaCliente(row.cliente) }} </td>
             </ng-container>
 
             <ng-container matColumnDef="tipo">
