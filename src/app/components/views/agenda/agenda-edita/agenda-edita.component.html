@@ -3,7 +3,7 @@
 
     <mat-form-field class="form">
         <mat-label>Médico</mat-label>
-        <mat-select formControlName="codigoMedicoId" name="medicoSelecionado">
+        <mat-select [disabled]=true formControlName="codigoMedicoId" name="medicoSelecionado">
                 <mat-option value="0" selected>Selecione...</mat-option>
                 <mat-option *ngFor="let medico of medicos" [value]="medico.id">
                     {{medico.nome}}
@@ -21,7 +21,7 @@
 
     <mat-form-field class="form">
         <mat-label>Data Agenda</mat-label>
-        <input matInput  formControlName="dataAgenda" [ngxMatDatetimePicker]="picker" (focus)="picker.open()" name="dataAgenda">
+        <input matInput  [disabled]=true formControlName="dataAgenda" [ngxMatDatetimePicker]="picker" (focus)="picker.open()" name="dataAgenda">
         <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
         <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
     </mat-form-field>
@@ -36,7 +36,7 @@
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Situação</mat-label>
-        <mat-select formControlName="codigoSituacao" name="codigoSituacao">
+        <mat-select [disabled]=true formControlName="codigoSituacao" name="codigoSituacao">
                 <mat-option value="" selected>Selecione...</mat-option>
                 <mat-option value="1">Disponível</mat-option>
                 <mat-option value="2">Agendado</mat-option>            
@@ -45,6 +45,7 @@
 
     <div class="buttons">
         <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Voltar</button>
+        <button class="mat-elevation-z8" (click)="realizarAgendamento()" mat-stroked-button color="secondary">Agendar</button>
         <button class="mat-elevation-z8" (click)="cancelarAgendamento()" mat-stroked-button color="secondary">Cancelar Agendamento</button>
         <button class="mat-elevation-z8" (click)="editar()" mat-stroked-button color="primary">Salvar</button>
     </div>

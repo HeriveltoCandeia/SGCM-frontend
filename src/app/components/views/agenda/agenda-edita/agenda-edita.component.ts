@@ -104,6 +104,13 @@ export class AgendaEditaComponent implements OnInit {
     });
   }
 
+  buscaSituacao(codigo: Number): string{
+    switch (codigo){
+      case 1:  return 'Disponível';
+      case 2:  return 'Agendado';
+      default: return '';
+    }
+  }
 
   alterarAgendaParaSalvar(): void {
     this.agenda.medico.id = this.formulario.get("codigoMedicoId")?.value;
@@ -138,6 +145,27 @@ export class AgendaEditaComponent implements OnInit {
     this.service.editar(this.agenda.id!, this.agenda).subscribe((resposta) => {
 //      this.router.navigate(["agendas"]);
       this.service.mensagem("Agenda alterado com sucesso!");
+      this.buscarAgendaParaAlterar();
+    },err =>{   
+        this.service.mensagem(err.error.message);
+    })
+  }
+
+  realizarAgendamento(): void{
+    let verificaCliente = this.formulario.get("cliente")?.value;
+    if (!verificaCliente || verificaCliente === '0')
+    {
+      this.service.mensagem("Informe o Cliente para agendamento.");
+      return;
+    }
+    this.agenda.cliente.id = this.formulario.get("cliente")?.value;
+    this.agenda.codigoSituacao=2;
+    this.agenda.codigoTipo = this.formulario.get("codigoTipo")?.value;
+
+//    this.alterarAgendaParaCancelarAgendamento();
+    this.service.editar(this.agenda.id!, this.agenda).subscribe((resposta) => {
+//      this.router.navigate(["agendas"]);
+      this.service.mensagem("Agendamento realizado com sucesso!");
       this.buscarAgendaParaAlterar();
     },err =>{   
         this.service.mensagem(err.error.message);
