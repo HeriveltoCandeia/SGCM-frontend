@@ -1,5 +1,6 @@
 <div class="content">
-    <button class="mat-elevation-z8" (click)="incluirProntuarioMedicamento()" mat-icon-button><mat-icon>add</mat-icon></button>
+    <button class="mat-elevation-z8" *ngIf="habilitarIncluir" (click)="incluirProntuarioMedicamento()" mat-icon-button><mat-icon>add</mat-icon></button>
+    <br *ngIf="!habilitarIncluir"/>    
     <mat-form-field class="filtro" appearance="standard">
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" #input>
@@ -21,10 +22,10 @@
             <ng-container matColumnDef="acoes">
               <th class="tamanho-10" mat-header-cell *matHeaderCellDef> Ações </th>
               <td mat-cell *matCellDef="let row">
-                <a class="edit" routerLink="editaMedicamentos/{{ row.id }}">
+                <a class="edit" *ngIf="habilitarIncluir" routerLink="editaMedicamentos/{{ row.id }}">
                   <i class="material-icons">edit</i>
                 </a>
-                <a class="delete" routerLink="excluiMedicamentos/{{ row.id }}">
+                <a class="delete" *ngIf="habilitarIncluir" routerLink="excluiMedicamentos/{{ row.id }}">
                   <i class="material-icons">delete</i>
                 </a>
 <!--                

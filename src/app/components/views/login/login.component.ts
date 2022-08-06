@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { Funcionario } from '../funcionario/funcionario.model';
 import { FuncionarioService } from '../funcionario/funcionario.service';
 
 @Component({
@@ -25,7 +26,20 @@ export class LoginComponent {
         .subscribe((resposta) =>{
           const access_token = JSON.stringify(resposta);
           localStorage.setItem('access_token', access_token);
-          this.router.navigate([""]);
+//******************************************************************
+          let func!:Funcionario;
+          this.servMens.pesquisarPorUsuario(this.username).subscribe((resposta1) => {
+            func = resposta1;
+            console.log(resposta1);
+            localStorage.removeItem(access_token);
+            resposta.usuario={};
+            resposta.usuario.cargo = func.codigoCargo;
+            resposta.usuario.id = func.id;
+            const access_tokenP = JSON.stringify(resposta);
+            localStorage.setItem('access_token', access_tokenP);
+            this.router.navigate([""]);  
+          });
+//******************************************************************
         }, err =>
         {
           this.servMens.mensagem(err.error.message);

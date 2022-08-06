@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { ProntuarioMedicamento } from '../prontuario-medicamento.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ProntuarioMedicamentoExcluiComponent } from '../prontuario-medicamento-exclui/prontuario-medicamento-exclui.component';
+import { AuthService } from 'src/app/components/auth/auth.service';
 @Component({
   selector: 'app-prontuario-medicamento-lista',
   templateUrl: './prontuario-medicamento-lista.component.html',
@@ -24,11 +25,22 @@ export class ProntuarioMedicamentoListaComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  cargoUsuario: string='';
+  habilitarExcluir: boolean = false;
+  habilitarIncluir: boolean = false;
+  habilitarEditar: boolean = false;
 
-  constructor( private service: ProntuarioMedicamentoService, private router:Router, private dialog: MatDialog, private route: ActivatedRoute) {
+  constructor( 
+    private service: ProntuarioMedicamentoService, 
+    private router:Router, 
+    private dialog: MatDialog,
+    private serviceAuth: AuthService, 
+    private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.cargoUsuario = this.serviceAuth.getCargo();
+    this.verificaAcesso();
     this.prontuarioOrigem = JSON.parse(this.route.snapshot.paramMap.get('id')!); 
     this.findAll();
     this.dataAtu  = new Date("2022-07-29 19:20");
@@ -37,7 +49,17 @@ export class ProntuarioMedicamentoListaComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+  verificaAcesso(){
+    if(parseInt(this.cargoUsuario) === 1 || parseInt(this.cargoUsuario) === 3)
+    {
+      this.habilitarExcluir=true;
+      this.habilitarIncluir=true;
+      this.habilitarEditar=true;
+    }  
+  }
   
+
   findAll(){
     console.log(this.prontuarioOrigem);
     this.service.pesquisarPorProntuarioMedico(this.prontuarioOrigem).subscribe(resposta =>{

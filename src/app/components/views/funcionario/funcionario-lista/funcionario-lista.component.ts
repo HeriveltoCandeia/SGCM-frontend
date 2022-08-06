@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/components/auth/auth.service';
 import { Funcionario } from '../funcionario.model';
 import { FuncionarioService } from '../funcionario.service';
 
@@ -22,9 +23,19 @@ export class FuncionarioListaComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor( private service: FuncionarioService, private router:Router) {}
+  cargoUsuario: string='';
+  habilitarExcluir: boolean = false;
+  habilitarIncluir: boolean = false;
+  habilitarEditar: boolean = false;
+
+  constructor( 
+    private service: FuncionarioService, 
+    private router:Router,
+    private serviceAuth: AuthService) {}
 
   ngOnInit(): void {
+    this.cargoUsuario = this.serviceAuth.getCargo();
+    this.verificaAcesso();
     this.findAll();
   }
 
@@ -38,6 +49,16 @@ export class FuncionarioListaComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Funcionario>(this.funcionarios);
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  verificaAcesso(){
+    if(parseInt(this.cargoUsuario) === 1)
+    {
+      this.habilitarEditar=true;
+      this.habilitarExcluir=true;
+      this.habilitarIncluir=true;
+    }
+  
   }
 
   applyFilter(event: Event) {

@@ -2,3 +2,9 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-select-disabled .mat-select-value
+{
+    color:rgb(77, 75, 75);
+}
+.mat-input-element:disabled
+{color:rgb(77, 75, 75)}

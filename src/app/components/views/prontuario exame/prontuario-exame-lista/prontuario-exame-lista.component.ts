@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ProntuarioExame } from '../prontuario-exame.model';
+import { AuthService } from 'src/app/components/auth/auth.service';
 @Component({
   selector: 'app-prontuario-exame-lista',
   templateUrl: './prontuario-exame-lista.component.html',
@@ -22,11 +23,22 @@ export class ProntuarioExameListaComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   prontuarioOrigem = '';
 
+  cargoUsuario: string='';
+  habilitarExcluir: boolean = false;
+  habilitarIncluir: boolean = false;
+  habilitarEditar: boolean = false;
 
-  constructor( private service: ProntuarioExameService, private router:Router, private route: ActivatedRoute) {
+  constructor( 
+    private service: ProntuarioExameService, 
+    private router:Router, 
+    private serviceAuth: AuthService, 
+    private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.cargoUsuario = this.serviceAuth.getCargo();
+    this.verificaAcesso();
+
     this.prontuarioOrigem = JSON.parse(this.route.snapshot.paramMap.get('id')!); 
     this.findAll();
     this.dataAtu  = new Date("2022-07-29 19:20");
@@ -36,6 +48,15 @@ export class ProntuarioExameListaComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
   
+  verificaAcesso(){
+    if(parseInt(this.cargoUsuario) === 1 || parseInt(this.cargoUsuario) === 3)
+    {
+      this.habilitarExcluir=true;
+      this.habilitarIncluir=true;
+      this.habilitarEditar=true;
+    }  
+  }
+
   findAll(){
     this.service.pesquisarPorProntuarioExame(this.prontuarioOrigem).subscribe(resposta =>{
       this.prontuariosExames = resposta;

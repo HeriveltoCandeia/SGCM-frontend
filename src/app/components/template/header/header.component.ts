@@ -13,11 +13,14 @@ export class HeaderComponent implements OnInit {
   abrirNavBar = true;
 
   usuarioLogado!: string;
+  cargo!: string;
 
   constructor(private authService: AuthService, private router : Router) { }
 
   ngOnInit(): void {
     this.usuarioLogado = this.authService.getUsuarioAutenticado();
+    this.cargo = this.authService.getCargo()
+    console.log(this.cargo);
   }
 
   logout(){

@@ -12,6 +12,7 @@ import { Funcionario } from '../../funcionario/funcionario.model';
 import { ChavePesquisa } from '../chavePesquisa.model';
 import { ClienteService } from '../../cliente/cliente.service';
 import { FuncionarioService } from '../../funcionario/funcionario.service';
+import { AuthService } from 'src/app/components/auth/auth.service';
 @Component({
   selector: 'app-agenda-lista',
   templateUrl: './agenda-lista.component.html',
@@ -25,9 +26,14 @@ export class AgendaListaComponent implements OnInit {
   clientes: Cliente[] = [];
   medicos: Funcionario[] = [];
   dataAtual: Date = new Date();
-
+  cargoUsuario: string='';
+  idUsuario: string='';
   displayedColumns: string[] = ['dataAgenda', 'cliente', 'tipo', 'situacao', 'acoes'];//, 'acoes'];
   dataSource : any;
+
+  habilitarExcluir: boolean = false;
+  habilitarIncluir: boolean = false;
+  habilitarEditar: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -37,12 +43,14 @@ export class AgendaListaComponent implements OnInit {
     private service: AgendaService, 
     private router:Router,
     private serviceCli: ClienteService,
+    private serviceAuth: AuthService,
     private fb: FormBuilder,
     private serviceFunc: FuncionarioService) {
   }
 
   ngOnInit(): void {
     this.dataAtu  = new Date();
+    this.idUsuario = this.serviceAuth.getIdUsuario();
 
     this.formularioPesquisa = this.fb.group({
       dataPesquisa:[''],
@@ -51,8 +59,15 @@ export class AgendaListaComponent implements OnInit {
       codigoSituacao:[''],
     })
 
+    this.cargoUsuario = this.serviceAuth.getCargo();
+    this.verificaAcesso();
     this.buscarClientes();    
     this.buscarMedicos();
+    this.formularioPesquisa.get("dataPesquisa")?.setValue(this.dataAtu);
+    if (parseInt(this.cargoUsuario))
+    {
+      this.formularioPesquisa.get("codigoMedicoId")?.setValue(this.idUsuario);
+    }
     this.formularioPesquisa.get("dataPesquisa")?.setValue(this.dataAtu);
     this.pesquisar();
 
@@ -68,6 +83,17 @@ export class AgendaListaComponent implements OnInit {
       this.dataSource = new MatTableDataSource<AgendaLista>(this.agendas);
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  verificaAcesso(){
+    if(parseInt(this.cargoUsuario) === 1 || parseInt(this.cargoUsuario) === 3)
+    {
+//      this.habilitarEditar=true;
+      this.habilitarExcluir=true;
+      this.habilitarIncluir=true;
+    }
+    this.habilitarEditar=true  
+  
   }
 
   pesquisar(){

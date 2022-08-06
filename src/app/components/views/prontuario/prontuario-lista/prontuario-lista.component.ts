@@ -13,6 +13,7 @@ import { ChavePesquisa } from '../../agenda/chavePesquisa.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ClienteService } from '../../cliente/cliente.service';
 import { FuncionarioService } from '../../funcionario/funcionario.service';
+import { AuthService } from 'src/app/components/auth/auth.service';
 @Component({
   selector: 'app-prontuario-lista',
   templateUrl: './prontuario-lista.component.html',
@@ -27,6 +28,12 @@ export class ProntuarioListaComponent implements OnInit {
   medicos: Funcionario[] = [];
   dataAtual: Date = new Date();
 
+  cargoUsuario: string='';
+  idUsuario: string='';
+  habilitarExcluir: boolean = false;
+  habilitarIncluir: boolean = false;
+  habilitarEditar: boolean = false;
+
 
   displayedColumns: string[] = ['dataTimeProntuario', 'medico', 'cliente', 'situacao', 'acoes'];//, 'acoes'];
   dataSource : any;
@@ -40,10 +47,15 @@ export class ProntuarioListaComponent implements OnInit {
     private router:Router,
     private serviceCli: ClienteService,
     private fb: FormBuilder,
+    private serviceAuth: AuthService,
     private serviceFunc: FuncionarioService) {
   }
 
   ngOnInit(): void {
+    this.cargoUsuario = this.serviceAuth.getCargo();
+    this.idUsuario = this.serviceAuth.getIdUsuario();
+    this.verificaAcesso();
+
     this.dataAtu  = new Date();
 
     this.formularioPesquisa = this.fb.group({
@@ -54,6 +66,10 @@ export class ProntuarioListaComponent implements OnInit {
     this.buscarClientes();    
     this.buscarMedicos();
     this.formularioPesquisa.get("dataPesquisa")?.setValue(this.dataAtu);
+    if (parseInt(this.cargoUsuario))
+    {
+      this.formularioPesquisa.get("codigoMedicoId")?.setValue(this.idUsuario);
+    }
     this.pesquisar();
   }
 
@@ -61,6 +77,16 @@ export class ProntuarioListaComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
   
+  verificaAcesso(){
+    if(parseInt(this.cargoUsuario) === 1 || parseInt(this.cargoUsuario) === 3)
+    {
+      this.habilitarExcluir=true;
+      this.habilitarIncluir=true;
+    }
+    this.habilitarEditar=true;
+  
+  }
+
   pesquisar(){
 
     if(

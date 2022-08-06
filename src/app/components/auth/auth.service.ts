@@ -13,7 +13,7 @@ export class AuthService {
   clientID: string = environment.clientId;
   clientSecret: string = environment.clientSecret;
   jwtHelper: JwtHelperService = new JwtHelperService();
-
+  
   constructor(
     private http: HttpClient
   ) { }
@@ -28,6 +28,24 @@ export class AuthService {
     }
   }
 
+  obterCargo(){
+    const tokenString = localStorage.getItem('access_token');
+    if (tokenString)
+    {
+      const token = JSON.parse(tokenString);
+      return token.usuario.cargo;
+    }
+  }
+
+  obterIdUsuario(){
+    const tokenString = localStorage.getItem('access_token');
+    if (tokenString)
+    {
+      const token = JSON.parse(tokenString);
+      return token.usuario.id;
+    }
+  }
+
   encerrarSessao(){
     localStorage.removeItem('access_token');
   }
@@ -38,6 +56,24 @@ export class AuthService {
     {
       const usuario = this.jwtHelper.decodeToken(token).user_name;
       return usuario;
+    }
+    return null;
+  }
+
+  getCargo(){
+    const perfil = this.obterCargo();
+    if (perfil)
+    {
+      return perfil;
+    }
+    return null;
+  }
+
+  getIdUsuario(){
+    const perfil = this.obterIdUsuario();
+    if (perfil)
+    {
+      return perfil;
     }
     return null;
   }

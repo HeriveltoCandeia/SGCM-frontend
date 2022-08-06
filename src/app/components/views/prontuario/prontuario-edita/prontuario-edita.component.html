@@ -6,7 +6,7 @@
 <form [formGroup]="formulario">
     <mat-form-field class="form">
         <mat-label>Médico</mat-label>
-        <mat-select formControlName="codigoMedicoId" name="medicoSelecionado">
+        <mat-select [disabled] = true formControlName="codigoMedicoId" name="medicoSelecionado">
                 <mat-option value="0" selected>Selecione...</mat-option>
                 <mat-option *ngFor="let medico of medicos" [value]="medico.id">
                     {{medico.nome}}
@@ -15,7 +15,7 @@
 
     <mat-form-field class="form">
         <mat-label>Cliente</mat-label>
-        <mat-select formControlName="codigoClienteId" name="clienteSelecionado">
+        <mat-select [disabled] = true formControlName="codigoClienteId" name="clienteSelecionado">
                 <mat-option value="0" selected>Selecione...</mat-option>
                 <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">
                     {{cliente.nome}}
