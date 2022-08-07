@@ -72,6 +72,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ProntuarioExameIncluiComponent } from './components/views/prontuario exame/prontuario-exame-inclui/prontuario-exame-inclui.component';
 import { ProntuarioMedicamentoEditaComponent } from './components/views/prontuario medicamento/prontuario-medicamento-edita/prontuario-medicamento-edita.component';
 import { ProntuarioExameEditaComponent } from './components/views/prontuario exame/prontuario-exame-edita/prontuario-exame-edita.component';
+import { ProntuarioMedicamentoReceitaComponent } from './components/views/prontuario medicamento/prontuario-medicamento-receita/prontuario-medicamento-receita.component';
+import { ProntuarioExameSolicitadoComponent } from './components/views/prontuario exame/prontuario-exame-solicitado/prontuario-exame-solicitado.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,10 +109,12 @@ import { ProntuarioExameEditaComponent } from './components/views/prontuario exa
     ProntuarioMedicamentoExcluiComponent,
     ProntuarioMedicamentoEditaComponent,
     ProntuarioMedicamentoIncluiComponent,
+    ProntuarioMedicamentoReceitaComponent,
     ProntuarioExameListaComponent,
     ProntuarioExameExcluiComponent,
     ProntuarioExameEditaComponent,
     ProntuarioExameIncluiComponent,
+    ProntuarioExameSolicitadoComponent,
     LoginComponent,
     LayoutComponent
   ],

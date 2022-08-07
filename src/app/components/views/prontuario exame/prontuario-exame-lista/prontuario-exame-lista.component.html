@@ -1,11 +1,7 @@
 <div class="content">
+    <button class="mat-elevation-z8" (click)="abrirSolicitacaoExame()" mat-stroked-button color="warn">Gerar Solicitação</button>
     <button class="mat-elevation-z8" (click)="incluirProntuarioExame()"mat-icon-button><mat-icon>add</mat-icon></button>
-    <br *ngIf="!habilitarIncluir"/>
-    <mat-form-field class="filtro" appearance="standard">
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-    </mat-form-field>
-    <div class="mat-elevation-z8 content-table'">
+    <div class="mat-elevation-z8 content-table">
         <table class="tabela" mat-table [dataSource]="dataSource">
      
             <ng-container matColumnDef="exame">

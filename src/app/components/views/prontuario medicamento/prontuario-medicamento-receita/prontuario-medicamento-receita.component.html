@@ -1,0 +1,42 @@
+<div class="content mat-elevation-z8" style="width: 550px; margin-left: 1rem;  padding-bottom: 0.5rem;" #content>
+    <div>
+      <table style="width: 100%;">
+        <td style="width: 10%;">
+          <span>
+              <img class="imgTit" src="assets/img/logo.png" alt="">
+          </span>
+        </td>
+        <td style="width: 90%; text-align: right;">
+          <span style="justify-content: center;">
+              <h1 class="descTit">Sistema de Gestão de Clínica Médica</h1>
+          </span>
+        </td>
+      </table>
+    </div>
+    <div style="margin-top: 1rem; margin-bottom: 3rem; margin-left: 1rem;">
+      <span>Paciente: {{ nomePaciente }}</span>
+    </div>  
+    <div class="content-table'" style="align-items: center;">
+        <table class="tabela" mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="medicamento">
+              <th mat-header-cell class="noBorder title" *matHeaderCellDef >Receituário</th>
+              <td mat-cell class="noBorder" *matCellDef="let row"> {{ row.medicamento.descricao }} {{ row.orientacoes }}  </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>            
+        </table>
+    </div>
+    <table style="margin-top: 3rem; margin-bottom: 1rem;">
+      <td style="width: 20%;"></td>
+      <td style="width: 60%; text-align: center; border-top: 1px solid; ">
+        <span>Dr. {{ nomeMedico }}</span>
+      </td>
+      <td style="width: 20%;"></td>
+    </table>
+</div>
+<div class="buttons">
+  <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Voltar</button>
+  <button class="mat-elevation-z8" (click)="gerarReceita()" mat-icon-button><mat-icon>print</mat-icon></button>
+</div>
+
+

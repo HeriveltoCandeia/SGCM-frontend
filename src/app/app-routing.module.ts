@@ -39,6 +39,8 @@ import { ProntuarioEditaComponent } from './components/views/prontuario/prontuar
 import { ProntuarioExameIncluiComponent } from './components/views/prontuario exame/prontuario-exame-inclui/prontuario-exame-inclui.component';
 import { ProntuarioMedicamentoEditaComponent } from './components/views/prontuario medicamento/prontuario-medicamento-edita/prontuario-medicamento-edita.component';
 import { ProntuarioExameEditaComponent } from './components/views/prontuario exame/prontuario-exame-edita/prontuario-exame-edita.component';
+import { ProntuarioMedicamentoReceitaComponent } from './components/views/prontuario medicamento/prontuario-medicamento-receita/prontuario-medicamento-receita.component';
+import { ProntuarioExameSolicitadoComponent } from './components/views/prontuario exame/prontuario-exame-solicitado/prontuario-exame-solicitado.component';
 
 const routes: Routes = [
   {
@@ -193,10 +195,20 @@ const routes: Routes = [
         path:'prontuarios/edita/:id/incluiMedicamentos',
         component: ProntuarioMedicamentoIncluiComponent,
         canActivate: [AuthGuard]
+      },
+      {
+        path:'prontuarios/edita/:id/receitaMedicamentos',
+        component: ProntuarioMedicamentoReceitaComponent,
+        canActivate: [AuthGuard]
       },      
       {
         path:'prontuarios/edita/:id/incluiExames',
         component: ProntuarioExameIncluiComponent,
+        canActivate: [AuthGuard]
+      },      
+      {
+        path:'prontuarios/edita/:id/examesSolicitados',
+        component: ProntuarioExameSolicitadoComponent,
         canActivate: [AuthGuard]
       },      
       {

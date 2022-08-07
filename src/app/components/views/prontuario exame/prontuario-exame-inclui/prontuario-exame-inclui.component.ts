@@ -70,7 +70,7 @@ export class ProntuarioExameIncluiComponent implements OnInit {
     this.prontuarioExame.prontuarioMedico.id = this.prontuarioOrigem;
     this.prontuarioExame.exame.id = this.formulario.get("codigoExameId")?.value;
     this.prontuarioExame.codigoSituacao = 1;
-    //this.prontuario.orientacoes = this.formulario.get("orientacoes")?.value;
+    this.prontuarioExame.orientacoes = this.formulario.get("orientacoes")?.value;
     console.log(this.prontuarioExame);
     this.service.incluir(this.prontuarioExame).subscribe((resposta) => {
       let irParaEdicao : string = "prontuarios/edita/" + this.prontuarioOrigem;

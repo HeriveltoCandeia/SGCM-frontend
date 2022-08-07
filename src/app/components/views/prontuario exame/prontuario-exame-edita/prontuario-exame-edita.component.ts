@@ -10,6 +10,7 @@ import { ProntuarioExame } from '../prontuario-exame.model';
 import { Exame } from '../../exame/exame.model';
 import { ExameService } from '../../exame/exame.service';
 import { __values } from 'tslib';
+import { AuthService } from 'src/app/components/auth/auth.service';
 
 
 @Component({
@@ -25,7 +26,9 @@ export class ProntuarioExameEditaComponent implements OnInit {
   codigoSituacao = '';
   prontuarioOrigem = '';
   dataAtual!: Date;
-
+  disabled = true;
+  cargoUsuario: string='';
+  idUsuario: string='';
   prontuarioExame: ProntuarioExame = {
     prontuarioMedico: {
       id: ''
@@ -45,11 +48,14 @@ export class ProntuarioExameEditaComponent implements OnInit {
     private service: ProntuarioExameService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
+    private serviceAuth: AuthService,
     private serviceCli: ClienteService,
     private serviceMed: ExameService
   ) { }
 
   ngOnInit(): void {
+    this.cargoUsuario = this.serviceAuth.getCargo();
+    this.idUsuario = this.serviceAuth.getIdUsuario();
     this.formulario = this.fb.group({
       id: [''],
       codigoProntuarioId: ['', Validators.required],
@@ -59,9 +65,10 @@ export class ProntuarioExameEditaComponent implements OnInit {
     });
     this.prontuarioExame.id = JSON.parse(this.route.snapshot.paramMap.get('id2')!);
     this.prontuarioOrigem = JSON.parse(this.route.snapshot.paramMap.get('id')!);
-
     this.buscarProntuarioExameParaAlterar();
     this.buscarExames();
+    this.desabilitaEdicaoCampo();
+
   }
 
   buscarExames() {
@@ -72,6 +79,12 @@ export class ProntuarioExameEditaComponent implements OnInit {
     });
   }
 
+  desabilitaEdicaoCampo(){
+    if(parseInt(this.cargoUsuario) === 1 || parseInt(this.cargoUsuario) === 3)
+    {
+      this.disabled=false;
+    }
+  }
 
   buscarProntuarioExameParaAlterar(): void {
     this.service.pesquisarPorId(this.prontuarioExame.id!).subscribe((resposta) => {

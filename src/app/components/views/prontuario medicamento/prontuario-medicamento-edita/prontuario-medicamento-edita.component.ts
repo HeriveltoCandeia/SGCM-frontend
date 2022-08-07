@@ -10,6 +10,7 @@ import { FuncionarioService } from '../../funcionario/funcionario.service';
 import { ProntuarioMedicamento } from '../prontuario-medicamento.model';
 import { Medicamento } from '../../medicamento/medicamento.model';
 import { MedicamentoService } from '../../medicamento/medicamento.service';
+import { AuthService } from 'src/app/components/auth/auth.service';
 
 @Component({
   selector: 'app-prontuario-medicamento-edita',
@@ -24,6 +25,9 @@ export class ProntuarioMedicamentoEditaComponent implements OnInit {
   codigoSituacao='';
   prontuarioOrigem = '';
   dataAtual!: Date ;
+  disabled = true;
+  cargoUsuario: string='';
+  idUsuario: string='';
 
   prontuarioMedicamento: ProntuarioMedicamento =  {
     prontuarioMedico: 
@@ -45,11 +49,15 @@ export class ProntuarioMedicamentoEditaComponent implements OnInit {
     private service: ProntuarioMedicamentoService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
+    private serviceAuth: AuthService,
     private serviceCli: ClienteService,
     private serviceMed: MedicamentoService    
     ) { }
 
   ngOnInit(): void {
+    this.cargoUsuario = this.serviceAuth.getCargo();
+    this.idUsuario = this.serviceAuth.getIdUsuario();
+
     this.formulario = this.fb.group({
       id:[''],
       codigoProntuarioId:['', Validators.required],
@@ -61,6 +69,7 @@ export class ProntuarioMedicamentoEditaComponent implements OnInit {
 
     this.buscarProntuarioMedicamentoParaAlterar();
     this.buscarMedicamentos();
+    this.desabilitaEdicaoCampo();
   }
 
   buscarMedicamentos(){
@@ -71,6 +80,12 @@ export class ProntuarioMedicamentoEditaComponent implements OnInit {
     })
   }
 
+  desabilitaEdicaoCampo(){
+    if(parseInt(this.cargoUsuario) === 1 || parseInt(this.cargoUsuario) === 3)
+    {
+      this.disabled=false;
+    }
+  }
 
   buscarProntuarioMedicamentoParaAlterar(): void {
     this.service.pesquisarPorId(this.prontuarioMedicamento.id!).subscribe((resposta) => {
