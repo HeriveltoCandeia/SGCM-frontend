@@ -26,6 +26,7 @@ export class MedicamentoService {
 
   incluir(medicamento: Medicamento):Observable<Medicamento>{
     const url=`${this.baseUrl}/medicamentosRest`;
+    console.log(medicamento);
     return this.http.post<Medicamento>(url, medicamento);
   }
 

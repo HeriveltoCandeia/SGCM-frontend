@@ -20,3 +20,11 @@ button{
     padding-right: 2rem;
     padding-left: 2rem;
 }
+.teste{
+    display: inline-block;
+    width:1%
+}
+.testeP{
+    display: inline-block;
+    width:99%
+}

@@ -16,6 +16,7 @@ import { AgendaLista } from '../agendaLista.model';
 })
 export class AgendaIncluiComponent implements OnInit {
   dateAtual: Date = new Date();
+  dataAgendaP: Date = new Date();
   agenda: AgendaLista =  {
   dataAgenda: new Date(),
   medico: 
@@ -52,7 +53,8 @@ export class AgendaIncluiComponent implements OnInit {
       cliente: [''],
       codigoSituacao: ['', Validators.required],
       codigoTipo: ['', Validators.required],
-      dataReg:['']
+      dataReg:[''],
+      dataAgendaP:['']
     })
 
     this.buscarClientes();
@@ -67,6 +69,10 @@ export class AgendaIncluiComponent implements OnInit {
     })
   }
 
+  ajustaData(){
+    this.agenda.dataAgenda.setSeconds(0); 
+    this.formulario.get("dataAgenda")?.setValue(this.agenda.dataAgenda); 
+  }
   buscarMedicos(){
     this.serviceFunc.pesquisarPorCargo("3").subscribe((resposta) => {
         this.medicos = resposta;
@@ -75,15 +81,47 @@ export class AgendaIncluiComponent implements OnInit {
     })
   }
 
+  public formataDataInserir(dataRecebida: string){
+    let dataFormat = dataRecebida.substring(3,6) + dataRecebida.substring(0,3) + dataRecebida.substring(6,10) + ' ' + dataRecebida.substring(11,16);
+    return dataFormat;    
+  }
+
+  defineDatePicker(){
+    this.agenda.dataAgenda = this.formulario.get("dataAgenda")?.value; 
+    let dTString = this.formataDataInserir(this.agenda.dataAgenda.toString());
+    console.log(dTString);
+    let dTDate : Date = new Date(dTString);
+    this.formulario.get("DataAgendaP")?.setValue(dTDate);
+    this.dataAgendaP = this.agenda.dataAgenda;
+  }
+
   incluir(): void{
     this.agenda.medico.id = this.formulario.get("codigoMedicoId")?.value;
-    this.agenda.dataAgenda = this.formulario.get("dataAgenda")?.value;
+    this.agenda.dataAgenda = this.formulario.get("dataAgenda")?.value; 
+    let dTString = this.formataDataInserir(this.agenda.dataAgenda.toString());
+    console.log(dTString);
+    let dTDate : Date = new Date(dTString);
+    console.log(dTDate);
+    console.log(typeof this.agenda.dataAgenda);
+//    return;
+    console.log(this.agenda.dataAgenda);
+    this.agenda.dataAgenda = dTDate;
+    console.log(this.agenda.dataAgenda);
+    console.log(typeof this.agenda.dataAgenda);
+
     this.agenda.cliente.id = '0';
     this.agenda.codigoTipo=parseInt(this.formulario.get("codigoTipo")?.value);
-//    this.agenda.codigoSituacao=parseInt(this.formulario.get("codigoSituacao")?.value);
     this.agenda.codigoSituacao = 1;
-    this.agenda.dataReg=this.formulario.get("dataAgenda")?.value;
-    console.log(this.agenda);
+// Ajuste Hora Timezone - para armazenar na hora correta.
+    console.log(this.agenda.dataAgenda.getHours());
+    if(this.agenda.dataAgenda.getHours() < 8 || this.agenda.dataAgenda.getHours() >= 17)
+    {
+      this.service.mensagem("Hora permitido apenas entre 08:00 e 18:00");
+      return;
+    }
+    this.agenda.dataAgenda.setHours(this.agenda.dataAgenda.getHours() - (this.agenda.dataAgenda.getTimezoneOffset()/60));
+    this.agenda.dataAgenda.setSeconds(0);
+    this.agenda.dataReg=this.agenda.dataAgenda;
     this.service.incluir(this.agenda).subscribe((resposta) => {
       this.router.navigate(["agendas"]);
       this.service.mensagem("Agenda incluído com sucesso!");

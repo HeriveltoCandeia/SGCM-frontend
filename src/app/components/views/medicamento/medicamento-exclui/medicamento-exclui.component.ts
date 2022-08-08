@@ -11,7 +11,9 @@ import { MedicamentoService } from '../medicamento.service';
 export class MedicamentoExcluiComponent implements OnInit {
 
   medicamento: Medicamento = {
-    descricao:''
+    nomeFabrica:'',
+    nomeGenerico:'',
+    nomeFabricante:''
   }
 
   constructor(

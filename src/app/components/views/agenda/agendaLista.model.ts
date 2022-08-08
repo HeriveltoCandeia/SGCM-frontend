@@ -13,5 +13,5 @@ export interface AgendaLista{
     },
     codigoSituacao: Number,
     codigoTipo: Number,
-    dataReg?: string
+    dataReg?: Date
 }

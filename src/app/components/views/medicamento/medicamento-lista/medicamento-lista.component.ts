@@ -15,7 +15,7 @@ export class MedicamentoListaComponent implements OnInit {
 
   medicamentos: Medicamento[] = [];
 
-  displayedColumns: string[] = ['id', 'descricao', 'acoes'];
+  displayedColumns: string[] = ['id', 'nomeFabrica', 'acoes'];
   dataSource : any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

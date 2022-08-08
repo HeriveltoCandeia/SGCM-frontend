@@ -20,10 +20,23 @@
 -->
     <mat-form-field class="form">
         <mat-label>Data Agenda</mat-label>
-        <input matInput  formControlName="dataAgenda" [ngxMatDatetimePicker]="picker" (focus)="picker.open()" name="dataAgenda">
+        <input matInput mask="00/00/0000 00:00" formControlName="dataAgenda"  name="dataAgenda">
+ <!--       
+        <mat-label>Data Agenda</mat-label>
+        <input matInput mask="00/00/0000 00:00" formControlName="dataAgenda" [ngxMatDatetimePicker]="picker" (focus)="picker.open()" name="dataAgenda">
         <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
         <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+-->        
+</mat-form-field>
+<!--
+<mat-form-field class="form teste">
+
+        <input matInput  formControlName="dataAgendaP" [ngxMatDatetimePicker]="picker" name="dataAgendaP">
+        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+
     </mat-form-field>
+-->
     <mat-form-field class="form">
         <mat-label>Tipo</mat-label>
         <mat-select formControlName="codigoTipo" name="codigoTipo">

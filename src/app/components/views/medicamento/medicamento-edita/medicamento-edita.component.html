@@ -1,8 +1,16 @@
 <form>
     <h1>Edita Medicamento</h1>
     <mat-form-field class="form">
-        <mat-label>Descrição</mat-label>
-        <textarea matInput [(ngModel)]="medicamento.descricao" type="text" name="descricao" placeholder="Ex. Dipirona"></textarea>
+        <mat-label>Nome de Fábrica</mat-label>
+        <textarea matInput [(ngModel)]="medicamento.nomeFabrica" type="text" name="nomeFabrica" placeholder="Ex. Novalgina"></textarea>
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Nome Genérico</mat-label>
+        <textarea matInput [(ngModel)]="medicamento.nomeGenerico" type="text" name="nomeGenerico" placeholder="Ex. Dipirona"></textarea>
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Nome de Fábrica</mat-label>
+        <textarea matInput [(ngModel)]="medicamento.nomeFabricante" type="text" name="nomeFabricante" placeholder="Ex. Medley"></textarea>
     </mat-form-field>
     <div class="buttons">
         <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Cancelar</button>

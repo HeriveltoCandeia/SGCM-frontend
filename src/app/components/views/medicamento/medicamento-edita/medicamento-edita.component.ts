@@ -11,7 +11,9 @@ import { MedicamentoService } from '../medicamento.service';
 export class MedicamentoEditaComponent implements OnInit {
 
   medicamento: Medicamento = {
-    descricao:''
+    nomeFabrica:'',
+    nomeGenerico:'',
+    nomeFabricante:''
   }
 
   constructor(
@@ -32,6 +34,14 @@ export class MedicamentoEditaComponent implements OnInit {
   }
 
   editar(): void{
+    if ( this.medicamento.nomeFabrica === null ||
+      this.medicamento.nomeFabrica === null ||
+      this.medicamento.nomeFabrica === null
+     )
+      {
+        this.service.mensagem("Todos os campos são obrigatórios.");
+        return;
+      }
     this.service.editar(this.medicamento.id!, this.medicamento).subscribe((resposta) => {
       this.router.navigate(["medicamentos"]);
       this.service.mensagem("Medicamento alterado com sucesso!");

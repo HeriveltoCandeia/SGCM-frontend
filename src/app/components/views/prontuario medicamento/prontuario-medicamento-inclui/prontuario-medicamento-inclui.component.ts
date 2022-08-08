@@ -25,7 +25,7 @@ export class ProntuarioMedicamentoIncluiComponent implements OnInit {
     medicamento: 
     {
         id: '',
-        descricao:''
+        nomeFabrica:''
     },
 
   };

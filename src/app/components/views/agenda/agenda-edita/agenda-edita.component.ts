@@ -39,7 +39,7 @@ export class AgendaEditaComponent implements OnInit {
       },
       codigoSituacao: 0,
       codigoTipo: 0,
-      dataReg: ''
+      dataReg: new Date()
     };
 
     formulario!: FormGroup;
@@ -115,6 +115,10 @@ export class AgendaEditaComponent implements OnInit {
   alterarAgendaParaSalvar(): void {
     this.agenda.medico.id = this.formulario.get("codigoMedicoId")?.value;
     this.agenda.dataAgenda = this.formulario.get("dataAgenda")?.value;
+//    console.log(this.agenda.dataAgenda);
+//    this.agenda.dataAgenda.setHours(this.agenda.dataAgenda.getHours() - (this.agenda.dataAgenda.getTimezoneOffset()/60));
+//    this.agenda.dataAgenda.setSeconds(0);
+//    console.log(this.agenda.dataAgenda);
     this.agenda.cliente.id = this.formulario.get("cliente")?.value;
     this.agenda.codigoSituacao = this.formulario.get("codigoSituacao")?.value;
     this.agenda.codigoTipo = this.formulario.get("codigoTipo")?.value;

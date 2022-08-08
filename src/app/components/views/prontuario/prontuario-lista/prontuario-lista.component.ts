@@ -33,7 +33,7 @@ export class ProntuarioListaComponent implements OnInit {
   habilitarExcluir: boolean = false;
   habilitarIncluir: boolean = false;
   habilitarEditar: boolean = false;
-
+  expandir: boolean = false;
 
   displayedColumns: string[] = ['dataTimeProntuario', 'medico', 'cliente', 'situacao', 'acoes'];//, 'acoes'];
   dataSource : any;
@@ -66,7 +66,7 @@ export class ProntuarioListaComponent implements OnInit {
     this.buscarClientes();    
     this.buscarMedicos();
     this.formularioPesquisa.get("dataPesquisa")?.setValue(this.dataAtu);
-    if (parseInt(this.cargoUsuario))
+    if (parseInt(this.cargoUsuario)===3)
     {
       this.formularioPesquisa.get("codigoMedicoId")?.setValue(this.idUsuario);
     }
@@ -124,6 +124,7 @@ export class ProntuarioListaComponent implements OnInit {
 
     //    this.service.pesquisarTodos().subscribe(resposta =>{
     this.service.pesquisarPorFiltros(medString, cliString, dataString).subscribe(resposta =>{
+      this.expandir=false;
       this.prontuarios = resposta;
       this.dataSource = new MatTableDataSource<Prontuario>(this.prontuarios);
       this.dataSource.paginator = this.paginator;

@@ -37,7 +37,7 @@ export class ProntuarioMedicamentoEditaComponent implements OnInit {
     medicamento:
     {
         id: '',
-        descricao: ''
+        nomeFabrica: ''
     },
     orientacoes: ''
   };

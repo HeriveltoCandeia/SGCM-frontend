@@ -5,7 +5,7 @@
         <mat-select formControlName="codigoMedicamentoId" name="medicamentoSelecionado">
                 <mat-option value="0" selected>Selecione...</mat-option>
                 <mat-option *ngFor="let medicamento of medicamentos" [value]="medicamento.id">
-                    {{medicamento.descricao}}
+                    {{medicamento.nomeFabrica}}
                   </mat-option>        
         </mat-select>
     </mat-form-field>

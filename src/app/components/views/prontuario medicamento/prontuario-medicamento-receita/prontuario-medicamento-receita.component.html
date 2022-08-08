@@ -20,7 +20,7 @@
         <table class="tabela" mat-table [dataSource]="dataSource">
             <ng-container matColumnDef="medicamento">
               <th mat-header-cell class="noBorder title" *matHeaderCellDef >Receituário</th>
-              <td mat-cell class="noBorder" *matCellDef="let row"> {{ row.medicamento.descricao }} {{ row.orientacoes }}  </td>
+              <td mat-cell class="noBorder" *matCellDef="let row"> {{ row.medicamento.nomeFabrica }} {{ row.orientacoes }}  </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>            

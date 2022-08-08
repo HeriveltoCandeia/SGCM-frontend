@@ -7,7 +7,7 @@ export interface ProntuarioMedicamento{
     medicamento:
     {
         id: string,
-        descricao: string
+        nomeFabrica: string
     },
     orientacoes?: string
 }

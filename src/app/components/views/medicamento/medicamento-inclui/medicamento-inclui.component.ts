@@ -11,7 +11,9 @@ import { MedicamentoService } from '../medicamento.service';
 export class MedicamentoIncluiComponent implements OnInit {
 
   medicamento: Medicamento = {
-    descricao:''
+    nomeFabrica:'',
+    nomeGenerico:'',
+    nomeFabricante:''
   }
 
   constructor(private router:Router, private service: MedicamentoService) { }
@@ -20,6 +22,15 @@ export class MedicamentoIncluiComponent implements OnInit {
   }
 
   incluir(): void{
+    if ( this.medicamento.nomeFabrica === null ||
+         this.medicamento.nomeFabrica === null ||
+         this.medicamento.nomeFabrica === null
+        )
+    {
+      this.service.mensagem("Todos os campos são obrigatórios.");
+      return;
+    }
+    console.log(this.medicamento);
     this.service.incluir(this.medicamento).subscribe((resposta) => {
       this.router.navigate(["medicamentos"]);
       this.service.mensagem("Medicamento incluído com sucesso!");

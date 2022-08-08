@@ -1,4 +1,6 @@
 export interface Medicamento{
     id?: String,
-    descricao: String
+    nomeFabrica: String,
+    nomeGenerico: String,
+    nomeFabricante: String,
 }

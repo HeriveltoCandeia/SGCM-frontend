@@ -1,8 +1,16 @@
 <form>
     <h1>Excluir Medicamento?</h1>
     <mat-form-field class="form">
-        <mat-label>Descrição</mat-label>
-        <textarea matInput [(ngModel)]="medicamento.descricao" disabled type="text" name="descricao"></textarea>
+        <mat-label>Nome Fábrica</mat-label>
+        <textarea matInput [(ngModel)]="medicamento.nomeFabrica" disabled type="text" name="nomeFabrica"></textarea>
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Nome Genérico</mat-label>
+        <textarea matInput [(ngModel)]="medicamento.nomeGenerico" disabled type="text" name="nomeGenerico"></textarea>
+    </mat-form-field>
+    <mat-form-field class="form">
+        <mat-label>Fabricante</mat-label>
+        <textarea matInput [(ngModel)]="medicamento.nomeFabricante" disabled type="text" name="nomeFabricante"></textarea>
     </mat-form-field>
     <div class="buttons">
         <button class="mat-elevation-z8"  (click)="voltar()" mat-stroked-button color="warn">Não</button>
