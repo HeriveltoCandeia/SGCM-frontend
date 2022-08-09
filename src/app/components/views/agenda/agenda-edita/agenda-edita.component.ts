@@ -22,7 +22,7 @@ export class AgendaEditaComponent implements OnInit {
   codigoTipo='';
   codigoSituacao='';
 
-  dataAtual!: Date ;
+  dataAtual: Date = new Date();;
 
   agenda: AgendaLista =  {
       id: '',
@@ -145,6 +145,13 @@ export class AgendaEditaComponent implements OnInit {
   }
 
   cancelarAgendamento(): void{
+    let datAgenda = new Date(this.agenda.dataAgenda);
+    if (datAgenda.getTime() < this.dataAtual.getTime())
+    {
+      this.service.mensagem("Data e Horário já ultrapassados. Não permite cancelamento.");
+      return;
+    }
+
     this.alterarAgendaParaCancelarAgendamento();
     this.service.editar(this.agenda.id!, this.agenda).subscribe((resposta) => {
 //      this.router.navigate(["agendas"]);
@@ -157,6 +164,13 @@ export class AgendaEditaComponent implements OnInit {
 
   realizarAgendamento(): void{
     let verificaCliente = this.formulario.get("cliente")?.value;
+    let datAgenda = new Date(this.agenda.dataAgenda);
+    if (datAgenda.getTime() < this.dataAtual.getTime())
+    {
+      this.service.mensagem("Data e Horário já ultrapassados. Não permite agendamento.");
+      return;
+    }
+    return;
     if (!verificaCliente || verificaCliente === '0')
     {
       this.service.mensagem("Informe o Cliente para agendamento.");

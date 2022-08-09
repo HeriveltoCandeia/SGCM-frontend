@@ -36,6 +36,7 @@ export class AgendaExcluiComponent implements OnInit {
     minutoData: 0,
     segundoData: 0
   };
+  dataAgendaStr: string ='';
 
   constructor(
     private service: AgendaService, 
@@ -63,6 +64,8 @@ export class AgendaExcluiComponent implements OnInit {
 */
     this.service.pesquisarPorId(this.agenda.id!).subscribe((resposta) => {
     this.agenda = resposta;
+    this.dataAgendaStr = this.formataData(this.agenda.dataAgenda);
+    console.log(this.agenda.dataAgenda);
     });
   }
 
@@ -80,6 +83,12 @@ export class AgendaExcluiComponent implements OnInit {
       this.service.mensagem(err.error.message);
     }     
     );
+  }
+
+  public formataData(dataReceb: Date){
+    let dataRecebida : string = dataReceb.toString(); 
+    let dataFormat = dataRecebida.substring(8,10) + '/' + dataRecebida.substring(5,7) + '/' + dataRecebida.substring(0,4) + ' ' + dataRecebida.substring(11,16);
+    return dataFormat;    
   }
 
   voltar(): void{

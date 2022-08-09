@@ -15,7 +15,7 @@ import { AgendaLista } from '../agendaLista.model';
   styleUrls: ['./agenda-inclui.component.css']
 })
 export class AgendaIncluiComponent implements OnInit {
-  dateAtual: Date = new Date();
+  dataAtual: Date = new Date();
   dataAgendaP: Date = new Date();
   agenda: AgendaLista =  {
   dataAgenda: new Date(),
@@ -96,6 +96,7 @@ export class AgendaIncluiComponent implements OnInit {
   }
 
   incluir(): void{
+
     this.agenda.medico.id = this.formulario.get("codigoMedicoId")?.value;
     this.agenda.dataAgenda = this.formulario.get("dataAgenda")?.value; 
     let dTString = this.formataDataInserir(this.agenda.dataAgenda.toString());
@@ -103,12 +104,16 @@ export class AgendaIncluiComponent implements OnInit {
     let dTDate : Date = new Date(dTString);
     console.log(dTDate);
     console.log(typeof this.agenda.dataAgenda);
-//    return;
     console.log(this.agenda.dataAgenda);
     this.agenda.dataAgenda = dTDate;
-    console.log(this.agenda.dataAgenda);
-    console.log(typeof this.agenda.dataAgenda);
-
+/*
+    let datAgenda = this.agenda.dataAgenda;
+    if (datAgenda.getTime() < this.dataAtual.getTime())
+    {
+      this.service.mensagem("Data e Horário já ultrapassados. Não permite inclusão.");
+      return;
+    }
+*/
     this.agenda.cliente.id = '0';
     this.agenda.codigoTipo=parseInt(this.formulario.get("codigoTipo")?.value);
     this.agenda.codigoSituacao = 1;

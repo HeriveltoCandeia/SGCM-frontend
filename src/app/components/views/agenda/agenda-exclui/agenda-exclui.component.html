@@ -2,12 +2,13 @@
     <h1>Excluir Agenda?</h1>
     <mat-form-field class="form">
         <mat-label>Médico</mat-label>
-        <input matInput [(ngModel)]="agenda.medico.id" disabled type="text" name="medico">
+        <input matInput [(ngModel)]="agenda.medico.nome" disabled type="text" name="medico">
     </mat-form-field>
     <mat-form-field class="form">
-        <mat-label>Data da Agenda</mat-label>
-        <input matInput [(ngModel)]="agenda.dataAgenda" disabled type="text" name="dataAgenda">
+        <mat-label>Data e hora da Agenda</mat-label>
+        <input matInput [(ngModel)]="dataAgendaStr" disabled type="text" name="dataAgenda">
     </mat-form-field>
+
     <div class="buttons">
         <button class="mat-elevation-z8"  (click)="voltar()" mat-stroked-button color="warn">Não</button>
         <button class="mat-elevation-z8" (click)="excluir()" mat-stroked-button color="primary">Sim</button>
