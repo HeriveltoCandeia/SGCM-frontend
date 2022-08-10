@@ -40,9 +40,13 @@ export class LoginComponent {
             this.router.navigate([""]);  
           });
 //******************************************************************
-        }, err =>
+        }, error =>
         {
-          this.servMens.mensagem(err.error.message);
+          console.log(error);
+          if ((error.error.error == "invalid_grant") && (error.error.error_description=="Bad credentials"))
+          {
+            this.servMens.mensagem("Usuário ou Senha inválido");
+          }
         })
   }
 }
