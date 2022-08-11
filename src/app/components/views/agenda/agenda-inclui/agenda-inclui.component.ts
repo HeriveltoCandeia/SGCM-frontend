@@ -117,13 +117,19 @@ export class AgendaIncluiComponent implements OnInit {
     this.agenda.cliente.id = '0';
     this.agenda.codigoTipo=parseInt(this.formulario.get("codigoTipo")?.value);
     this.agenda.codigoSituacao = 1;
-// Ajuste Hora Timezone - para armazenar na hora correta.
-    console.log(this.agenda.dataAgenda.getHours());
+
+    if (this.agenda.dataAgenda.getTime() < this.dataAtual.getTime())
+    {
+      this.service.mensagem("Data e Horário já ultrapassados. Não permite incluir essa agenda.");
+      return;
+    }
+    
     if(this.agenda.dataAgenda.getHours() < 8 || this.agenda.dataAgenda.getHours() >= 17)
     {
       this.service.mensagem("Hora permitido apenas entre 08:00 e 18:00");
       return;
     }
+// Ajuste Hora Timezone - para armazenar na hora correta.
     this.agenda.dataAgenda.setHours(this.agenda.dataAgenda.getHours() - (this.agenda.dataAgenda.getTimezoneOffset()/60));
     this.agenda.dataAgenda.setSeconds(0);
     this.agenda.dataReg=this.agenda.dataAgenda;
