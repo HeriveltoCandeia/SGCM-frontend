@@ -73,7 +73,9 @@ export class ProntuarioExcluiComponent implements OnInit {
   }
 
   excluir(): void{
-    this.service.excluir(this.prontuario.id!).subscribe((resposta) => {
+    this.prontuario.codigoSituacao = 3;
+//    this.service.excluir(this.prontuario.id!).subscribe((resposta) => {
+  this.service.editar(this.prontuario.id!, this.prontuario).subscribe((resposta) => {
       this.router.navigate(["prontuarios"]);
       this.service.mensagem('Prontuario excluído com sucesso.');
     },

@@ -173,6 +173,7 @@ export class ProntuarioListaComponent implements OnInit {
     switch (codigo){
       case 1:  return 'Iniciado';
       case 2:  return 'Finalizado';
+      case 3:  return 'Cancelado'
       default: return '';
     }
   }

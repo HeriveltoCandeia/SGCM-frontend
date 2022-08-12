@@ -110,6 +110,17 @@ export class ProntuarioEditaComponent implements OnInit {
     })
   }
 
+  encerrarAtendimento(): void{
+    this.alterarProntuarioParaSalvar();
+    this.prontuario.codigoSituacao=2;
+    this.service.editar(this.prontuario.id!, this.prontuario).subscribe((resposta) => {
+      this.router.navigate(["prontuarios"]);
+      this.service.mensagem("Prontuario finalizado com sucesso!");
+    },err =>{   
+        this.service.mensagem(err.error.message);
+    })
+  }
+
   cancelar(){
     this.router.navigate(["prontuarios"]);
   }
