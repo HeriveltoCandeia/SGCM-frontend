@@ -190,7 +190,7 @@ export class AgendaListaComponent implements OnInit {
     switch (codigo){
       case 1:  return 'Disponível';
       case 2:  return 'Agendado';
-      case 3:  return 'Horário Cancelado';
+      case 3:  return 'Cancelado';
       default: return '';
     }
   }

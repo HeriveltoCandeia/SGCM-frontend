@@ -35,8 +35,8 @@ export class ProntuarioService {
     return this.http.get<Prontuario>(url);
   }
 */
-  pesquisarPorFiltros(medico: string, cliente: string, dataReg: string): Observable<Prontuario[]>{
-    const url = `${this.baseUrl}/prontuariosMedicosRest/${medico}/${cliente}/${dataReg}`
+  pesquisarPorFiltros(medico: string, cliente: string, dataReg: string, codigoSituacao: string): Observable<Prontuario[]>{
+    const url = `${this.baseUrl}/prontuariosMedicosRest/${medico}/${cliente}/${dataReg}/${codigoSituacao}`
     return this.http.get<Prontuario[]>(url);
   }
 

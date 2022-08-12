@@ -62,6 +62,7 @@ export class ProntuarioListaComponent implements OnInit {
       dataPesquisa:[''],
       codigoMedicoId:[''],
       codigoClienteId:[''],
+      codigoSituacao:[''],
     })
     this.buscarClientes();    
     this.buscarMedicos();
@@ -92,7 +93,8 @@ export class ProntuarioListaComponent implements OnInit {
     if(
       this.formularioPesquisa.get("codigoMedicoId")?.value === '0' &&
       this.formularioPesquisa.get("codigoClienteId")?.value === '0' &&
-      this.formularioPesquisa.get("dataPesquisa")?.value === null
+      this.formularioPesquisa.get("dataPesquisa")?.value === null &&
+      this.formularioPesquisa.get("codigoSituacao")?.value === '0'
     )
     {
       this.service.mensagem("Informe ao menos um filtro");
@@ -102,6 +104,7 @@ export class ProntuarioListaComponent implements OnInit {
     let cli: Cliente = {nome: '', cpf: '', sexo:'', dataNascimento:'', email:''};
     cli.id = this.formularioPesquisa.get("codigoClienteId")?.value;
     let verificaDataInformada = this.formularioPesquisa.get("dataPesquisa")?.value;
+    let codString = this.formularioPesquisa.get("codigoSituacao")?.value;
 
     let dataStr = '';
 
@@ -121,9 +124,10 @@ export class ProntuarioListaComponent implements OnInit {
     let cliString = cli.id === '' || cli.id === '0' ? "NO" : JSON.stringify(cli);
     let medString = func.id === '' || func.id === '0' ? "NO" : JSON.stringify(func);
     let dataString = dataStr === '' ? "NO" : dataStr;
+    let codigoSituacaoString = codString === '' || codString === '0' ? "NO" : codString;
 
     //    this.service.pesquisarTodos().subscribe(resposta =>{
-    this.service.pesquisarPorFiltros(medString, cliString, dataString).subscribe(resposta =>{
+    this.service.pesquisarPorFiltros(medString, cliString, dataString, codigoSituacaoString).subscribe(resposta =>{
       this.expandir=false;
       this.prontuarios = resposta;
       this.dataSource = new MatTableDataSource<Prontuario>(this.prontuarios);
@@ -136,6 +140,7 @@ export class ProntuarioListaComponent implements OnInit {
     this.formularioPesquisa.get("codigoMedicoId")?.setValue('0');
     this.formularioPesquisa.get("codigoClienteId")?.setValue('0');
     this.formularioPesquisa.get("dataPesquisa")?.setValue(null);
+    this.formularioPesquisa.get("codigoSituacao")?.setValue('0');
   }
 
   buscarClientes(){
