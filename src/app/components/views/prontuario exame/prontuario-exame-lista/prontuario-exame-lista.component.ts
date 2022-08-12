@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProntuarioExameService } from '../prontuario-exame.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -22,6 +22,9 @@ export class ProntuarioExameListaComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   prontuarioOrigem = '';
+
+  @Input()
+  desativaParaAlteracao! : boolean;
 
   cargoUsuario: string='';
   habilitarExcluir: boolean = false;

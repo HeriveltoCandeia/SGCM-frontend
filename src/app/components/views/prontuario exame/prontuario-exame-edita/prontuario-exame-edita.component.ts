@@ -11,6 +11,8 @@ import { Exame } from '../../exame/exame.model';
 import { ExameService } from '../../exame/exame.service';
 import { __values } from 'tslib';
 import { AuthService } from 'src/app/components/auth/auth.service';
+import { ProntuarioService } from '../../prontuario/prontuario.service';
+import { Prontuario } from '../../prontuario/prontuario.model';
 
 
 @Component({
@@ -40,11 +42,12 @@ export class ProntuarioExameEditaComponent implements OnInit {
     codigoSituacao: 0,
     resultado: ''
   };
-
+  dadosProntuarioOrigem!: Prontuario;
   formulario!: FormGroup;
 
   constructor(
     private router: Router,
+    private serviceP: ProntuarioService,
     private service: ProntuarioExameService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -67,8 +70,18 @@ export class ProntuarioExameEditaComponent implements OnInit {
     this.prontuarioOrigem = JSON.parse(this.route.snapshot.paramMap.get('id')!);
     this.buscarProntuarioExameParaAlterar();
     this.buscarExames();
+    this.buscarDadosProntuarioOrigem();
     this.desabilitaEdicaoCampo();
 
+  }
+
+  buscarDadosProntuarioOrigem()
+  {
+    this.serviceP.pesquisarPorId(this.prontuarioOrigem).subscribe((resposta) => {
+      this.dadosProntuarioOrigem = resposta;
+    }, err => {
+      this.service.mensagem(err.error.message);
+    });
   }
 
   buscarExames() {
@@ -80,7 +93,11 @@ export class ProntuarioExameEditaComponent implements OnInit {
   }
 
   desabilitaEdicaoCampo(){
-    if(parseInt(this.cargoUsuario) === 1 || parseInt(this.cargoUsuario) === 3)
+    if(
+        (parseInt(this.cargoUsuario) === 1 || parseInt(this.cargoUsuario) === 3)
+      &&
+        this.dadosProntuarioOrigem.codigoSituacao == 1
+      )
     {
       this.disabled=false;
     }

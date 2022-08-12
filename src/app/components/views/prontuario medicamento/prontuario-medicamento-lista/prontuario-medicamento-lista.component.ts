@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProntuarioMedicamentoService } from '../prontuario-medicamento.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -22,6 +22,9 @@ export class ProntuarioMedicamentoListaComponent implements OnInit {
   displayedColumns: string[] = ['medicamento', 'orientacoes', 'acoes'];//, 'acoes'];
   dataSource : any;
   prontuarioOrigem = '';
+
+  @Input()
+  desativaParaAlteracao! : boolean;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

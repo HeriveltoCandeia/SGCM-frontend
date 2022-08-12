@@ -19,6 +19,7 @@ export class ProntuarioEditaComponent implements OnInit {
   medicos: Funcionario[] = [];
   codigoTipo='';
   codigoSituacao='';
+  desativarItensProntuario=false;
 
   dataAtual!: Date ;
 
@@ -66,6 +67,15 @@ export class ProntuarioEditaComponent implements OnInit {
     this.buscarMedicos();
   }
 
+  desabilitaAlteracao()
+  {
+    if (this.prontuario.codigoSituacao != 1)
+    {
+      return true;
+    }
+    return false;
+  }
+
   buscarClientes(){
     this.serviceCli.pesquisarTodos().subscribe((resposta) => {
         this.clientes = resposta;
@@ -86,9 +96,12 @@ export class ProntuarioEditaComponent implements OnInit {
   buscarProntuarioParaAlterar(): void {
     this.service.pesquisarPorId(this.prontuario.id!).subscribe((resposta) => {
       this.prontuario = resposta;
+      console.log("dadosProntuario");
+      console.log(this.prontuario);
       this.formulario.get("codigoMedicoId")?.setValue(this.prontuario.medico.id);
       this.formulario.get("codigoClienteId")?.setValue(this.prontuario.cliente.id);
       this.formulario.get("orientacoes")?.setValue(this.prontuario.orientacoes);
+      this.desativarItensProntuario = this.desabilitaAlteracao();
     });
   }
 
@@ -97,7 +110,6 @@ export class ProntuarioEditaComponent implements OnInit {
     this.prontuario.medico.id = this.formulario.get("codigoMedicoId")?.value;
     this.prontuario.cliente.id = this.formulario.get("codigoClienteId")?.value;
     this.prontuario.orientacoes = this.formulario.get("orientacoes")?.value;
-    console.log(this.prontuario);
   }
 
   editar(): void{
