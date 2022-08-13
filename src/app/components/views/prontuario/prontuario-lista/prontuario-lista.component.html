@@ -53,6 +53,7 @@
   
     <button *ngIf="habilitarIncluir" class="mat-elevation-z8 botaIncluir" style="margin-top: 0.5rem;" (click)="incluirProntuario()" mat-icon-button><mat-icon>add</mat-icon></button>
     <br *ngIf="!habilitarIncluir"/>
+    <mat-progress-bar *ngIf="!resultadoCarregado" mode="indeterminate"></mat-progress-bar>
     <div class="mat-elevation-z8 content-table'">
         <table class="tabela" mat-table [dataSource]="dataSource">
      

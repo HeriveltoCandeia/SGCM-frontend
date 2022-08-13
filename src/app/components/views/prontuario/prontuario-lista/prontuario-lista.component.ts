@@ -34,6 +34,7 @@ export class ProntuarioListaComponent implements OnInit {
   habilitarIncluir: boolean = false;
   habilitarEditar: boolean = false;
   expandir: boolean = false;
+  resultadoCarregado: boolean = true;
 
   displayedColumns: string[] = ['dataTimeProntuario', 'medico', 'cliente', 'situacao', 'acoes'];//, 'acoes'];
   dataSource : any;
@@ -127,11 +128,15 @@ export class ProntuarioListaComponent implements OnInit {
     let codigoSituacaoString = codString === '' || codString === '0' ? "NO" : codString;
 
     //    this.service.pesquisarTodos().subscribe(resposta =>{
+    this.resultadoCarregado = false;
     this.service.pesquisarPorFiltros(medString, cliString, dataString, codigoSituacaoString).subscribe(resposta =>{
       this.expandir=false;
       this.prontuarios = resposta;
       this.dataSource = new MatTableDataSource<Prontuario>(this.prontuarios);
       this.dataSource.paginator = this.paginator;
+      this.resultadoCarregado = true;
+    },err =>{   
+      this.resultadoCarregado = true;
     });
   }
 
@@ -141,6 +146,10 @@ export class ProntuarioListaComponent implements OnInit {
     this.formularioPesquisa.get("codigoClienteId")?.setValue('0');
     this.formularioPesquisa.get("dataPesquisa")?.setValue(null);
     this.formularioPesquisa.get("codigoSituacao")?.setValue('0');
+    this.prontuarios = undefined;
+    this.dataSource = new MatTableDataSource<Prontuario>(this.prontuarios);
+    this.dataSource.paginator = this.paginator;
+    this.resultadoCarregado=true;    
   }
 
   buscarClientes(){

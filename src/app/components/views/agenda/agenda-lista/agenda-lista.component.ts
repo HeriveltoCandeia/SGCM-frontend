@@ -35,6 +35,7 @@ export class AgendaListaComponent implements OnInit {
   habilitarIncluir: boolean = false;
   habilitarEditar: boolean = false;
   expandir: boolean = true;
+  resultadoCarregado: boolean = true;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -70,6 +71,7 @@ export class AgendaListaComponent implements OnInit {
       this.formularioPesquisa.get("codigoMedicoId")?.setValue(this.idUsuario);
     }
     this.formularioPesquisa.get("dataPesquisa")?.setValue(this.dataAtu);
+    this.formularioPesquisa.get("codigoSituacao")?.setValue("1");
     this.pesquisar();
 
   }
@@ -98,7 +100,6 @@ export class AgendaListaComponent implements OnInit {
   }
 
   pesquisar(){
-
     if(
       this.formularioPesquisa.get("codigoMedicoId")?.value === '0' &&
       this.formularioPesquisa.get("codigoClienteId")?.value === '0' &&
@@ -127,24 +128,21 @@ export class AgendaListaComponent implements OnInit {
       chavP.anoData = dtR.getFullYear();
 
       dataStr = '' + (chavP.diaData<=9 ? ('0' + chavP.diaData): chavP.diaData)  + (chavP.mesData<=9?('0' + chavP.mesData) : chavP.mesData) + chavP.anoData;
-      console.log(dataStr);
     }   
     let cliString = cli.id === '' || cli.id === '0' ? "NO" : JSON.stringify(cli);
     let medString = func.id === '' || func.id === '0' ? "NO" : JSON.stringify(func);
     let dataString = dataStr === '' ? "NO" : dataStr;
     let codigoSituacaoString = codString === '' || codString === '0' ? "NO" : codString;
-    console.log(cli.id , cliString);
-    console.log(func.id, medString);
-    console.log(dataStr, dataString);
-    console.log(codString, codigoSituacaoString);
-
+    this.resultadoCarregado = false;
     //    this.service.pesquisarTodos().subscribe(resposta =>{
     this.service.pesquisarPorFiltros(medString, cliString, dataString, codigoSituacaoString).subscribe(resposta =>{
       this.expandir=false;
       this.agendas = resposta;
-      console.log(this.agendas);
       this.dataSource = new MatTableDataSource<AgendaLista>(this.agendas);
       this.dataSource.paginator = this.paginator;
+      this.resultadoCarregado = true;
+    },err =>{   
+      this.resultadoCarregado = true;
     });
   }
 
@@ -154,6 +152,10 @@ export class AgendaListaComponent implements OnInit {
     this.formularioPesquisa.get("codigoClienteId")?.setValue('0');
     this.formularioPesquisa.get("dataPesquisa")?.setValue(null);
     this.formularioPesquisa.get("codigoSituacao")?.setValue('0');
+    this.agendas = undefined;
+    this.dataSource = new MatTableDataSource<AgendaLista>(this.agendas);
+    this.dataSource.paginator = this.paginator;
+    this.resultadoCarregado=true;
   }
 
   buscarClientes(){
@@ -206,6 +208,10 @@ export class AgendaListaComponent implements OnInit {
 
   incluirAgenda(){
     this.router.navigate(["agendas/inclui"]);
+  }
+
+  incluirAgendas(){
+    this.router.navigate(["agendas/incluiLote"]);
   }
 
   converteObjetoParaString(objeto: any){

@@ -30,6 +30,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 //Componentes da aplicação
 import { HomeComponent } from './components/views/home/home.component'; 
@@ -55,6 +56,7 @@ import { LayoutComponent } from './components/views/layout/layout.component';
 import { TokenHttpInterceptor} from './components/interceptor/token-http.interceptor';
 import { AgendaListaComponent } from './components/views/agenda/agenda-lista/agenda-lista.component';
 import { AgendaIncluiComponent } from './components/views/agenda/agenda-inclui/agenda-inclui.component';
+import { AgendaIncluiLoteComponent } from './components/views/agenda/agenda-inclui-lote/agenda-inclui-lote.component';
 import { AgendaExcluiComponent } from './components/views/agenda/agenda-exclui/agenda-exclui.component';
 import { AgendaEditaComponent } from './components/views/agenda/agenda-edita/agenda-edita.component';
 
@@ -99,6 +101,7 @@ import { ProntuarioExameSolicitadoComponent } from './components/views/prontuari
     ClienteEditaComponent,
     AgendaListaComponent,
     AgendaIncluiComponent,
+    AgendaIncluiLoteComponent,
     AgendaExcluiComponent,
     AgendaEditaComponent,
     ProntuarioListaComponent,
@@ -148,7 +151,8 @@ import { ProntuarioExameSolicitadoComponent } from './components/views/prontuari
     NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule,
     MatTabsModule,
     MatDialogModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressBarModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt-BR'},

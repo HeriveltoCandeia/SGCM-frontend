@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-//  baseUrl: 'http://localhost:8080',
-  baseUrl: 'https://sgcm-api.herokuapp.com',
+  baseUrl: 'http://localhost:8080',
+//  baseUrl: 'https://sgcm-api.herokuapp.com',
   clientId: 'SGCM-app',
   clientSecret: '@H$s#c-SGCM',
   obterTokenUrl: '/oauth/token'

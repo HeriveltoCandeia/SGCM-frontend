@@ -41,6 +41,7 @@ import { ProntuarioMedicamentoEditaComponent } from './components/views/prontuar
 import { ProntuarioExameEditaComponent } from './components/views/prontuario exame/prontuario-exame-edita/prontuario-exame-edita.component';
 import { ProntuarioMedicamentoReceitaComponent } from './components/views/prontuario medicamento/prontuario-medicamento-receita/prontuario-medicamento-receita.component';
 import { ProntuarioExameSolicitadoComponent } from './components/views/prontuario exame/prontuario-exame-solicitado/prontuario-exame-solicitado.component';
+import { AgendaIncluiLoteComponent } from './components/views/agenda/agenda-inclui-lote/agenda-inclui-lote.component';
 
 const routes: Routes = [
   {
@@ -139,6 +140,11 @@ const routes: Routes = [
       {
         path:'agendas/inclui',
         component: AgendaIncluiComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'agendas/incluiLote',
+        component: AgendaIncluiLoteComponent,
         canActivate: [AuthGuard]
       },
       {
