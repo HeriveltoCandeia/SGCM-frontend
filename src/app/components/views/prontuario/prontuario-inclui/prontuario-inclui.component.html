@@ -26,6 +26,6 @@
 
     <div class="buttons">
         <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Voltar</button>
-        <button class="mat-elevation-z8" (click)="incluir()" mat-stroked-button color="primary">Salvar</button>
+        <button class="mat-elevation-z8" (click)="incluir()" [disabled]="!formulario.valid" mat-stroked-button color="primary">Salvar</button>
     </div>
 </form>

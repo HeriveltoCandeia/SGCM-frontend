@@ -51,7 +51,7 @@ export class ProntuarioIncluiComponent implements OnInit {
       dataTimeProntuario:[''],
       codigoMedicoId:['', Validators.required],
       codigoClienteId:['', Validators.required],
-      codigoSituacao: ['', Validators.required],
+      codigoSituacao: [''],
       dataReg: [''],
       orientacoes: [''],
     })
