@@ -18,16 +18,31 @@
                   </mat-option>        </mat-select>
     </mat-form-field>
 -->
-    <mat-form-field class="form">
+<!--
+<mat-form-field class="form">
         <mat-label>Data Agenda</mat-label>
         <input matInput mask="00/00/0000 00:00" formControlName="dataAgenda"  name="dataAgenda">
+</mat-form-field>
+-->
  <!--       
         <mat-label>Data Agenda</mat-label>
         <input matInput mask="00/00/0000 00:00" formControlName="dataAgenda" [ngxMatDatetimePicker]="picker" (focus)="picker.open()" name="dataAgenda">
         <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
         <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
 -->        
+
+<mat-form-field class="form">
+    <mat-label>Data Agenda</mat-label>
+    <input matInput  formControlName="dataAgenda" [matDatepicker]="picker" (focus)="picker.open()"name="dataAgenda">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker startView="month" [startAt]="dataAtual"></mat-datepicker>
 </mat-form-field>
+
+<mat-form-field class="form">
+    <mat-label>Hora Agenda</mat-label>
+    <input matInput  formControlName="horaAgenda" name="horaAgenda" type="time" #time>
+</mat-form-field>
+
 <!--
 <mat-form-field class="form teste">
 
@@ -57,7 +72,7 @@
     </mat-form-field>
 -->
     <div class="buttons">
-        <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Cancelar</button>
+        <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Voltar</button>
         <button class="mat-elevation-z8" (click)="incluir()" mat-stroked-button color="primary">Salvar</button>
     </div>
 </form>

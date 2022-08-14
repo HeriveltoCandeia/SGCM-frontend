@@ -51,8 +51,9 @@ export class AgendaIncluiComponent implements OnInit {
       codigoMedicoId:['', Validators.required],
       dataAgenda: ['', Validators.required],
       cliente: [''],
-      codigoSituacao: ['', Validators.required],
+      codigoSituacao: [''],
       codigoTipo: ['', Validators.required],
+      horaAgenda: ['', Validators.required],
       dataReg:[''],
       dataAgendaP:['']
     })
@@ -99,13 +100,21 @@ export class AgendaIncluiComponent implements OnInit {
 
     this.agenda.medico.id = this.formulario.get("codigoMedicoId")?.value;
     this.agenda.dataAgenda = this.formulario.get("dataAgenda")?.value; 
-    let dTString = this.formataDataInserir(this.agenda.dataAgenda.toString());
+    let horaInformada = this.formulario.get("horaAgenda")?.value; 
+    let minutos : number = parseInt(horaInformada.toString().substring(3,5));
+    let horas : number = parseInt(horaInformada.toString().substring(0,2));
+    this.agenda.dataAgenda.setHours(horas);
+    this.agenda.dataAgenda.setMinutes(minutos);
+    this.agenda.dataAgenda.setSeconds(0);
+    console.log(this.agenda.dataAgenda);
+/*    let dTString = this.formataDataInserir(this.agenda.dataAgenda.toString());
     console.log(dTString);
     let dTDate : Date = new Date(dTString);
     console.log(dTDate);
     console.log(typeof this.agenda.dataAgenda);
     console.log(this.agenda.dataAgenda);
     this.agenda.dataAgenda = dTDate;
+*/
 /*
     let datAgenda = this.agenda.dataAgenda;
     if (datAgenda.getTime() < this.dataAtual.getTime())
@@ -124,18 +133,20 @@ export class AgendaIncluiComponent implements OnInit {
       return;
     }
     
-    if(this.agenda.dataAgenda.getHours() < 8 || this.agenda.dataAgenda.getHours() >= 17)
+    console.log(this.agenda.dataAgenda.getMinutes());
+    if(this.agenda.dataAgenda.getHours() < 8 || this.agenda.dataAgenda.getHours() >= 18 || (this.agenda.dataAgenda.getHours() >= 17 && this.agenda.dataAgenda.getMinutes() > 30))
     {
-      this.service.mensagem("Hora permitido apenas entre 08:00 e 18:00");
+      this.service.mensagem("Hora permitido apenas entre 08:00 e 17:30");
       return;
     }
 // Ajuste Hora Timezone - para armazenar na hora correta.
     this.agenda.dataAgenda.setHours(this.agenda.dataAgenda.getHours() - (this.agenda.dataAgenda.getTimezoneOffset()/60));
     this.agenda.dataAgenda.setSeconds(0);
     this.agenda.dataReg=this.agenda.dataAgenda;
+    console.log(this.agenda.dataReg);
     this.service.incluir(this.agenda).subscribe((resposta) => {
       this.router.navigate(["agendas"]);
-      this.service.mensagem("Agenda incluído com sucesso!");
+      this.service.mensagem("Agenda incluída com sucesso!");
     },err =>{
         console.log('err.error: ');   
         console.log(err.error);   

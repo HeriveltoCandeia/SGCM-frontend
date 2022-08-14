@@ -8,35 +8,47 @@
                     {{medico.nome}}
                   </mat-option>        </mat-select>
     </mat-form-field>
-<!--
-    <mat-form-field class="form">
-        <mat-label>Cliente</mat-label>
-        <mat-select formControlName="cliente" name="clienteSelecionado">
-                <mat-option value="0" selected>Selecione...</mat-option>
-                <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">
-                    {{cliente.nome}}
-                  </mat-option>        </mat-select>
-    </mat-form-field>
--->
-    <mat-form-field class="form">
+<!--    <mat-form-field class="form">
         <mat-label>Data Agenda</mat-label>
         <input matInput mask="00/00/0000 00:00" formControlName="dataAgenda"  name="dataAgenda">
- <!--       
-        <mat-label>Data Agenda</mat-label>
-        <input matInput mask="00/00/0000 00:00" formControlName="dataAgenda" [ngxMatDatetimePicker]="picker" (focus)="picker.open()" name="dataAgenda">
-        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-        <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
--->        
-</mat-form-field>
-<!--
-<mat-form-field class="form teste">
-
-        <input matInput  formControlName="dataAgendaP" [ngxMatDatetimePicker]="picker" name="dataAgendaP">
-        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-        <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
-
     </mat-form-field>
 -->
+    <mat-form-field class="form">
+        <mat-label>Data Inicial</mat-label>
+        <input matInput  formControlName="dataInicial" [matDatepicker]="picker" (focus)="picker.open()"name="dataInicial">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="month" [startAt]="dataAtual"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Data Final</mat-label>
+        <input matInput  formControlName="dataFinal" [matDatepicker]="picker1" (focus)="picker1.open()"name="dataFinal">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1 startView="month" [startAt]="dataAtual"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Hora Inicial</mat-label>
+        <input matInput  formControlName="horaInicial" name="horaInicial" type="time" #time>
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Hora Final</mat-label>
+        <input matInput  formControlName="horaFinal" name="horaFinal" type="time" #time>
+    </mat-form-field>
+
+    <mat-form-field class="form">
+        <mat-label>Duração Consulta</mat-label>
+        <mat-select formControlName="codigoTempo" name="codigoTempo">
+                <mat-option value="" selected>Selecione...</mat-option>
+                <mat-option value="15">15 minutos</mat-option>
+                <mat-option value="20">20 minutos</mat-option>            
+                <mat-option value="30">30 minutos</mat-option>            
+                <mat-option value="45">45 minutos</mat-option>
+                <mat-option value="60">60 minutos</mat-option>            
+        </mat-select>
+    </mat-form-field>
+
     <mat-form-field class="form">
         <mat-label>Tipo</mat-label>
         <mat-select formControlName="codigoTipo" name="codigoTipo">
@@ -46,18 +58,9 @@
                 <mat-option value="3">Retorno</mat-option>            
         </mat-select>
     </mat-form-field>
-<!--    
-    <mat-form-field class="form">
-        <mat-label>Situação</mat-label>
-        <mat-select formControlName="codigoSituacao" name="codigoSituacao">
-                <mat-option value="" selected>Selecione...</mat-option>
-                <mat-option value="1">Disponível</mat-option>
-                <mat-option value="2">Agendado</mat-option>            
-        </mat-select>
-    </mat-form-field>
--->
+    <mat-progress-bar *ngIf="!agendaCriada" mode="indeterminate"></mat-progress-bar>
     <div class="buttons">
-        <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Cancelar</button>
-        <button class="mat-elevation-z8" (click)="incluir()" mat-stroked-button color="primary">Salvar</button>
+        <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Voltar</button>
+        <button class="mat-elevation-z8" (click)="incluir()" [disabled]="!formulario.valid" mat-stroked-button color="primary">Salvar</button>
     </div>
 </form>

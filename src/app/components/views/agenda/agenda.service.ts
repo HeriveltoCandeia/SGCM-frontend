@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Agenda } from './agenda.model' 
 import { AgendaLista } from './agendaLista.model';
+import { AgendaLote } from './agendaLote.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,11 @@ export class AgendaService {
   incluir(agenda: AgendaLista):Observable<AgendaLista>{
     const url=`${this.baseUrl}/agendasMedicasRest`;
     return this.http.post<AgendaLista>(url, agenda);
+  }
+
+  incluirLote(agenda: AgendaLote):Observable<AgendaLote>{
+    const url=`${this.baseUrl}/agendasMedicasRest/lote`;
+    return this.http.post<AgendaLote>(url, agenda);
   }
 
   editar(id: String, agenda: AgendaLista):Observable<AgendaLista>{
