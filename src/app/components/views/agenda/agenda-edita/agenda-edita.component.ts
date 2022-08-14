@@ -68,6 +68,24 @@ export class AgendaEditaComponent implements OnInit {
     this.buscarClientes();
     this.buscarMedicos();
   }
+  
+  desabilitaAlteracao()
+  {
+    if (this.agenda.codigoSituacao != 1  && this.agenda.codigoSituacao != 2)
+    {
+      return true;
+    }
+    return false;
+  }
+
+  desabilitaAgendadoAlteracao()
+  {
+    if (this.agenda.codigoSituacao != 1)
+    {
+      return true;
+    }
+    return false;
+  }
 
   buscarClientes(){
     this.serviceCli.pesquisarTodos().subscribe((resposta) => {
@@ -108,6 +126,7 @@ export class AgendaEditaComponent implements OnInit {
     switch (codigo){
       case 1:  return 'Disponível';
       case 2:  return 'Agendado';
+      case 3:  return 'Cancelado';
       default: return '';
     }
   }
@@ -126,6 +145,11 @@ export class AgendaEditaComponent implements OnInit {
   }
 
   editar(): void{
+    if (this.agenda.codigoSituacao !== 1) 
+    {
+      this.service.mensagem('Situação não permite alteração.');
+      return;
+    }
     this.alterarAgendaParaSalvar();
     this.service.editar(this.agenda.id!, this.agenda).subscribe((resposta) => {
       this.router.navigate(["agendas"]);
@@ -145,6 +169,12 @@ export class AgendaEditaComponent implements OnInit {
   }
 
   cancelarAgendamento(): void{
+    if (this.agenda.codigoSituacao !== 1 && this.agenda.codigoSituacao !== 2) 
+    {
+      this.service.mensagem('Situação não permite alteração.');
+      return;
+    }
+
     let datAgenda = new Date(this.agenda.dataAgenda);
     if (datAgenda.getTime() < this.dataAtual.getTime())
     {
@@ -163,6 +193,12 @@ export class AgendaEditaComponent implements OnInit {
   }
 
   realizarAgendamento(): void{
+    if (this.agenda.codigoSituacao !== 1) 
+    {
+      this.service.mensagem('Situação não permite alteração.');
+      return;
+    }
+
     let verificaCliente = this.formulario.get("cliente")?.value;
     let datAgenda = new Date(this.agenda.dataAgenda);
     if (datAgenda.getTime() < this.dataAtual.getTime())

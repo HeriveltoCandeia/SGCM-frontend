@@ -70,12 +70,14 @@ export class AgendaExcluiComponent implements OnInit {
   }
 
   excluir(): void{
-    if (this.agenda.codigoSituacao !== 1) 
+    if (this.agenda.codigoSituacao !== 1 && this.agenda.codigoSituacao !== 2) 
     {
       this.service.mensagem('Situação não permite exlusão.');
       return;
     }
-    this.service.excluir(this.agenda.id!).subscribe((resposta) => {
+    this.agenda.codigoSituacao = 3;
+    this.service.editar(this.agenda.id!, this.agenda).subscribe((resposta) => {
+//    this.service.excluir(this.agenda.id!).subscribe((resposta) => {
       this.router.navigate(["agendas"]);
       this.service.mensagem('Agenda excluída com sucesso.');
     },

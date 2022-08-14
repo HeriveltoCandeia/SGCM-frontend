@@ -12,7 +12,7 @@
 
     <mat-form-field class="form">
         <mat-label>Cliente</mat-label>
-        <mat-select formControlName="cliente" name="clienteSelecionado">
+        <mat-select [disabled]="desabilitaAgendadoAlteracao()" formControlName="cliente" name="clienteSelecionado">
                 <mat-option value="0" selected>Selecione...</mat-option>
                 <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">
                     {{cliente.nome}}
@@ -27,7 +27,7 @@
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Tipo</mat-label>
-        <mat-select formControlName="codigoTipo" name="codigoTipo">
+        <mat-select [disabled]="desabilitaAgendadoAlteracao()" formControlName="codigoTipo" name="codigoTipo">
                 <mat-option value="" selected>Selecione...</mat-option>
                 <mat-option value="1">Agenda</mat-option>
                 <mat-option value="2">Encaixe</mat-option>            
@@ -40,13 +40,14 @@
                 <mat-option value="" selected>Selecione...</mat-option>
                 <mat-option value="1">Disponível</mat-option>
                 <mat-option value="2">Agendado</mat-option>            
+                <mat-option value="3">Cancelado</mat-option>            
         </mat-select>
     </mat-form-field>
 
     <div class="buttons">
         <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Voltar</button>
-        <button class="mat-elevation-z8" (click)="realizarAgendamento()" mat-stroked-button color="secondary">Agendar</button>
-        <button class="mat-elevation-z8" (click)="cancelarAgendamento()" mat-stroked-button color="secondary">Cancelar Agendamento</button>
+        <button class="mat-elevation-z8" [disabled]="desabilitaAgendadoAlteracao()" (click)="realizarAgendamento()" mat-stroked-button color="secondary">Agendar</button>
+        <button class="mat-elevation-z8" [disabled]="desabilitaAlteracao()" (click)="cancelarAgendamento()" mat-stroked-button color="secondary">Cancelar Agendamento</button>
 <!--        <button class="mat-elevation-z8" (click)="editar()" mat-stroked-button color="primary">Salvar</button> -->
     </div>
 </form>
