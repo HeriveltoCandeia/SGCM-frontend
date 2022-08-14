@@ -148,11 +148,14 @@ export class AgendaIncluiComponent implements OnInit {
       this.router.navigate(["agendas"]);
       this.service.mensagem("Agenda incluída com sucesso!");
     },err =>{
-        console.log('err.error: ');   
-        console.log(err.error);   
-        console.log('err.error.message: ');   
-        console.log(err.error.message);   
-        this.service.mensagem(err.error.message);
+        if (err.error.message === "" )
+        {
+          this.service.mensagem("Ação não permitida. Informação já existente ou inconsistente.");
+        }
+        else
+        {
+          this.service.mensagem(err.error.message);
+        }
     })
   }
 
