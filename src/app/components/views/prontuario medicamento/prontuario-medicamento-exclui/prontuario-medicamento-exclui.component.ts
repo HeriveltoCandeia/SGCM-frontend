@@ -70,7 +70,7 @@ export class ProntuarioMedicamentoExcluiComponent implements OnInit {
     this.service.excluir(this.prontuarioMedicamento.id!).subscribe((resposta) => {
       let irParaEdicao : string = "prontuarios/edita/" + this.prontuarioOrigem;
       this.router.navigate([irParaEdicao]);
-        this.service.mensagem('Medicamento excluído com sucesso.');
+        this.service.mensagem('Medicamento excluído do prontuário com sucesso.');
     },
     err =>{   
       this.service.mensagem(err.error.message);

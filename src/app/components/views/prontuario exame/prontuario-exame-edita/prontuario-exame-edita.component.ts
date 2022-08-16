@@ -126,7 +126,7 @@ export class ProntuarioExameEditaComponent implements OnInit {
     this.service.editar(this.prontuarioExame.id!, this.prontuarioExame).subscribe((resposta) => {
       let irParaEdicao: string = "prontuarios/edita/" + this.prontuarioOrigem;
       this.router.navigate([irParaEdicao]);
-      this.service.mensagem("Prontuario alterado com sucesso!");
+      this.service.mensagem("Exame do prontuário alterado com sucesso!");
     }, err => {
       this.service.mensagem(err.error.message);
     });

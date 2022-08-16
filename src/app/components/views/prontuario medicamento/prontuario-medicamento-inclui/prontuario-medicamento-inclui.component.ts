@@ -47,7 +47,7 @@ export class ProntuarioMedicamentoIncluiComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = this.fb.group({
       id:[''],
-      codigoProntuarioId:['', Validators.required],
+      codigoProntuarioId:[''],
       codigoMedicamentoId:['', Validators.required],
       orientacoes: [''],
     })
@@ -73,7 +73,7 @@ export class ProntuarioMedicamentoIncluiComponent implements OnInit {
     this.service.incluir(this.prontuario).subscribe((resposta) => {
       let irParaEdicao : string = "prontuarios/edita/" + this.prontuarioOrigem;
       this.router.navigate([irParaEdicao]);
-      this.service.mensagem("Prontuario incluído com sucesso!");
+      this.service.mensagem("Medicamento incluído no prontuário com sucesso!");
     },err =>{
         console.log('err.error: ');   
         console.log(err.error);   

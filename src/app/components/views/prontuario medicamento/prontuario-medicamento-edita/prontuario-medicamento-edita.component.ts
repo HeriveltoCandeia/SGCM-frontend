@@ -108,7 +108,7 @@ export class ProntuarioMedicamentoEditaComponent implements OnInit {
     this.service.editar(this.prontuarioMedicamento.id!, this.prontuarioMedicamento).subscribe((resposta) => {
       let irParaEdicao : string = "prontuarios/edita/" + this.prontuarioOrigem;
       this.router.navigate([irParaEdicao]);
-      this.service.mensagem("Prontuario alterado com sucesso!");
+      this.service.mensagem("Medicamento do prontuário alterado com sucesso!");
     },err =>{   
         this.service.mensagem(err.error.message);
     })
