@@ -60,7 +60,7 @@ export class ProntuarioMedicamentoEditaComponent implements OnInit {
 
     this.formulario = this.fb.group({
       id:[''],
-      codigoProntuarioId:['', Validators.required],
+      codigoProntuarioId:[''],
       codigoMedicamentoId:['', Validators.required],
       orientacoes: [''],
     })
