@@ -193,6 +193,7 @@ export class AgendaListaComponent implements OnInit {
       case 1:  return 'Disponível';
       case 2:  return 'Agendado';
       case 3:  return 'Cancelado';
+      case 4:  return 'Vencido';
       default: return '';
     }
   }
