@@ -83,6 +83,7 @@ export class ProntuarioIncluiComponent implements OnInit {
     this.prontuario.codigoSituacao = 1;
     this.prontuario.dataReg = this.dataAtual;
     this.prontuario.dataTimeProntuario = this.dataAtual;
+    this.prontuario.dataTimeProntuario.setHours(this.prontuario.dataTimeProntuario.getHours() - (this.prontuario.dataTimeProntuario.getTimezoneOffset()/60));
     this.service.incluir(this.prontuario).subscribe((resposta) => {
       let irParaEdicao : string = "prontuarios/edita/" + resposta.id;
       this.router.navigate([irParaEdicao]);
