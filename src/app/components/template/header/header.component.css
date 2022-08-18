@@ -30,3 +30,63 @@ h1{
     width: 10%; 
     justify-content:right;
 }
+@media screen and (min-width: 481px) and (max-width: 630px)
+{
+    h1{
+        font-size: 1rem;
+    }
+    .usuarioLogado, .mat-list-base, .mat-list-item{
+        font-size: 0.8rem;
+    }
+    html{
+        font-size: 1rem;    
+    }
+}
+
+@media screen and (min-width: 392px) and (max-width: 480px)
+{
+    h1{
+        font-size: 0.8rem;
+    }
+    .usuarioLogado, .mat-list-base, .mat-list-item{
+        font-size: 0.7rem;
+    }
+    html{
+        font-size: 1rem;    
+    }
+    img{
+        height:3.5rem;
+        justify-content: left;
+    }      
+}
+
+@media screen and (min-width: 100px) and (max-width: 391px)
+{
+    h1{
+        font-size: 0.7rem;
+    }
+    .usuarioLogado, .mat-list-base, .mat-list-item{
+        font-size: 0.6rem;
+    }
+    html{
+        font-size: 1rem;    
+    }
+    .descTit{
+        width: 80%; 
+        justify-content: center; 
+    }
+    .usuarioLogout{
+        width: 10%; 
+    }
+    .imgTit{
+        width: 10%; 
+        justify-content: center;
+    }  
+    img{
+        height:3rem;
+        justify-content: left;
+    }      
+    .mat-icon{
+        width: auto;
+    }
+}

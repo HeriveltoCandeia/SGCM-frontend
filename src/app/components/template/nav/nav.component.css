@@ -5,6 +5,53 @@ i{
     padding-left: 0.6rem;
     padding-right: 0.3rem;
 }
+.i-cadastro{
+    padding-left: 0.6rem;
+    padding-right: 0.3rem;
+    width: 5%;
+}
+
 mat-sidenav{
     background-color:rgb(213, 229, 241);
+    padding: 0px;
+}
+.mat-list-item{
+    font-size: 1rem;
+}
+
+.menu-Cadastro{
+    font-size: 1rem;
+    padding-left: 13%;
+}
+
+:host ::ng-deep .mat-list-item-content{
+    padding: 0px !important;
+}
+
+
+@media screen and (max-width: 600px)
+{
+    .mat-list-base{
+        font-size: 0.8rem;
+    }
+
+    .menu-Cadastro{
+        font-size: 0.8rem;
+        padding-left: 15%;
+    }
+    i{
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+    }    
+    mat-sidenav{
+        width: 7rem;
+        padding: 0px;
+    }    
+    .i-cadastro{
+        padding-left: 0.5rem;
+        padding-right: 0.3rem;
+    }
+    .mat-list-item{
+        font-size: 0.8rem;
+    }        
 }

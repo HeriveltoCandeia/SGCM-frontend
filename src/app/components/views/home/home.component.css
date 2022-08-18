@@ -3,7 +3,7 @@
     margin: 1rem auto;
 }
 
-@media(max-width:460px){
+@media(max-width:506px){
     .home{
         width: 70%;
     }
