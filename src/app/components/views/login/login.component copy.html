@@ -1,0 +1,26 @@
+<form>
+    <mat-grid-list cols="3" rowHeight="22rem">
+        <mat-grid-tile> </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card >
+                <mat-card-title>
+                    <h1>Login</h1>
+                </mat-card-title>           
+                <mat-card-content>
+                    <mat-form-field class="form">
+                        <mat-label>Usuário</mat-label>
+                        <input matInput [(ngModel)]="username" type="text" name="username">
+                    </mat-form-field>        
+                    <mat-form-field class="form">
+                        <mat-label>Senha</mat-label>
+                        <input matInput [(ngModel)]="password" type="password" name="password">
+                    </mat-form-field>        
+                    <button class="mat-elevation-z8" (click)="entrar()" mat-stroked-button color="primary">Entrar</button>
+                    <br/>
+                </mat-card-content>       
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile> </mat-grid-tile>
+    </mat-grid-list>
+</form>
+
