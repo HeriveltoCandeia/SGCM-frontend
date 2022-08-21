@@ -1,5 +1,5 @@
 .container{
-    height: 80%;
+    height: 30%;
 }
 i{
     padding-left: 0.6rem;
@@ -28,6 +28,78 @@ mat-sidenav{
     padding: 0px !important;
 }
 
+@media screen and (min-height: 1280px)
+{
+    .container{
+        height:92.3%;
+    }
+}
+
+@media screen and (min-height: 1080px) and (max-height: 1279px)
+{
+    .container{
+        height:91%;
+    }
+}
+
+
+@media screen and (min-height: 880px) and (max-height: 1079px)
+{
+    .container{
+        height:89%;
+    }
+}
+
+
+@media screen and (min-height: 800px) and (max-height: 879px)
+{
+    .container{
+        height:88%;
+    }
+}
+
+@media screen and (min-height: 671px) and (max-height: 799px)
+{
+    .container{
+        height:87%;
+    }
+}
+
+@media screen and (min-height: 621px) and (max-height: 670px)
+{
+    .container{
+        height:85%;
+    }
+}
+
+@media screen and (min-height: 550px) and (max-height: 620px)
+{
+    .container{
+        height:84%;
+    }
+}
+
+
+@media screen and (min-height: 400px) and (max-height: 549px)
+{
+    .container{
+        height: 77%;
+    }
+}
+
+@media screen and (min-height: 376px) and (max-height: 399px)
+{
+    .container{
+        height: 78%;
+    }
+}
+
+@media screen and (max-height: 375px)
+{
+    .container{
+        height: 79%;
+    }
+}
 
 @media screen and (max-width: 600px)
 {

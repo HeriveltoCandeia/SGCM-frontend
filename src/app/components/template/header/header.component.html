@@ -1,17 +1,24 @@
 <mat-toolbar class="header">
-    <span class="imgTit">
-        <img src="assets/img/logo.png" alt="">
-    </span>
-    <span>
-        <button mat-button (click)="exibirOcultarNavBar()"><mat-icon>menu</mat-icon></button>
-    </span>
-    <span class="descTit">
-        <h1>Sistema de Gestão de Clínica Médica</h1>
-    </span>
-    <div class="usuarioLogout">
-        <span class="usuarioLogado">{{usuarioLogado}}</span>
-        <button (click)="logout()" mat-icon-button>
-            <mat-icon>exit_to_app</mat-icon>
-        </button>
+    <div class="container">
+        <div class="imgTit">
+            <span>
+                <img src="assets/img/logo.png" alt="">
+            </span>
+        </div>
+        <div class="menuTit">
+            <button mat-button (click)="exibirOcultarNavBar()"><mat-icon>menu</mat-icon></button>
+        </div>
+        <div class="descTit">
+            <span>
+                <h1>Sistema de Gestão de Clínica Médica</h1>
+            </span>
+        </div>
+        <div class="usuarioLogout">
+            <span class="usuarioLogado">{{usuarioLogado}}</span>
+            <br>
+            <button (click)="logout()" mat-icon-button>
+                <mat-icon>exit_to_app</mat-icon>
+            </button>
+        </div>
     </div>
 </mat-toolbar>

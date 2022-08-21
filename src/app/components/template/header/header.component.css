@@ -1,92 +1,102 @@
-img{
-    height:5rem;
-    justify-content: left;
-}
 .header{
-    height: 15%;
+    height: 18%;
     background-color:rgb(193, 217, 241);
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+    padding-bottom: 0%;
+}
+.container{
+    display: flex;
+    width: 100%;
+    align-items: center; /*alinhamento vertical */
+    justify-content: center; /*alinhamento horizontal */
 }
 .imgTit{
-    width: 10%; 
-    justify-content: center;
+    width: 85px; 
+}
+.menuTit{
+    width: 60px;
+}
+button{
+    padding-left: 0;
+    min-width: 0;
+    margin-left: 10px;
 }
 .descTit{
-    width: 80%; 
-    justify-content: center; 
+    width: 92%; 
+    text-align: center;
 }
-span{
-    display: flex;
-    align-items: center;
+.usuarioLogout{
+    width: 100px;
+    text-align: end;
+}
+img{
+    height:5rem;
 }
 h1{
-    padding-left: 1.2rem;
     font-size: 1.5rem;
 }
 .usuarioLogado{
     font-size: 1.2rem;
     color:blue;
 }
-.usuarioLogout{
-    width: 10%; 
-    justify-content:right;
-}
-@media screen and (min-width: 481px) and (max-width: 630px)
+
+@media screen and (min-height: 550px)
 {
-    h1{
-        font-size: 1rem;
-    }
-    .usuarioLogado, .mat-list-base, .mat-list-item{
-        font-size: 0.8rem;
-    }
-    html{
-        font-size: 1rem;    
+    .header{
+        height: 80px;
     }
 }
 
-@media screen and (min-width: 392px) and (max-width: 480px)
+
+@media screen and (max-height: 480px)
 {
-    h1{
-        font-size: 0.8rem;
+    .header{
+        height: 18%;
     }
-    .usuarioLogado, .mat-list-base, .mat-list-item{
-        font-size: 0.7rem;
-    }
-    html{
-        font-size: 1rem;    
-    }
-    img{
-        height:3.5rem;
-        justify-content: left;
-    }      
 }
 
-@media screen and (min-width: 100px) and (max-width: 391px)
+@media screen and (min-width: 480px) and (max-width: 767px)
 {
     h1{
-        font-size: 0.7rem;
+        font-size: 1.05rem;
     }
     .usuarioLogado, .mat-list-base, .mat-list-item{
-        font-size: 0.6rem;
+        font-size: 0.85rem;
+        padding-right: 0.2rem;
     }
-    html{
+/*    html{
         font-size: 1rem;    
+    }*/
+}
+@media screen and (max-width: 479px)
+{
+    h1{
+        font-size: .8rem;
+    }  
+    .usuarioLogado, .mat-list-base, .mat-list-item{
+        font-size: 0.85rem;
+        padding-right: 0.2rem;
     }
     .descTit{
-        width: 80%; 
-        justify-content: center; 
+        width: 80%;
     }
-    .usuarioLogout{
-        width: 10%; 
+    .menuTit{
+        width: 30px;
+    }
+    button{
+        margin-left: .1rem;
     }
     .imgTit{
-        width: 10%; 
-        justify-content: center;
-    }  
+        width: 60px; 
+    }
+    .usuarioLogout{
+        width: 80px;
+    }    
+    .usuarioLogado{
+        font-size: .8rem;
+    }    
     img{
-        height:3rem;
-        justify-content: left;
-    }      
-    .mat-icon{
-        width: auto;
+        height: 3.5rem;
     }
 }

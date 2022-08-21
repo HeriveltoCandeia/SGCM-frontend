@@ -3,14 +3,27 @@
     margin: 1rem auto;
 }
 
-@media(max-width:506px){
-    .home{
-        width: 70%;
-    }
-}
-
-@media(max-width:760px){
+@media screen and (min-width:507px) and (max-width: 760px) {
     .home{
         width: 90%;
     }
+    .title{
+        font-size: 1.1rem;
+    }    
+    .subtitle{
+        font-size: 0.8rem;
+    }
 }
+
+@media screen and (max-width:506px){
+    .home{
+        width: 85%;
+    }
+    .title{
+        font-size: 0.9rem;
+    }    
+    .subtitle{
+        font-size: 0.7rem;
+    }
+}
+
