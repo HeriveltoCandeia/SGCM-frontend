@@ -54,8 +54,8 @@
         <input matInput  [(ngModel)]="funcionario.dataDesligamento" type="text" disabled="true" name="dataDemissao">
     </mat-form-field>
     <div class="buttons">
-        <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Cancelar</button>
-        <button class="mat-elevation-z8" (click)="editar()" mat-stroked-button color="primary">Salvar</button>
-        <button class="mat-elevation-z8" (click)="demitirFuncionario()" mat-stroked-button color="secondary">Desligar Funcionário</button>
+        <button class="mat-elevation-z8" id="b1" (click)="cancelar()" mat-stroked-button color="warn">Cancelar</button>
+        <button class="mat-elevation-z8" id="b2" (click)="editar()" mat-stroked-button color="primary">Salvar</button>
+        <button class="mat-elevation-z8" id="b3" (click)="demitirFuncionario()" mat-stroked-button color="secondary">Desligar Funcionário</button>
     </div>
 </form>

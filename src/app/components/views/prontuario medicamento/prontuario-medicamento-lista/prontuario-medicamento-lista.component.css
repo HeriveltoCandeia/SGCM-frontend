@@ -39,3 +39,51 @@ table {
 .content-table{
     margin-top: 1rem;
 }
+
+.mat-cell{
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
+}
+
+@media screen and (min-width: 480px) and (max-width: 767px)
+{
+    .tituloAcordion{
+        font-size: 1rem;
+    }  
+
+    .title h1{
+        font-size: 1.3rem;
+    }
+    .mat-form-field {
+        font-size: 12px;
+    }
+    button{
+        font-size: 0.8rem;
+    }
+    .mat-cell{
+        font-size: 0.8rem;
+        border-right: dotted 1px;
+    }
+}
+@media screen and (max-width: 479px)
+{
+    .tituloAcordion{
+        font-size: .9rem;
+    }  
+    .title h1{
+        font-size: 1rem;
+    }
+    .mat-form-field {
+        font-size: 12px;
+    }
+    button{
+        font-size: 0.8rem;
+    }
+    .mat-cell{
+        font-size: 0.8rem;
+        border-right: dotted 1px;
+    }
+    .material-icons{
+        height: .3rem;
+    }
+} 

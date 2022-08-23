@@ -34,3 +34,25 @@ mat-tab{
     width: 80%;
     margin: 1rem auto;
 }
+
+@media screen and (min-width: 480px) and (max-width: 767px)
+{
+    #b1, #b2, #b3{
+        width: 100%;
+        font-size: 0.8rem;
+    }
+    .mat-form-field {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 479px)
+{
+    #b1, #b2, #b3{
+        width: 100%;
+        font-size: 0.8rem;
+    }
+    .mat-form-field {
+        font-size: 12px;
+    }
+}

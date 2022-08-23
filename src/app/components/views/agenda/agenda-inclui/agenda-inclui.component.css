@@ -28,3 +28,16 @@ button{
     display: inline-block;
     width:99%
 }
+
+@media screen and (max-width: 767px)
+{
+    .mat-form-field {
+        font-size: 12px;
+    }
+    #b1, #b2{
+        font-size: 0.8rem;
+    }
+    h1{
+        font-size: 1.2rem;
+    }
+}

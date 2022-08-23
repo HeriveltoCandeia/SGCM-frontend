@@ -46,9 +46,9 @@
     </mat-form-field>
 
     <div class="buttons">
-        <button class="mat-elevation-z8" (click)="cancelar()" mat-stroked-button color="warn">Voltar</button>
-        <button class="mat-elevation-z8" [disabled]="desabilitaAgendadoAlteracao()" (click)="realizarAgendamento()" mat-stroked-button color="secondary">Agendar</button>
-        <button class="mat-elevation-z8" [disabled]="desabilitaAlteracao()" (click)="cancelarAgendamento()" mat-stroked-button color="secondary">Cancelar Agendamento</button>
+        <button class="mat-elevation-z8" id="b1" (click)="cancelar()" mat-stroked-button color="warn">Voltar</button>
+        <button class="mat-elevation-z8" id="b2" [disabled]="desabilitaAgendadoAlteracao()" (click)="realizarAgendamento()" mat-stroked-button color="secondary">Agendar</button>
+        <button class="mat-elevation-z8" id="b3" [disabled]="desabilitaAlteracao()" (click)="cancelarAgendamento()" mat-stroked-button color="secondary">Cancelar Agendamento</button>
 <!--        <button class="mat-elevation-z8" (click)="editar()" mat-stroked-button color="primary">Salvar</button> -->
     </div>
 </form>
