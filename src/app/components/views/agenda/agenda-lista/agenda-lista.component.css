@@ -82,7 +82,7 @@ mat-expansion-panel{
 @media screen and (max-width: 479px)
 {
     .tituloAcordion{
-        font-size: .9rem;
+        font-size: .8rem;
     }  
     .title h1{
         font-size: 1rem;
@@ -98,3 +98,11 @@ mat-expansion-panel{
         border-right: dotted 1px;
     }
 } 
+
+@media screen and (max-height: 400px)
+{
+    .title{
+        margin-bottom: 0.2rem;
+    }
+}
+
