@@ -78,6 +78,7 @@ export class FuncionarioEditaComponent implements OnInit {
     }
     let dataHoje = new Date();
     this.funcionario.dataDesligamento = dataHoje.toLocaleDateString();
+    this.funcionario.senha = '#$#$#$#$'
     this.service.editar(this.funcionario.id!, this.funcionario).subscribe((resposta) => {
 //      this.router.navigate(["funcionarios"]);
       this.service.mensagem("Funcionario desligado com sucesso!");
